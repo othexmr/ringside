@@ -1,0 +1,2327 @@
+{
+ "commands": {
+  "0": [
+   "docker",
+   "run",
+   "-e",
+   "TORCH_USE_RTLD_GLOBAL=1",
+   "-e",
+   "VLLM_CANDIDATE_BOOT=tp4-ring-20260917",
+   "-e",
+   "GLM53_SPEEDUP_MIXED_PREFILL_FAIR=1",
+   "-e",
+   "GLM53_SPEEDUP_MIXED_PREFILL_RUNTIME=0",
+   "-e",
+   "GLM53_SPEEDUP_OVERRIDE=/opt/glm53-speedup/runtime/override.json",
+   "-e",
+   "GLM53_SPEEDUP_CAPTURE=all",
+   "-e",
+   "GLM53_SPEEDUP_COMM_TRACE=0",
+   "-e",
+   "GLM53_SPEEDUP_GRAPH_MEMORY=1",
+   "-e",
+   "GLM53_SPEEDUP_K=7",
+   "-e",
+   "GLM53_SPEEDUP_KDA_STRIDES=0",
+   "-e",
+   "GLM53_SPEEDUP_LOG_EVERY=1",
+   "-e",
+   "GLM53_SPEEDUP_MHC_SHARD=0",
+   "-e",
+   "GLM53_SPEEDUP_MIXED_PREFILL=4608",
+   "-e",
+   "GLM53_SPEEDUP_MODE=saturation",
+   "-e",
+   "GLM53_SPEEDUP_NOPE_COPIES=0",
+   "-e",
+   "GLM53_SPEEDUP_PREFILL_TAILS=0",
+   "-e",
+   "GLM53_SPEEDUP_ROCE=0",
+   "-e",
+   "GLM53_SPEEDUP_TIMING=1",
+   "-d",
+   "--name",
+   "glm53-rbaf-tp2-rank0-20260925",
+   "--network",
+   "host",
+   "--ipc",
+   "host",
+   "--gpus",
+   "all",
+   "--cap-add",
+   "IPC_LOCK",
+   "--security-opt",
+   "label=disable",
+   "--device",
+   "/dev/infiniband",
+   "--ulimit",
+   "memlock=-1:-1",
+   "--shm-size",
+   "32g",
+   "--label",
+   "nvfp4.candidate.boot=promoted-short-tail-20260917",
+   "-e",
+   "B12X_GLM53_ATOMIC_PREFILL=1",
+   "-e",
+   "B12X_DYNAMIC_DETERMINISTIC_OUTPUT=1",
+   "-e",
+   "B12X_GLM53_DECODE_FASTPATH=1",
+   "-e",
+   "B12X_MICRO_DYNAMIC_CUTOVER_PAIRS=0",
+   "-e",
+   "B12X_PRINT_COMPILE_PROGRESS=1",
+   "-e",
+   "B12X_TIMING=0",
+   "-e",
+   "CUDA_VERSION=13.0.3",
+   "-e",
+   "DEBIAN_FRONTEND=noninteractive",
+   "-e",
+   "FLASHINFER_CUDA_ARCH_LIST=12.1a",
+   "-e",
+   "FLASHINFER_DISABLE_VERSION_CHECK=1",
+   "-e",
+   "HF_HOME=/cache/huggingface",
+   "-e",
+   "HF_HUB_OFFLINE=1",
+   "-e",
+   "LD_LIBRARY_PATH=/usr/local/nvidia/lib64:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda/lib64",
+   "-e",
+   "NVARCH=sbsa",
+   "-e",
+   "NVIDIA_DRIVER_CAPABILITIES=compute,utility",
+   "-e",
+   "NVIDIA_REQUIRE_CUDA=cuda>=13.0 brand=unknown,driver>=535,driver<536 brand=grid,driver>=535,driver<536 brand=tesla,driver>=535,driver<536 brand=nvidia,driver>=535,driver<536 brand=quadro,driver>=535,driver<536 brand=quadrortx,driver>=535,driver<536 brand=nvidiartx,driver>=535,driver<536 brand=vapps,driver>=535,driver<536 brand=vpc,driver>=535,driver<536 brand=vcs,driver>=535,driver<536 brand=vws,driver>=535,driver<536 brand=cloudgaming,driver>=535,driver<536 brand=unknown,driver>=550,driver<551 brand=grid,driver>=550,driver<551 brand=tesla,driver>=550,driver<551 brand=nvidia,driver>=550,driver<551 brand=quadro,driver>=550,driver<551 brand=quadrortx,driver>=550,driver<551 brand=nvidiartx,driver>=550,driver<551 brand=vapps,driver>=550,driver<551 brand=vpc,driver>=550,driver<551 brand=vcs,driver>=550,driver<551 brand=vws,driver>=550,driver<551 brand=cloudgaming,driver>=550,driver<551 brand=unknown,driver>=565,driver<566 brand=grid,driver>=565,driver<566 brand=tesla,driver>=565,driver<566 brand=nvidia,driver>=565,driver<566 brand=quadro,driver>=565,driver<566 brand=quadrortx,driver>=565,driver<566 brand=nvidiartx,driver>=565,driver<566 brand=vapps,driver>=565,driver<566 brand=vpc,driver>=565,driver<566 brand=vcs,driver>=565,driver<566 brand=vws,driver>=565,driver<566 brand=cloudgaming,driver>=565,driver<566 brand=unknown,driver>=570,driver<571 brand=grid,driver>=570,driver<571 brand=tesla,driver>=570,driver<571 brand=nvidia,driver>=570,driver<571 brand=quadro,driver>=570,driver<571 brand=quadrortx,driver>=570,driver<571 brand=nvidiartx,driver>=570,driver<571 brand=vapps,driver>=570,driver<571 brand=vpc,driver>=570,driver<571 brand=vcs,driver>=570,driver<571 brand=vws,driver>=570,driver<571 brand=cloudgaming,driver>=570,driver<571 brand=unknown,driver>=575,driver<576 brand=grid,driver>=575,driver<576 brand=tesla,driver>=575,driver<576 brand=nvidia,driver>=575,driver<576 brand=quadro,driver>=575,driver<576 brand=quadrortx,driver>=575,driver<576 brand=nvidiartx,driver>=575,driver<576 brand=vapps,driver>=575,driver<576 brand=vpc,driver>=575,driver<576 brand=vcs,driver>=575,driver<576 brand=vws,driver>=575,driver<576 brand=cloudgaming,driver>=575,driver<576",
+   "-e",
+   "NVIDIA_VISIBLE_DEVICES=all",
+   "-e",
+   "NV_CUDA_CUDART_VERSION=13.0.96-1",
+   "-e",
+   "PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+   "-e",
+   "PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True",
+   "-e",
+   "TILELANG_CACHE_DIR=/root/.cache/tilelang",
+   "-e",
+   "TILELANG_TMP_DIR=/root/.cache/tilelang/tmp",
+   "-e",
+   "TORCH_CUDA_ARCH_LIST=12.1a",
+   "-e",
+   "TORCH_NCCL_ASYNC_ERROR_HANDLING=1",
+   "-e",
+   "TRANSFORMERS_OFFLINE=1",
+   "-e",
+   "UV_CACHE_DIR=/opt/uv/cache",
+   "-e",
+   "UV_HTTP_TIMEOUT=500",
+   "-e",
+   "UV_INDEX_STRATEGY=unsafe-best-match",
+   "-e",
+   "UV_LINK_MODE=copy",
+   "-e",
+   "UV_OVERRIDE=/etc/uv-overrides.txt",
+   "-e",
+   "UV_PYTHON_INSTALL_DIR=/opt/uv/python",
+   "-e",
+   "VLLM_BUILD_COMMIT=98dff2a81d747d1dba01a47f939f48c3526d4206",
+   "-e",
+   "VLLM_BUILD_PIPELINE=local-glm53-backport",
+   "-e",
+   "VLLM_BUILD_URL=",
+   "-e",
+   "VLLM_CACHE_ROOT=/root/.cache/vllm",
+   "-e",
+   "VLLM_DISABLE_SHARED_EXPERTS_STREAM=0",
+   "-e",
+   "VLLM_ENABLE_CUDA_COMPATIBILITY=0",
+   "-e",
+   "VLLM_ENGINE_READY_TIMEOUT_S=3600",
+   "-e",
+   "VLLM_GLM53_CUDA_SPARSE_MLA=1",
+   "-e",
+   "VLLM_GLM53_DFLASH2_EDGE_SCALE=1.0",
+   "-e",
+   "VLLM_GLM53_DFLASH2_WALK=greedy",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_DECODE=nvfp4",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_DECODE_FP8_FAMILIES=shared_down,indexer,head",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_DECODE_KERNEL=marlin",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_DENSE=default,head,draft,shared_down,indexer",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_GEMV_CONFIG=",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_PREFILL=w8a8",
+   "-e",
+   "VLLM_GLM53_GROUPED_ROUTER_SKIP_PADDING=0",
+   "-e",
+   "VLLM_GLM53_ROUTER_DEDUP=1",
+   "-e",
+   "VLLM_GLM53_ROUTER_GATE_TRITON=0",
+   "-e",
+   "VLLM_GLM53_SPARSE_MLA_SUBGROUP_SOFTMAX=0",
+   "-e",
+   "VLLM_GLM53_TP2_ALLREDUCE=p2p",
+   "-e",
+   "VLLM_GLM53_TP2_ALLREDUCE_MAX_BYTES=262144",
+   "-e",
+   "VLLM_GLM53_V2_ASYNC_TP_EXPERIMENTAL=0",
+   "-e",
+   "VLLM_GLM53_V2_SP_EXPERIMENTAL=0",
+   "-e",
+   "VLLM_IMAGE_TAG=local/glm53-v029:ported-20260910",
+   "-e",
+   "VLLM_KV_CACHE_LAYOUT_DUMP=1",
+   "-e",
+   "VLLM_LOGGING_LEVEL=INFO",
+   "-e",
+   "VLLM_PLUGINS=glm53_sparse_mla",
+   "-e",
+   "VLLM_USAGE_SOURCE=production-docker-image",
+   "-e",
+   "VLLM_USE_B12X_MHC=0",
+   "-e",
+   "VLLM_USE_V2_MODEL_RUNNER=1",
+   "-e",
+   "XDG_CACHE_HOME=/root/.cache",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "INSTANTTENSOR_BACKEND=URING",
+   "-e",
+   "INSTANTTENSOR_DEBUG=1",
+   "--security-opt",
+   "seccomp=unconfined",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLOO_SOCKET_IFNAME=enp1s0f1np1",
+   "-e",
+   "NCCL_CROSS_NIC=0",
+   "-e",
+   "NCCL_CUMEM_ENABLE=0",
+   "-e",
+   "NCCL_DEBUG=WARN",
+   "-e",
+   "NCCL_IB_ADDR_FAMILY=AF_INET",
+   "-e",
+   "NCCL_IB_ADDR_RANGE=<private-ip>/24",
+   "-e",
+   "NCCL_IB_DISABLE=0",
+   "-e",
+   "NCCL_IB_GID_INDEX=3",
+   "-e",
+   "NCCL_IB_HCA=rocep1s0f1,roceP2p1s0f1",
+   "-e",
+   "NCCL_IB_MERGE_NICS=0",
+   "-e",
+   "NCCL_IB_ROCE_VERSION_NUM=2",
+   "-e",
+   "NCCL_IGNORE_CPU_AFFINITY=1",
+   "-e",
+   "NCCL_MAX_CTAS=4",
+   "-e",
+   "NCCL_NET=IB",
+   "-e",
+   "NCCL_NVLS_ENABLE=0",
+   "-e",
+   "NCCL_SOCKET_IFNAME=enp1s0f1np1",
+   "-e",
+   "TP_SOCKET_IFNAME=enp1s0f1np1",
+   "-e",
+   "VLLM_HOST_IP=<private-ip>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_SPEEDUP_FAIR_COST_JOINT=0",
+   "-e",
+   "GLM53_SPEEDUP_PREFILL_ADAPTIVE=1",
+   "-e",
+   "GLM53_SPEEDUP_SPLIT_CADENCE=1",
+   "-e",
+   "GLM53_SPEEDUP_SPLIT_ADAPTIVE=0",
+   "-e",
+   "GLM53_SPEEDUP_SPLIT_FAIR=1",
+   "-e",
+   "GLM53_SPEEDUP_CAPTURE_KS=1,2,3,4,5,6,7",
+   "-e",
+   "GLM53_SPEEDUP_CAPTURE_REQUESTS=1,2,3,4,5,6",
+   "-e",
+   "GLM53_SPEEDUP_GEOMETRY=1",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "B12X_TP2_CLUSTER_MAP=0",
+   "-e",
+   "B12X_TP2_TILE_MAJOR_WEIGHTS=1",
+   "-e",
+   "B12X_TP4_CLUSTER_MAP=0",
+   "-e",
+   "B12X_TP4_TILE_MAJOR_WEIGHTS=0",
+   "-e",
+   "GLM53_ADAPTIVE_FAIR_CHUNK=0",
+   "-e",
+   "GLM53_SPEEDUP_TP2_FAIR_CAP_GEOMETRY=1",
+   "-e",
+   "GLM53_TP2_MHC_GEOMETRY=0",
+   "-e",
+   "GLM53_TP4_MHC_GEOMETRY=0",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_SPARSE_MLA_SPLIT_KV=1",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_MLA_ABSORB_CHUNK=2304",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_INDEXER_GATE_TC=1",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_STARTUP_PREFILL_WARMUP=6",
+   "-e",
+   "GLM53_STARTUP_PREFILL_WARMUP_TOKENS=28672,28672,5120,5760,8192,10240",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "B12X_GLM53_MIXED_SPLIT=1",
+   "-e",
+   "B12X_GLM53_MIXED_SPLIT_MIN_PREFILL=1536",
+   "-e",
+   "GLM53_PREFIX_CACHE_CONTRACT=1",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_REPLAY_BOUNDARY=1",
+   "-e",
+   "GLM53_REPLAY_BOUNDARY_MAX=6",
+   "-e",
+   "GLM53_SPEEDUP_FIRST_TOKEN_REPAY=1",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_TOPP_FIX=1",
+   "-e",
+   "GLM53_UTF8_GUARD=1",
+   "-e",
+   "GLM53_UTF8_GUARD_TOKENIZER=/models/target/tokenizer.json",
+   "sha256:017fd0ba0a265dd81b78b352b14d33df03e9996f8f45870d4c3df84e08b1ebcb",
+   "/models/target",
+   "--served-model-name",
+   "nvidia/GLM-5.3-Flash-NVFP4",
+   "--trust-remote-code",
+   "--tensor-parallel-size",
+   "2",
+   "--gpu-memory-utilization",
+   "0.87",
+   "--max-model-len",
+   "262144",
+   "--max-num-seqs",
+   "6",
+   "--max-num-batched-tokens",
+   "14336",
+   "--block-size",
+   "2304",
+   "--kda-prefill-backend",
+   "b12x",
+   "--moe-backend",
+   "b12x",
+   "--linear-backend",
+   "b12x",
+   "--attention-config",
+   "{\"backend_per_kind\":{\"sliding_window\":\"FLASHINFER\"},\"use_trtllm_attention\":true}",
+   "--speculative-config",
+   "{\"method\":\"dflash\",\"model\":\"/models/dflash2-repo/snapshots/7d74cdd881ed7e32c31175984a67823127b66cfe\",\"num_speculative_tokens\":7,\"kv_cache_dtype\":\"auto\"}",
+   "--kv-cache-memory",
+   "11274289152",
+   "--kv-cache-dtype",
+   "fp8_e4m3",
+   "--no-async-scheduling",
+   "--prefix-cache-retention-interval",
+   "4608",
+   "--compilation-config",
+   "{\"mode\":3,\"cudagraph_capture_sizes\":[8,16,24,32,40,48],\"compile_sizes\":[8]}",
+   "--tool-call-parser",
+   "glm53",
+   "--enable-auto-tool-choice",
+   "--reasoning-parser",
+   "glm53",
+   "--default-chat-template-kwargs",
+   "{\"clear_thinking\": true}",
+   "--override-generation-config",
+   "{\"top_p\":0.95}",
+   "--chat-template",
+   "/chat_template_mm.jinja",
+   "--limit-mm-per-prompt",
+   "{\"image\":4,\"video\":1}",
+   "--skip-mm-profiling",
+   "--distributed-executor-backend",
+   "mp",
+   "--nnodes",
+   "2",
+   "--node-rank",
+   "0",
+   "--master-addr",
+   "<private-ip>",
+   "--master-port",
+   "25104",
+   "--host",
+   "0.0.0.0",
+   "--port",
+   "8888",
+   "--per-request-spec-decode-metrics",
+   "detailed",
+   "--kernel-config",
+   "{\"enable_flashinfer_autotune\":false}",
+   "--cudagraph-metrics",
+   "--kv-cache-metrics",
+   "--enable-prompt-tokens-details",
+   "--enable-per-request-metrics",
+   "--profiler-config",
+   "{\"profiler\": \"torch\", \"torch_profiler_dir\": \"/profiles\", \"torch_profiler_with_stack\": false, \"torch_profiler_record_shapes\": false, \"torch_profiler_with_memory\": false, \"capture_torch_profiler\": false, \"detailed_trace_annotation\": true, \"ignore_frontend\": true, \"delay_iterations\": 0, \"max_iterations\": 0}",
+   "--load-format",
+   "instanttensor",
+   "--use-replayssm"
+  ],
+  "1": [
+   "docker",
+   "run",
+   "-e",
+   "TORCH_USE_RTLD_GLOBAL=1",
+   "-e",
+   "VLLM_CANDIDATE_BOOT=tp4-ring-20260917",
+   "-e",
+   "GLM53_SPEEDUP_MIXED_PREFILL_FAIR=1",
+   "-e",
+   "GLM53_SPEEDUP_MIXED_PREFILL_RUNTIME=0",
+   "-e",
+   "GLM53_SPEEDUP_OVERRIDE=/opt/glm53-speedup/runtime/override.json",
+   "-e",
+   "GLM53_SPEEDUP_CAPTURE=all",
+   "-e",
+   "GLM53_SPEEDUP_COMM_TRACE=0",
+   "-e",
+   "GLM53_SPEEDUP_GRAPH_MEMORY=1",
+   "-e",
+   "GLM53_SPEEDUP_K=7",
+   "-e",
+   "GLM53_SPEEDUP_KDA_STRIDES=0",
+   "-e",
+   "GLM53_SPEEDUP_LOG_EVERY=1",
+   "-e",
+   "GLM53_SPEEDUP_MHC_SHARD=0",
+   "-e",
+   "GLM53_SPEEDUP_MIXED_PREFILL=4608",
+   "-e",
+   "GLM53_SPEEDUP_MODE=saturation",
+   "-e",
+   "GLM53_SPEEDUP_NOPE_COPIES=0",
+   "-e",
+   "GLM53_SPEEDUP_PREFILL_TAILS=0",
+   "-e",
+   "GLM53_SPEEDUP_ROCE=0",
+   "-e",
+   "GLM53_SPEEDUP_TIMING=1",
+   "-d",
+   "--name",
+   "glm53-rbaf-tp2-rank1-20260925",
+   "--network",
+   "host",
+   "--ipc",
+   "host",
+   "--gpus",
+   "all",
+   "--cap-add",
+   "IPC_LOCK",
+   "--security-opt",
+   "label=disable",
+   "--device",
+   "/dev/infiniband",
+   "--ulimit",
+   "memlock=-1:-1",
+   "--shm-size",
+   "32g",
+   "--label",
+   "nvfp4.candidate.boot=promoted-short-tail-20260917",
+   "-e",
+   "B12X_GLM53_ATOMIC_PREFILL=1",
+   "-e",
+   "B12X_DYNAMIC_DETERMINISTIC_OUTPUT=1",
+   "-e",
+   "B12X_GLM53_DECODE_FASTPATH=1",
+   "-e",
+   "B12X_MICRO_DYNAMIC_CUTOVER_PAIRS=0",
+   "-e",
+   "B12X_PRINT_COMPILE_PROGRESS=1",
+   "-e",
+   "B12X_TIMING=0",
+   "-e",
+   "CUDA_VERSION=13.0.3",
+   "-e",
+   "DEBIAN_FRONTEND=noninteractive",
+   "-e",
+   "FLASHINFER_CUDA_ARCH_LIST=12.1a",
+   "-e",
+   "FLASHINFER_DISABLE_VERSION_CHECK=1",
+   "-e",
+   "HF_HOME=/cache/huggingface",
+   "-e",
+   "HF_HUB_OFFLINE=1",
+   "-e",
+   "LD_LIBRARY_PATH=/usr/local/nvidia/lib64:/usr/local/cuda/lib64:/usr/local/nvidia/lib:/usr/local/nvidia/lib64:/usr/local/cuda/lib64",
+   "-e",
+   "NVARCH=sbsa",
+   "-e",
+   "NVIDIA_DRIVER_CAPABILITIES=compute,utility",
+   "-e",
+   "NVIDIA_REQUIRE_CUDA=cuda>=13.0 brand=unknown,driver>=535,driver<536 brand=grid,driver>=535,driver<536 brand=tesla,driver>=535,driver<536 brand=nvidia,driver>=535,driver<536 brand=quadro,driver>=535,driver<536 brand=quadrortx,driver>=535,driver<536 brand=nvidiartx,driver>=535,driver<536 brand=vapps,driver>=535,driver<536 brand=vpc,driver>=535,driver<536 brand=vcs,driver>=535,driver<536 brand=vws,driver>=535,driver<536 brand=cloudgaming,driver>=535,driver<536 brand=unknown,driver>=550,driver<551 brand=grid,driver>=550,driver<551 brand=tesla,driver>=550,driver<551 brand=nvidia,driver>=550,driver<551 brand=quadro,driver>=550,driver<551 brand=quadrortx,driver>=550,driver<551 brand=nvidiartx,driver>=550,driver<551 brand=vapps,driver>=550,driver<551 brand=vpc,driver>=550,driver<551 brand=vcs,driver>=550,driver<551 brand=vws,driver>=550,driver<551 brand=cloudgaming,driver>=550,driver<551 brand=unknown,driver>=565,driver<566 brand=grid,driver>=565,driver<566 brand=tesla,driver>=565,driver<566 brand=nvidia,driver>=565,driver<566 brand=quadro,driver>=565,driver<566 brand=quadrortx,driver>=565,driver<566 brand=nvidiartx,driver>=565,driver<566 brand=vapps,driver>=565,driver<566 brand=vpc,driver>=565,driver<566 brand=vcs,driver>=565,driver<566 brand=vws,driver>=565,driver<566 brand=cloudgaming,driver>=565,driver<566 brand=unknown,driver>=570,driver<571 brand=grid,driver>=570,driver<571 brand=tesla,driver>=570,driver<571 brand=nvidia,driver>=570,driver<571 brand=quadro,driver>=570,driver<571 brand=quadrortx,driver>=570,driver<571 brand=nvidiartx,driver>=570,driver<571 brand=vapps,driver>=570,driver<571 brand=vpc,driver>=570,driver<571 brand=vcs,driver>=570,driver<571 brand=vws,driver>=570,driver<571 brand=cloudgaming,driver>=570,driver<571 brand=unknown,driver>=575,driver<576 brand=grid,driver>=575,driver<576 brand=tesla,driver>=575,driver<576 brand=nvidia,driver>=575,driver<576 brand=quadro,driver>=575,driver<576 brand=quadrortx,driver>=575,driver<576 brand=nvidiartx,driver>=575,driver<576 brand=vapps,driver>=575,driver<576 brand=vpc,driver>=575,driver<576 brand=vcs,driver>=575,driver<576 brand=vws,driver>=575,driver<576 brand=cloudgaming,driver>=575,driver<576",
+   "-e",
+   "NVIDIA_VISIBLE_DEVICES=all",
+   "-e",
+   "NV_CUDA_CUDART_VERSION=13.0.96-1",
+   "-e",
+   "PATH=/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+   "-e",
+   "PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True",
+   "-e",
+   "TILELANG_CACHE_DIR=/root/.cache/tilelang",
+   "-e",
+   "TILELANG_TMP_DIR=/root/.cache/tilelang/tmp",
+   "-e",
+   "TORCH_CUDA_ARCH_LIST=12.1a",
+   "-e",
+   "TORCH_NCCL_ASYNC_ERROR_HANDLING=1",
+   "-e",
+   "TRANSFORMERS_OFFLINE=1",
+   "-e",
+   "UV_CACHE_DIR=/opt/uv/cache",
+   "-e",
+   "UV_HTTP_TIMEOUT=500",
+   "-e",
+   "UV_INDEX_STRATEGY=unsafe-best-match",
+   "-e",
+   "UV_LINK_MODE=copy",
+   "-e",
+   "UV_OVERRIDE=/etc/uv-overrides.txt",
+   "-e",
+   "UV_PYTHON_INSTALL_DIR=/opt/uv/python",
+   "-e",
+   "VLLM_BUILD_COMMIT=98dff2a81d747d1dba01a47f939f48c3526d4206",
+   "-e",
+   "VLLM_BUILD_PIPELINE=local-glm53-backport",
+   "-e",
+   "VLLM_BUILD_URL=",
+   "-e",
+   "VLLM_CACHE_ROOT=/root/.cache/vllm",
+   "-e",
+   "VLLM_DISABLE_SHARED_EXPERTS_STREAM=0",
+   "-e",
+   "VLLM_ENABLE_CUDA_COMPATIBILITY=0",
+   "-e",
+   "VLLM_ENGINE_READY_TIMEOUT_S=3600",
+   "-e",
+   "VLLM_GLM53_CUDA_SPARSE_MLA=1",
+   "-e",
+   "VLLM_GLM53_DFLASH2_EDGE_SCALE=1.0",
+   "-e",
+   "VLLM_GLM53_DFLASH2_WALK=greedy",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_DECODE=nvfp4",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_DECODE_FP8_FAMILIES=shared_down,indexer,head",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_DECODE_KERNEL=marlin",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_DENSE=default,head,draft,shared_down,indexer",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_GEMV_CONFIG=",
+   "-e",
+   "VLLM_GLM53_DUAL_FP8_PREFILL=w8a8",
+   "-e",
+   "VLLM_GLM53_GROUPED_ROUTER_SKIP_PADDING=0",
+   "-e",
+   "VLLM_GLM53_ROUTER_DEDUP=1",
+   "-e",
+   "VLLM_GLM53_ROUTER_GATE_TRITON=0",
+   "-e",
+   "VLLM_GLM53_SPARSE_MLA_SUBGROUP_SOFTMAX=0",
+   "-e",
+   "VLLM_GLM53_TP2_ALLREDUCE=p2p",
+   "-e",
+   "VLLM_GLM53_TP2_ALLREDUCE_MAX_BYTES=262144",
+   "-e",
+   "VLLM_GLM53_V2_ASYNC_TP_EXPERIMENTAL=0",
+   "-e",
+   "VLLM_GLM53_V2_SP_EXPERIMENTAL=0",
+   "-e",
+   "VLLM_IMAGE_TAG=local/glm53-v029:ported-20260910",
+   "-e",
+   "VLLM_KV_CACHE_LAYOUT_DUMP=1",
+   "-e",
+   "VLLM_LOGGING_LEVEL=INFO",
+   "-e",
+   "VLLM_PLUGINS=glm53_sparse_mla",
+   "-e",
+   "VLLM_USAGE_SOURCE=production-docker-image",
+   "-e",
+   "VLLM_USE_B12X_MHC=0",
+   "-e",
+   "VLLM_USE_V2_MODEL_RUNNER=1",
+   "-e",
+   "XDG_CACHE_HOME=/root/.cache",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "INSTANTTENSOR_BACKEND=URING",
+   "-e",
+   "INSTANTTENSOR_DEBUG=1",
+   "--security-opt",
+   "seccomp=unconfined",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLOO_SOCKET_IFNAME=enp1s0f1np1",
+   "-e",
+   "NCCL_CROSS_NIC=0",
+   "-e",
+   "NCCL_CUMEM_ENABLE=0",
+   "-e",
+   "NCCL_DEBUG=WARN",
+   "-e",
+   "NCCL_IB_ADDR_FAMILY=AF_INET",
+   "-e",
+   "NCCL_IB_ADDR_RANGE=<private-ip>/24",
+   "-e",
+   "NCCL_IB_DISABLE=0",
+   "-e",
+   "NCCL_IB_GID_INDEX=3",
+   "-e",
+   "NCCL_IB_HCA=rocep1s0f1,roceP2p1s0f1",
+   "-e",
+   "NCCL_IB_MERGE_NICS=0",
+   "-e",
+   "NCCL_IB_ROCE_VERSION_NUM=2",
+   "-e",
+   "NCCL_IGNORE_CPU_AFFINITY=1",
+   "-e",
+   "NCCL_MAX_CTAS=4",
+   "-e",
+   "NCCL_NET=IB",
+   "-e",
+   "NCCL_NVLS_ENABLE=0",
+   "-e",
+   "NCCL_SOCKET_IFNAME=enp1s0f1np1",
+   "-e",
+   "TP_SOCKET_IFNAME=enp1s0f1np1",
+   "-e",
+   "VLLM_HOST_IP=<private-ip>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_SPEEDUP_FAIR_COST_JOINT=0",
+   "-e",
+   "GLM53_SPEEDUP_PREFILL_ADAPTIVE=1",
+   "-e",
+   "GLM53_SPEEDUP_SPLIT_CADENCE=1",
+   "-e",
+   "GLM53_SPEEDUP_SPLIT_ADAPTIVE=0",
+   "-e",
+   "GLM53_SPEEDUP_SPLIT_FAIR=1",
+   "-e",
+   "GLM53_SPEEDUP_CAPTURE_KS=1,2,3,4,5,6,7",
+   "-e",
+   "GLM53_SPEEDUP_CAPTURE_REQUESTS=1,2,3,4,5,6",
+   "-e",
+   "GLM53_SPEEDUP_GEOMETRY=1",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "B12X_TP2_CLUSTER_MAP=0",
+   "-e",
+   "B12X_TP2_TILE_MAJOR_WEIGHTS=1",
+   "-e",
+   "B12X_TP4_CLUSTER_MAP=0",
+   "-e",
+   "B12X_TP4_TILE_MAJOR_WEIGHTS=0",
+   "-e",
+   "GLM53_ADAPTIVE_FAIR_CHUNK=0",
+   "-e",
+   "GLM53_SPEEDUP_TP2_FAIR_CAP_GEOMETRY=1",
+   "-e",
+   "GLM53_TP2_MHC_GEOMETRY=0",
+   "-e",
+   "GLM53_TP4_MHC_GEOMETRY=0",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_SPARSE_MLA_SPLIT_KV=1",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_MLA_ABSORB_CHUNK=2304",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_INDEXER_GATE_TC=1",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_STARTUP_PREFILL_WARMUP=6",
+   "-e",
+   "GLM53_STARTUP_PREFILL_WARMUP_TOKENS=28672,28672,5120,5760,8192,10240",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "B12X_GLM53_MIXED_SPLIT=1",
+   "-e",
+   "B12X_GLM53_MIXED_SPLIT_MIN_PREFILL=1536",
+   "-e",
+   "GLM53_PREFIX_CACHE_CONTRACT=1",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_REPLAY_BOUNDARY=1",
+   "-e",
+   "GLM53_REPLAY_BOUNDARY_MAX=6",
+   "-e",
+   "GLM53_SPEEDUP_FIRST_TOKEN_REPAY=1",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "--mount",
+   "type=bind,src=<host-path>",
+   "-e",
+   "GLM53_TOPP_FIX=1",
+   "-e",
+   "GLM53_UTF8_GUARD=1",
+   "-e",
+   "GLM53_UTF8_GUARD_TOKENIZER=/models/target/tokenizer.json",
+   "sha256:017fd0ba0a265dd81b78b352b14d33df03e9996f8f45870d4c3df84e08b1ebcb",
+   "/models/target",
+   "--served-model-name",
+   "nvidia/GLM-5.3-Flash-NVFP4",
+   "--trust-remote-code",
+   "--tensor-parallel-size",
+   "2",
+   "--gpu-memory-utilization",
+   "0.87",
+   "--max-model-len",
+   "262144",
+   "--max-num-seqs",
+   "6",
+   "--max-num-batched-tokens",
+   "14336",
+   "--block-size",
+   "2304",
+   "--kda-prefill-backend",
+   "b12x",
+   "--moe-backend",
+   "b12x",
+   "--linear-backend",
+   "b12x",
+   "--attention-config",
+   "{\"backend_per_kind\":{\"sliding_window\":\"FLASHINFER\"},\"use_trtllm_attention\":true}",
+   "--speculative-config",
+   "{\"method\":\"dflash\",\"model\":\"/models/dflash2-repo/snapshots/7d74cdd881ed7e32c31175984a67823127b66cfe\",\"num_speculative_tokens\":7,\"kv_cache_dtype\":\"auto\"}",
+   "--kv-cache-memory",
+   "11274289152",
+   "--kv-cache-dtype",
+   "fp8_e4m3",
+   "--no-async-scheduling",
+   "--prefix-cache-retention-interval",
+   "4608",
+   "--compilation-config",
+   "{\"mode\":3,\"cudagraph_capture_sizes\":[8,16,24,32,40,48],\"compile_sizes\":[8]}",
+   "--tool-call-parser",
+   "glm53",
+   "--enable-auto-tool-choice",
+   "--reasoning-parser",
+   "glm53",
+   "--default-chat-template-kwargs",
+   "{\"clear_thinking\": true}",
+   "--override-generation-config",
+   "{\"top_p\":0.95}",
+   "--chat-template",
+   "/chat_template_mm.jinja",
+   "--limit-mm-per-prompt",
+   "{\"image\":4,\"video\":1}",
+   "--skip-mm-profiling",
+   "--distributed-executor-backend",
+   "mp",
+   "--nnodes",
+   "2",
+   "--node-rank",
+   "1",
+   "--master-addr",
+   "<private-ip>",
+   "--master-port",
+   "25104",
+   "--headless",
+   "--per-request-spec-decode-metrics",
+   "detailed",
+   "--kernel-config",
+   "{\"enable_flashinfer_autotune\":false}",
+   "--cudagraph-metrics",
+   "--kv-cache-metrics",
+   "--enable-prompt-tokens-details",
+   "--enable-per-request-metrics",
+   "--profiler-config",
+   "{\"profiler\": \"torch\", \"torch_profiler_dir\": \"/profiles\", \"torch_profiler_with_stack\": false, \"torch_profiler_record_shapes\": false, \"torch_profiler_with_memory\": false, \"capture_torch_profiler\": false, \"detailed_trace_annotation\": true, \"ignore_frontend\": true, \"delay_iterations\": 0, \"max_iterations\": 0}",
+   "--load-format",
+   "instanttensor",
+   "--use-replayssm"
+  ]
+ },
+ "graph_audit_scope": "runtime-configured-capture-grid",
+ "hosts": {
+  "0": "<rank-host>",
+  "1": "<rank-host>"
+ },
+ "image": "sha256:017fd0ba0a265dd81b78b352b14d33df03e9996f8f45870d4c3df84e08b1ebcb",
+ "label_prefix": "TP2-ftr-rb-admitfix",
+ "mgmt": "<private-ip>",
+ "overlay": {
+  "selector_env": {
+   "B12X_TP4_TILE_MAJOR_WEIGHTS": "0",
+   "B12X_TP4_CLUSTER_MAP": "0",
+   "B12X_TP2_TILE_MAJOR_WEIGHTS": "1",
+   "B12X_TP2_CLUSTER_MAP": "0",
+   "GLM53_TP4_MHC_GEOMETRY": "0",
+   "GLM53_TP2_MHC_GEOMETRY": "0",
+   "GLM53_SPEEDUP_TP2_FAIR_CAP_GEOMETRY": "1",
+   "GLM53_SPEEDUP_MIXED_PREFILL": "4608",
+   "GLM53_ADAPTIVE_FAIR_CHUNK": "0",
+   "GLM53_SPEEDUP_MODE": "saturation",
+   "GLM53_SPEEDUP_K": "7",
+   "GLM53_SPEEDUP_GRAPH_MEMORY": "1",
+   "GLM53_SPEEDUP_TIMING": "1"
+  },
+  "source_directory": "<local-path>"
+ },
+ "pair": "A",
+ "port": 8888,
+ "remote": "<host-path>",
+ "runtime_override": {
+  "mode": "saturation",
+  "forced_k": 7
+ },
+ "schema": "tp2-pair-window/v2",
+ "topology": "TP2 pair A {'0': '<rank-host>', '1': '<rank-host>'} f1 ports dual PF; variant sef",
+ "variant": "tp2-port",
+ "served_model_name": "nvidia/GLM-5.3-Flash-NVFP4",
+ "remote_root": "<host-path>",
+ "no_restore": true,
+ "experiment": "rb-admit-fix-tp2-20260925",
+ "base_plan": "<local-path>",
+ "base_reference": "<local-path>",
+ "base_reference_sha256": "ca3f2bd7e9e5e18cff7e36c14916d849ccba17a47bfe45acf81004c2a971d63c",
+ "base_plan_sha256": "ca3f2bd7e9e5e18cff7e36c14916d849ccba17a47bfe45acf81004c2a971d63c",
+ "experiment_selectors": {
+  "B12X_TP4_TILE_MAJOR_WEIGHTS": "0",
+  "B12X_TP4_CLUSTER_MAP": "0",
+  "B12X_TP2_TILE_MAJOR_WEIGHTS": "1",
+  "B12X_TP2_CLUSTER_MAP": "0",
+  "GLM53_TP4_MHC_GEOMETRY": "0",
+  "GLM53_TP2_MHC_GEOMETRY": "0",
+  "GLM53_SPEEDUP_TP2_FAIR_CAP_GEOMETRY": "1",
+  "GLM53_SPEEDUP_MIXED_PREFILL": "4608",
+  "GLM53_ADAPTIVE_FAIR_CHUNK": "0",
+  "GLM53_SPEEDUP_MODE": "saturation",
+  "GLM53_SPEEDUP_K": "7",
+  "GLM53_SPEEDUP_GRAPH_MEMORY": "1",
+  "GLM53_SPEEDUP_TIMING": "1"
+ },
+ "overlay_files": {
+  "/usr/local/lib/python3.12/dist-packages/glm53_speedup/policy.py": "source/glm53_speedup/policy.py",
+  "/usr/local/lib/python3.12/dist-packages/glm53_speedup/adaptive_chunk.py": "source/glm53_speedup/adaptive_chunk.py",
+  "/usr/local/lib/python3.12/dist-packages/glm53_speedup/telemetry.py": "source/glm53_speedup/telemetry.py",
+  "/usr/local/lib/python3.12/dist-packages/glm53_speedup/fair_prefill.py": "source/glm53_speedup/fair_prefill.py",
+  "/usr/local/lib/python3.12/dist-packages/glm53_speedup/geometry.py": "source/glm53_speedup/geometry.py",
+  "/usr/local/lib/python3.12/dist-packages/glm53_speedup/cadence.py": "outputs/2026-09-25-ringside-release/source/common/glm53_speedup/cadence.py",
+  "/usr/local/lib/python3.12/dist-packages/glm53_speedup/scheduler.py": "source/glm53_speedup/scheduler.py",
+  "/usr/local/lib/python3.12/dist-packages/glm53_speedup/graphs.py": "source/glm53_speedup/graphs.py",
+  "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/ops/third_party/kda/fused_recurrent.py": "outputs/2026-09-25-ringside-release/source/tp2/vllm/models/glm5next/nvidia/ops/third_party/kda/fused_recurrent.py",
+  "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/kernels/mhc/tp2_geometry.py": "source/vllm/model_executor/kernels/mhc/tp2_geometry.py",
+  "/usr/local/lib/python3.12/dist-packages/vllm/model_executor/kernels/mhc/tilelang.py": "outputs/2026-09-25-ringside-release/source/tp2/vllm/model_executor/kernels/mhc/tilelang.py",
+  "/usr/local/lib/python3.12/dist-packages/b12x/moe/fused_moe/_impl.py": "outputs/2026-09-25-ringside-release/source/tp2/b12x/moe/fused_moe/_impl.py",
+  "/usr/local/lib/python3.12/dist-packages/b12x/moe/fused_moe/_tp4_tile_major.py": "source/b12x/moe/fused_moe/_tp4_tile_major.py",
+  "/usr/local/lib/python3.12/dist-packages/b12x/moe/fused_moe/_tp4_cluster_candidate.py": "source/b12x/moe/fused_moe/_tp4_cluster_candidate.py",
+  "/usr/local/lib/python3.12/dist-packages/b12x/moe/fused_moe/_tp2_cluster.py": "source/b12x/moe/fused_moe/_tp2_cluster.py",
+  "/usr/local/lib/python3.12/dist-packages/b12x/moe/_shared/kernels/dynamic.py": "outputs/2026-09-25-ringside-release/source/tp2/b12x/moe/_shared/kernels/dynamic.py",
+  "/usr/local/lib/python3.12/dist-packages/vllm/v1/core/kv_cache_utils.py": "outputs/2026-09-25-ringside-release/source/cleanroom/image/vllm/v1/core/kv_cache_utils.py",
+  "/usr/local/lib/python3.12/dist-packages/vllm/v1/sample/ops/topk_topp_triton.py": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/sample/ops/topk_topp_triton.py",
+  "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/sampler.py": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/worker/gpu/sample/sampler.py",
+  "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler.py": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/worker/gpu/spec_decode/rejection_sampler.py",
+  "/usr/local/lib/python3.12/dist-packages/glm53_utf8_guard.py": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/glm53_utf8_guard.py",
+  "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/gumbel.py": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/worker/gpu/sample/gumbel.py",
+  "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler_utils.py": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/worker/gpu/spec_decode/rejection_sampler_utils.py"
+ },
+ "speculation_policy": "k7-drafter-trimmed-saturation",
+ "changes": [
+  "startup prefill warm-up: GLM53_STARTUP_PREFILL_WARMUP=2 x GLM53_STARTUP_PREFILL_WARMUP_TOKENS=28672 random-token prompts before the HTTP server listens, then reset_prefix_cache (outputs/2026-09-24-startup-warmup); v2: after init_app_state, max_tokens 4, greedy + default sampling",
+  "tp2-weakspots (2026-09-24) (a): prefix-cache retention 9216 -> 4608 (the TP2 scheduler block) and the GLM53_PREFIX_CACHE_CONTRACT startup receipt (scheduler file = TP4 final v7, i.e. the TP2 file plus the contract hunks); the DFlash2 drafter window tails then exist at every 4608 boundary: predicted replay hits 8K 0 -> 4608, 32K 27648 (unchanged), 64K 55296 -> 59904 (replay_hits simulator)",
+  "tp2-weakspots (2026-09-24) (c): MoE mixed-batch split (B12X_GLM53_MIXED_SPLIT=1, min prefill 1536; adapter 093ce7bb + builder 26d34894, as TP4): decode rows keep the deterministic plan, prefill rows of a mixed step take the atomic plan of a pure-prefill step; measured TP2 mixed 4608+D steps 3.50 s vs pure 4608 prefill 2.00 s (final replay window step records)",
+  "tp2-weakspots (2026-09-24) (b): adaptive fair chunk unchanged (no-op at TP2: the only block-aligned cap is 4608)",
+  "warm-up v3 (replay-boundary 2026-09-24, main session 21:54 / 22:07): entry.py 9dd85a4c (the startup warm-up takes a list of prompt lengths) with GLM53_STARTUP_PREFILL_WARMUP=6 and _TOKENS=28672,28672,5120,5760,8192,10240: the 2 x 28,672 prompts plus one union list that runs every chunk row count the RigMark cells of this reference and of its replay-boundary candidate use before readiness (warmup_shapes.py; DESIGN.md section 15)",
+  "replay-boundary (2026-09-24): one complete hybrid state kept at the replay boundary R(P) = floor((P-1)/1152)*1152 - 1152, the longest prefix a replay can hit under the DFlash2 drafter (GLM53_REPLAY_BOUNDARY=1): R(P) replaces the prompt-tail stop and the block-floored DFlash backoff; a chunk ends at R(P) and the image partial-tail CoW keeps its state ; the drafter keeps the three blocks around R(P); an MLA partial entry at R(P); a chunk starting mid-block runs on (its column masked); a bounded LRU registry validates every boundary before a hit (outputs/2026-09-24-replay-boundary/DESIGN.md) v2: the startup check picks its groups among the prefix-cacheable KV cache groups (the real layout's kpool tail group, a SlidingWindowSpec subclass, made v1 refuse the boot; DESIGN.md section 14) v3: the TP2 base 32dd2ab8 + the warm-up v3 reference (ref-tp2-v3) + the replay boundary (module 144c7d34).",
+  "decode-kernels P1 (2026-09-24): first-token repay on the TP2 replay-boundary candidate fe5fefca (GLM53_SPEEDUP_FIRST_TOKEN_REPAY=1)",
+  "replay-boundary admit fix (2026-09-25): the registry judges only the KDA blocks it recorded for a boundary; a block the pool returns under the boundary hash that it never recorded is the image's own partial tail of the same prefix and is accepted; an invalidation or cap eviction removes only the recorded blocks (glm53_replay_boundary.py 144c7d34 -> the fix; CPU: admit-fix-tests.json)",
+  "2026-09-25 RiNGSiDE comment and notice fix (outputs/2026-09-25-ringside-release, the comment fix of outputs/2026-09-25-recipe-comment-fix under the release name): the AI model name removed from 9 and agent credits reworded to lane names in 0 served files, \"Modified by the GLM-5.3 RiNGSiDE recipe (othexmr)\" notices in 19 modified third-party files; comment lines and the docstring text of 5 mounts only, every other token identical to the base",
+  "2026-09-25 DFlash2 clean-room rewrite (outputs/2026-09-25-dflash2-cleanroom): model.py is impl/tp2/vllm/models/glm5next/nvidia/model.py (ff43756c; served d7ca5123 with the RiNGSiDE notice, comment lines only) instead of the adapted auxiliary hidden-state capture, and a new bind mount of vllm/v1/core/kv_cache_utils.py = impl/image/vllm/v1/core/kv_cache_utils.py (2614f957; served 2a69fdf7 with the RiNGSiDE notice, comment lines only) for the drafter KV-cache group and its exact-fit block size, in place of the image file 7ef72953; both written from SPEC.md and vLLM's sources and credited to the vLLM project; served only after the GPU leaf passes (release.py pick)",
+  "2026-09-25 RiNGSiDE combined TP2 release plan (outputs/2026-09-25-release-combined/tp2-cleanroom; no window), exact-landing-tp2: exact-landing column, TP2 form (outputs/2026-09-25-fused-commit-fix, patch B2): the RecoverSSM commit's final column and the image helper's running column are cdiv(nc', block) - 1, so a window accepted in full that ends exactly on a 4,608-token boundary keeps its state in the completed block (the served code wrote it to an unallocated column); the fused commit stays off in TP2; GPU leaf-tp2 PASS (32 heads, fp32 state, block 4,608: B2 never breaks continuity in 62,749 checks, the served code after every 4a event); served recoverssm.py 823f27dd (tested 85fe5bfc), kda.py 80c08afc (tested d4a300ad)",
+  "2026-09-25 RiNGSiDE combined TP2 release plan (outputs/2026-09-25-release-combined/tp2-cleanroom; no window), kpool-ring: kpool tail ring, TP2 files (outputs/2026-09-25-kpool-ring-fix): the common kpool_compress.py and the TP2 attention.py; the tail ring holds index_kpool * cdiv(index_kpool + K, index_kpool) slots (12 at K 7); always on; the ring leaves (bf693c, 900840) ran the same kernels: old ring 19,950 wrong pools, fixed 0; served kpool_compress.py f50edff2 (tested 7e622796), attention.py 87956e91 (tested 924b2694)",
+  "2026-09-25 RiNGSiDE combined TP2 release plan (outputs/2026-09-25-release-combined/tp2-cleanroom; no window), kpool-tail-slotmap: kpool tail slot mapping, TP2 runner (outputs/2026-09-25-kpool-ring-fix, part 2): the runner leaves the kpool tail group out of the generic slot mapping, so the generic kernel no longer reads past the group's block table; CPU proof 5/5 and GPU leaf 1819d9 PASS (the image's own kernel); served model_runner.py fb93f06a (tested c3dd1a8b)",
+  "2026-09-25 RiNGSiDE combined TP2 release plan (outputs/2026-09-25-release-combined/tp2-cleanroom; no window), topp-utf8-guard: top-p fix and UTF-8 continuation guard (outputs/2026-09-25-topp-fix, the GPU-qualified chain-334 files): GLM53_TOPP_FIX=1, the served Triton top-p filter recomputes exactly (logit domain, true maximum) every row whose estimated normaliser, search exit or reconstructed cutoff cannot guarantee the cut, other rows unchanged; GLM53_UTF8_GUARD=1 masks, for sampled requests, every token that cannot continue an incomplete UTF-8 character; fold, greedy rows and the audit off (asserted unset); GPU: gpu-2 (the fix exact in every case), gpu-3 and gpu-4 (the guard table exact, no invalid token at a pending row, bit-identical with the switches off); the same image files serve TP2 (image 017fd0ba); served topk_topp_triton.py 6d7a9452 (tested 54ebafde), sampler.py 77e22ab8 (tested 7f7b7998), rejection_sampler.py d59cb83c (tested 011f515e), glm53_utf8_guard.py f2834391 (tested 4e6bab16)",
+  "2026-09-25 RiNGSiDE combined TP2 release plan (outputs/2026-09-25-release-combined/tp2-cleanroom; no window), sampler-clamp: sampler clamp (outputs/2026-09-25-kpool-ring-fix; port of vllm-project/vllm#50843): the gumbel, greedy-stats and resample kernels clamp a tile-argmax token id to vocab_size - 1 (two image files newly mounted); GPU leaf: the old kernels put the out-of-vocabulary id 154,880 in the last tile 46 times on NaN rows, the clamped ones none; served gumbel.py 8793f305 (tested b834d9a8), rejection_sampler_utils.py d1d5ba7a (tested 4fd4b84f)",
+  "2026-09-25 RiNGSiDE combined TP2 release plan, ckpt redhat (owner 23:1x; build_ckpt_tp2.py): /models/target -> RedHatAI/GLM-5.3-Flash-NVFP4 (Hub 18d55bfd, compressed-tensors), --override-generation-config {\"top_p\":0.95}, NVIDIA's tokenizer.json bound over RedHat's; the TP2 dual-FP8 families unchanged (as TP4's 63e384cf); --kv-cache-memory 1 GiB lower on both ranks (12,348,030,976 -> 11,274,289,152: the memory margin of an unattended TP2 window; coordinator 23:2x); nothing else different from 3938cc08"
+ ],
+ "required_profile_directories": [
+  "<host-path>",
+  "<host-path>"
+ ],
+ "geometry": {
+  "max_requests": 6,
+  "proposal_k": 7,
+  "expected_target_descriptors": 42,
+  "expected_draft_descriptors": 6
+ },
+ "status": "PREPARED_NOT_RUN",
+ "derived_from": {
+  "base_plan": "outputs/2026-09-25-ringside-release/candidate-tp2/launch-plan.json",
+  "base_plan_sha256": "33a8cc9e9d168d886c1e68119c32f034c967b122ca97f6b79fbaa506142f682d",
+  "release": "RiNGSiDE",
+  "build": "combined",
+  "topology": "tp2",
+  "hosts": {
+   "0": "<rank-host>",
+   "1": "<rank-host>"
+  },
+  "window": "none (owner 20:4x: \"Fix, no window\"; the leaves verify the fixes; the published TP2 numbers of chains 292 / 293 stay)",
+  "base": {
+   "key": "base",
+   "title": "RiNGSiDE release plan, TP2 with the DFlash2 clean-room rewrite (its TP2 GPU leaf pending)",
+   "source": "outputs/2026-09-25-ringside-release",
+   "commit": "1e5ffb9dcf53fe775c03d2c972c4a53177704e95",
+   "plan": "outputs/2026-09-25-ringside-release/candidate-tp2/launch-plan.json",
+   "plan_sha256": "33a8cc9e9d168d886c1e68119c32f034c967b122ca97f6b79fbaa506142f682d",
+   "evidence": [
+    {
+     "path": "outputs/2026-09-25-ringside-release/cpu-tests.json",
+     "sha256": "67b4aff0ba10a4a932120c30c3c1045d2ba1d03b1b579b260de4a55684900ecb",
+     "rule": "release-cpu-ok",
+     "names": [
+      "33a8cc9e9d168d886c1e68119c32f034c967b122ca97f6b79fbaa506142f682d"
+     ],
+     "ok": true
+    },
+    {
+     "path": "outputs/2026-09-25-ringside-release/candidate-tp2/staging-receipt.json",
+     "sha256": "2acb3b33d9e670c0792917279ba648a575ebe84a84d0e707e5b70de670e7a0ec",
+     "rule": "staging-ok",
+     "names": [
+      "33a8cc9e9d168d886c1e68119c32f034c967b122ca97f6b79fbaa506142f682d"
+     ],
+     "ok": true
+    },
+    {
+     "path": "outputs/2026-09-25-dflash2-cleanroom/leaf-gpu-*/result.json",
+     "sha256": null,
+     "rule": "cleanroom-tp2-pass",
+     "names": [],
+     "ok": null,
+     "pending": true,
+     "note": "the clean-room GPU leaf for TP2 (job 20260925-210504-cleanroom-gpu-leaf-dbd385, run_leaf_gpu.py --profiles tp2, <rank-host>; after window 317): PASS = verdict.tp2 PASS naming the impl bytes; tp2.py leaf reads it. FAIL: TP2 is left out of the public release (no fallback to 236973b8)"
+    },
+    {
+     "path": "outputs/2026-09-25-dflash2-cleanroom/leaf-gpu-1/result.json",
+     "sha256": "4f37b8a7d35c7717950e3e2847a2d7bdd02b3e22d75443425ae98d2d9e00303e",
+     "rule": "json",
+     "names": [],
+     "ok": true
+    }
+   ]
+  },
+  "base_choice": "candidate-tp2 33a8cc9e (the DFlash2 clean-room rewrite; coordinator 21:1x): the owner ordered the rewrite (11:2x) so that the recipe carries no tonyd2wild-derived code, which the fallback 236973b8 still carries; the rewrite's TP2 GPU leaf is pending (job 20260925-210504-cleanroom-gpu-leaf-dbd385); if it fails, TP2 is left out of the public release, with no fallback to 236973b8",
+  "supersedes": {
+   "plan": "outputs/2026-09-25-release-combined/tp2/candidate-tp2/launch-plan.json",
+   "sha256": "cd7f2ce8907577cc73c0ff550a2d2790c806dc7c21cbb80d3afc02903e6ebcbb",
+   "base": "outputs/2026-09-25-ringside-release/candidate-tp2-fallback/launch-plan.json",
+   "base_sha256": "236973b89bf538829b4fc3642fffb58bf82329b8c164feb399ecfd2a9e3a4c05",
+   "commit": "3fee27f23d8d5e04fc056fbb96d03a263f836cc3",
+   "why": "built on candidate-tp2-fallback 236973b8, which still carries the tonyd2wild-derived DFlash2 code (no licence file); the owner ordered the clean-room rewrite (11:2x); coordinator 21:1x: rebuild on candidate-tp2 33a8cc9e"
+  },
+  "pending_evidence": [
+   {
+    "component": "base",
+    "path": "outputs/2026-09-25-dflash2-cleanroom/leaf-gpu-*/result.json",
+    "rule": "cleanroom-tp2-pass",
+    "names": [
+     "ff43756caaa8706bf45dd0ceb3e10dd0b57633cdd2c8e45a91a90f9a4cd8312b",
+     "2614f957b21863ac7f028d0c104c9a4d913f41b81733f2d36ac0ec05df882712"
+    ],
+    "job": "20260925-210504-cleanroom-gpu-leaf-dbd385",
+    "note": "the clean-room GPU leaf for TP2 (job 20260925-210504-cleanroom-gpu-leaf-dbd385, run_leaf_gpu.py --profiles tp2, <rank-host>; after window 317): PASS = verdict.tp2 PASS naming the impl bytes; tp2.py leaf reads it. FAIL: TP2 is left out of the public release (no fallback to 236973b8)"
+   }
+  ],
+  "release_receipt": {
+   "path": "outputs/2026-09-25-ringside-release/candidate-tp2/staging-receipt.json",
+   "sha256": "2acb3b33d9e670c0792917279ba648a575ebe84a84d0e707e5b70de670e7a0ec"
+  },
+  "components": [
+   {
+    "key": "exact-landing-tp2",
+    "title": "exact-landing column of the RecoverSSM commit (patch B2, TP2 form; the fused commit stays off)",
+    "status": "ready",
+    "source": "outputs/2026-09-25-fused-commit-fix",
+    "commit": "83b1cf043257d0bd8a088204439f6227642ad3c8",
+    "variant": null,
+    "change": "exact-landing column, TP2 form (outputs/2026-09-25-fused-commit-fix, patch B2): the RecoverSSM commit's final column and the image helper's running column are cdiv(nc', block) - 1, so a window accepted in full that ends exactly on a 4,608-token boundary keeps its state in the completed block (the served code wrote it to an unallocated column); the fused commit stays off in TP2; GPU leaf-tp2 PASS (32 heads, fp32 state, block 4,608: B2 never breaks continuity in 62,749 checks, the served code after every 4a event)",
+    "evidence": [
+     {
+      "path": "outputs/2026-09-25-fused-commit-fix/leaf-tp2-1/result.json",
+      "sha256": "3266f26c4092ffe0df5896e82ec8f7aa76a07d33c205484474b11364855b66f8",
+      "rule": "leaf-pass",
+      "names": [
+       "85fe5bfc701b8de06ce789d75e29517e04a4362867771a2a6dcb6ef2027e65ee",
+       "d4a300adfb9aaebd3d87d129303d78d6175dfe13b3106baa25860d160f0e3f10"
+      ],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-fused-commit-fix/patches/variants.json",
+      "sha256": "972248a23d60e17cc1782d7f7fcae3bc00f5beee795c37084e6fd99af7a95263",
+      "rule": "json",
+      "names": [
+       "81b9e0869da0af37cd90f7a4f8eb43125c722dea24e5a55a86e7d7bd821c601e"
+      ],
+      "ok": true,
+      "in_commit": true
+     }
+    ],
+    "files": [
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/ops/recoverssm.py",
+      "kind": "modify",
+      "tested_sha256": "85fe5bfc701b8de06ce789d75e29517e04a4362867771a2a6dcb6ef2027e65ee",
+      "served_sha256": "823f27dd99fec2197a63abda3a9d44677c72becf8656a2cdb743f2348e2a8cb7",
+      "notice": "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): exact-landing final column of the RecoverSSM commit.",
+      "rewrites": 0
+     },
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/kda.py",
+      "kind": "modify",
+      "tested_sha256": "d4a300adfb9aaebd3d87d129303d78d6175dfe13b3106baa25860d160f0e3f10",
+      "served_sha256": "80c08afcd843e5543d8e0a25d3d1fc8534fc712c155f4c3993de567a4e89e8df",
+      "notice": "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): exact-landing running column for the image's RecoverSSM helper.",
+      "rewrites": 0
+     }
+    ],
+    "env": [],
+    "markers": {
+     "every_rank": [],
+     "rank0": [],
+     "traffic_every_rank": [],
+     "failure": [],
+     "fragments": {}
+    },
+    "credits": []
+   },
+   {
+    "key": "kpool-ring",
+    "title": "kpool tail ring sized for speculative decoding (vllm-project/vllm#58454), TP2 files",
+    "status": "ready",
+    "source": "outputs/2026-09-25-kpool-ring-fix",
+    "commit": "fd1f6df4a0d22b0e5069dc74922284cf50858bac",
+    "variant": null,
+    "change": "kpool tail ring, TP2 files (outputs/2026-09-25-kpool-ring-fix): the common kpool_compress.py and the TP2 attention.py; the tail ring holds index_kpool * cdiv(index_kpool + K, index_kpool) slots (12 at K 7); always on; the ring leaves (bf693c, 900840) ran the same kernels: old ring 19,950 wrong pools, fixed 0",
+    "evidence": [
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/leaf-ring-185656-bf693c/leaf/result.json",
+      "sha256": "7e84e5e912aab28f1d3ba0b62d79c6ab3470c60c39d49046e65b210b500a5edd",
+      "rule": "kpool-ring-pass",
+      "names": [
+       "7e6227968d87299a6c6369b54c02c8df6b8b91fca5f5bfdc3af9fd044b5c2c5b",
+       "494ee00cc6080950bbce371260580252d0b521f40b560cee33688a51cf313e03"
+      ],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/leaf-ring-185656-bf693c/runner.json",
+      "sha256": "0ccf4b189253ce7448b345cefeebb7d6dd32036a57e6b857a8ad18fa13bc6240",
+      "rule": "runner-done",
+      "names": [
+       "7e6227968d87299a6c6369b54c02c8df6b8b91fca5f5bfdc3af9fd044b5c2c5b",
+       "494ee00cc6080950bbce371260580252d0b521f40b560cee33688a51cf313e03",
+       "4bcbd36ef69f52838bbd6fde1d9723729de107cb79c15beada5863ffbdfa3e8c",
+       "a681df0ed624de0e450669c701999515dd59f8548265eb0fab23a463253eb200"
+      ],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/leaf-ring-195739-900840/leaf/result.json",
+      "sha256": "9e156259e74b2223cd5c0be2ac148cf1d03c16d6c6246dc9a5c1528b65ff526b",
+      "rule": "kpool-ring-pass",
+      "names": [],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/leaf-ring-195739-900840/runner.json",
+      "sha256": "c600a048d7adc092a003346f90de8ada8e2f007c544aba45eb9ff1aa0c77a9e4",
+      "rule": "runner-done",
+      "names": [
+       "7e6227968d87299a6c6369b54c02c8df6b8b91fca5f5bfdc3af9fd044b5c2c5b",
+       "494ee00cc6080950bbce371260580252d0b521f40b560cee33688a51cf313e03"
+      ],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/cpu-tests.json",
+      "sha256": "da2cdf7745edda923c40e9fc0298975decbc8ffd8cef3ef1b0b1f733fd553489",
+      "rule": "lane-cpu-ok",
+      "names": [],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/manifest.json",
+      "sha256": "0fd4adefac502c919f82b41d774b8fd38bf37bbd03b5716cb9ef2087e520a425",
+      "rule": "json",
+      "names": [
+       "7e6227968d87299a6c6369b54c02c8df6b8b91fca5f5bfdc3af9fd044b5c2c5b"
+      ],
+      "ok": true,
+      "in_commit": true
+     }
+    ],
+    "files": [
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/ops/kpool_compress.py",
+      "kind": "modify",
+      "tested_sha256": "7e6227968d87299a6c6369b54c02c8df6b8b91fca5f5bfdc3af9fd044b5c2c5b",
+      "served_sha256": "f50edff2e0fd9d2807a85682383cb616867e58c5516db9df026fa661d6e371a6",
+      "notice": "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): kpool tail ring for speculative decoding (vllm-project/vllm#58454).",
+      "rewrites": 0
+     },
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/attention.py",
+      "kind": "modify",
+      "tested_sha256": "924b26946ac71c409bcc1909762352a13967dcd62f3b38f75d9f7aaedb22a711",
+      "served_sha256": "87956e9198ee06076b4d9fb5a6d5fd235fe0fc9ec52bba96b7082c0e6b95f3df",
+      "notice": "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): kpool tail ring for speculative decoding (vllm-project/vllm#58454).",
+      "rewrites": 0
+     }
+    ],
+    "env": [],
+    "markers": {
+     "every_rank": [
+      "GLM53_KPOOL_TAIL_RING engaged ring=12 index_kpool=4 num_speculative_tokens=7"
+     ],
+     "rank0": [],
+     "traffic_every_rank": [],
+     "failure": [
+      "kpool tail ring of"
+     ],
+     "fragments": {
+      "GLM53_KPOOL_TAIL_RING engaged ring=12 index_kpool=4 num_speculative_tokens=7": [
+       "vllm/models/glm5next/nvidia/attention.py",
+       "\"GLM53_KPOOL_TAIL_RING engaged ring=%d index_kpool=%d \""
+      ],
+      "kpool tail ring of": [
+       "vllm/models/glm5next/nvidia/attention.py",
+       "f\"kpool tail ring of {ring} slots (index_kpool \""
+      ]
+     }
+    },
+    "credits": [
+     "vllm-project/vllm#58454 (mmastrac; builds on #55219 by ivanium)",
+     "Morrowmake/vllm-cmp170hx 1d4b59e (the port this follows, Apache-2.0)"
+    ]
+   },
+   {
+    "key": "kpool-tail-slotmap",
+    "title": "kpool tail group left out of the generic slot mapping, TP2 runner",
+    "status": "ready",
+    "source": "outputs/2026-09-25-kpool-ring-fix",
+    "commit": "92faaaf7fe27a93604601293b9e1b5428a0914ec",
+    "variant": null,
+    "change": "kpool tail slot mapping, TP2 runner (outputs/2026-09-25-kpool-ring-fix, part 2): the runner leaves the kpool tail group out of the generic slot mapping, so the generic kernel no longer reads past the group's block table; CPU proof 5/5 and GPU leaf 1819d9 PASS (the image's own kernel)",
+    "evidence": [
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/cpu-tests-tailmap.json",
+      "sha256": "917a2e9004447ca1880da95ceec2190a62cceb58445547a6e46474bd5620c469",
+      "rule": "lane-cpu-ok",
+      "names": [
+       "c3dd1a8be821461566103ced1d16bd92887ac32705d2f1c7401597c566774218"
+      ],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/leaf-tailmap-200705-1819d9/leaf/result.json",
+      "sha256": "071dce72a382d6998b7003f9e0fe3c54025b871f12cd25dc19516f35790e8402",
+      "rule": "tailmap-pass",
+      "names": [],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/leaf-tailmap-200705-1819d9/runner.json",
+      "sha256": "e1ba74ebc64cf08d28d1a0ed73cce5218f312debb07b5d494bb4c176e6c042b3",
+      "rule": "runner-done",
+      "names": [],
+      "ok": true,
+      "in_commit": true
+     }
+    ],
+    "files": [
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/model_runner.py",
+      "kind": "modify",
+      "tested_sha256": "c3dd1a8be821461566103ced1d16bd92887ac32705d2f1c7401597c566774218",
+      "served_sha256": "fb93f06a693815f6f376ec8727b641a26b6dcca77b6767d114d0ef986fd642ab",
+      "notice": "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): kpool tail group left out of the generic slot mapping.",
+      "rewrites": 0
+     }
+    ],
+    "env": [],
+    "markers": {
+     "every_rank": [],
+     "rank0": [],
+     "traffic_every_rank": [],
+     "failure": [],
+     "fragments": {}
+    },
+    "credits": []
+   },
+   {
+    "key": "topp-utf8-guard",
+    "title": "exact top-p fallback + UTF-8 continuation guard, mask only (fold, greedy, audit off)",
+    "status": "ready",
+    "source": "outputs/2026-09-25-topp-fix",
+    "commit": "06274222c8351057ab0568e09c5304b933953da0",
+    "variant": null,
+    "change": "top-p fix and UTF-8 continuation guard (outputs/2026-09-25-topp-fix, the GPU-qualified chain-334 files): GLM53_TOPP_FIX=1, the served Triton top-p filter recomputes exactly (logit domain, true maximum) every row whose estimated normaliser, search exit or reconstructed cutoff cannot guarantee the cut, other rows unchanged; GLM53_UTF8_GUARD=1 masks, for sampled requests, every token that cannot continue an incomplete UTF-8 character; fold, greedy rows and the audit off (asserted unset); GPU: gpu-2 (the fix exact in every case), gpu-3 and gpu-4 (the guard table exact, no invalid token at a pending row, bit-identical with the switches off); the same image files serve TP2 (image 017fd0ba)",
+    "evidence": [
+     {
+      "path": "outputs/2026-09-25-topp-fix/gpu-2/result.json",
+      "sha256": "32959324a4439bee9dcf93bf523d82d1cc80da7fb5c6826c14a1a9036d6ee34f",
+      "rule": "topp-qualified",
+      "names": [],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-topp-fix/gpu-2/owner.json",
+      "sha256": "ece2539ae2b68a61b880b16bd4e66476503420df3f7a9f16887f9103ad38b653",
+      "rule": "json",
+      "names": [
+       "54ebafde06a46a8cd6e53013ac9d46ae3611d8eb200bfc4a56612cc2acf49435"
+      ],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-topp-fix/gpu-4/result.json",
+      "sha256": "822f6cd7f88e1f5f9c82db5e05a01e259e65871d75056b1e5a933cfb918ba6c5",
+      "rule": "guard-qualified",
+      "names": [],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-topp-fix/gpu-4/owner.json",
+      "sha256": "da462a9503bd940b18072bc11fdc24dcd25bca0e3166ebe2283a0f1216f1189c",
+      "rule": "json",
+      "names": [
+       "7f7b79988ced294e6b1429285696932dd69f7d3ae3a6d4aa852211b3267add46",
+       "011f515ed58982a75d322c62033419726dbc475159f3ddc8add251381b41bb09",
+       "4e6bab168d9bf987d0757f8bcdc3aa9363fe6dec981fc42ac8a7191f2d6b6224"
+      ],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-topp-fix/gpu-3/result.json",
+      "sha256": "133ad9d5ed5220ff432ae9403e4cbe9c76d63f033910b41d2beb8c6443bc6e0c",
+      "rule": "guard-qualified",
+      "names": [],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-topp-fix/gpu-3/owner.json",
+      "sha256": "0f2619ea3b8affe49ac9e3d2caf73d71b15782f4650674e9dbf429e74d5fb4c4",
+      "rule": "json",
+      "names": [
+       "7f7b79988ced294e6b1429285696932dd69f7d3ae3a6d4aa852211b3267add46",
+       "011f515ed58982a75d322c62033419726dbc475159f3ddc8add251381b41bb09"
+      ],
+      "ok": true,
+      "in_commit": true
+     }
+    ],
+    "files": [
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/sample/ops/topk_topp_triton.py",
+      "kind": "modify",
+      "tested_sha256": "54ebafde06a46a8cd6e53013ac9d46ae3611d8eb200bfc4a56612cc2acf49435",
+      "served_sha256": "6d7a945290ebb64e59a43e6b6c3d64f2aa4c953cea2e47bd5232422850d6490c",
+      "notice": "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): exact top-p recompute of rows the estimated cut cannot guarantee.",
+      "rewrites": 0
+     },
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/sampler.py",
+      "kind": "modify",
+      "tested_sha256": "7f7b79988ced294e6b1429285696932dd69f7d3ae3a6d4aa852211b3267add46",
+      "served_sha256": "77e22ab8419a5fc1235c65ae5824c34c9750e93730b4f2c6b2bc3ea80e64d49c",
+      "notice": "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): opt-in UTF-8 continuation guard and sampler audit hooks.",
+      "rewrites": 0
+     },
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler.py",
+      "kind": "modify",
+      "tested_sha256": "011f515ed58982a75d322c62033419726dbc475159f3ddc8add251381b41bb09",
+      "served_sha256": "d59cb83ce11a92d2ee5fa8822988abc38cde0baeb6a2d14db36c953ce1f6c693",
+      "notice": "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): opt-in sampler audit of the tokens a verification step emits.",
+      "rewrites": 0
+     },
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/glm53_utf8_guard.py",
+      "kind": "new",
+      "tested_sha256": "4e6bab168d9bf987d0757f8bcdc3aa9363fe6dec981fc42ac8a7191f2d6b6224",
+      "served_sha256": "f28343910ea2a839edbe023a5e19ec36264b696dc7cc521dacfcfcca7378e33b",
+      "notice": null,
+      "rewrites": 1
+     }
+    ],
+    "env": [
+     [
+      "env",
+      "GLM53_TOPP_FIX",
+      null,
+      "1",
+      "image"
+     ],
+     [
+      "env",
+      "GLM53_UTF8_GUARD",
+      null,
+      "1",
+      "image"
+     ],
+     [
+      "env",
+      "GLM53_UTF8_GUARD_TOKENIZER",
+      null,
+      "/models/target/tokenizer.json",
+      "image"
+     ],
+     [
+      "env",
+      "GLM53_UTF8_GUARD_FOLD",
+      null,
+      null
+     ],
+     [
+      "env",
+      "GLM53_UTF8_GUARD_GREEDY",
+      null,
+      null
+     ],
+     [
+      "env",
+      "GLM53_SAMPLER_AUDIT",
+      null,
+      null
+     ]
+    ],
+    "markers": {
+     "every_rank": [
+      "GLM53_UTF8_GUARD engaged mode=1",
+      "\"fold\": false",
+      "\"greedy\": false"
+     ],
+     "rank0": [],
+     "traffic_every_rank": [],
+     "failure": [],
+     "fragments": {
+      "GLM53_UTF8_GUARD engaged mode=1": [
+       "glm53_utf8_guard.py",
+       "\"GLM53_UTF8_GUARD engaged mode=%d \""
+      ],
+      "\"fold\": false": [
+       "glm53_utf8_guard.py",
+       "info = dict(info, fold=FOLD,"
+      ],
+      "\"greedy\": false": [
+       "glm53_utf8_guard.py",
+       "info = dict(info, greedy=GREEDY,"
+      ]
+     }
+    },
+    "credits": []
+   },
+   {
+    "key": "sampler-clamp",
+    "title": "sampler tile argmax clamped to the vocabulary (vllm-project/vllm#50843)",
+    "status": "ready",
+    "source": "outputs/2026-09-25-kpool-ring-fix",
+    "commit": "fd1f6df4a0d22b0e5069dc74922284cf50858bac",
+    "variant": null,
+    "change": "sampler clamp (outputs/2026-09-25-kpool-ring-fix; port of vllm-project/vllm#50843): the gumbel, greedy-stats and resample kernels clamp a tile-argmax token id to vocab_size - 1 (two image files newly mounted); GPU leaf: the old kernels put the out-of-vocabulary id 154,880 in the last tile 46 times on NaN rows, the clamped ones none",
+    "evidence": [
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/leaf-ring-185656-bf693c/leaf/result.json",
+      "sha256": "7e84e5e912aab28f1d3ba0b62d79c6ab3470c60c39d49046e65b210b500a5edd",
+      "rule": "sampler-clamp",
+      "names": [
+       "b834d9a8593569dfd46c6a2fc55776bb0edcb852cdae6923f6dccd9ce5ee2dd9",
+       "4fd4b84f51a1137b7d6ab92433c19e8cd14aa890ed29251466620167453c1293"
+      ],
+      "ok": true,
+      "in_commit": true
+     },
+     {
+      "path": "outputs/2026-09-25-kpool-ring-fix/cpu-tests.json",
+      "sha256": "da2cdf7745edda923c40e9fc0298975decbc8ffd8cef3ef1b0b1f733fd553489",
+      "rule": "lane-cpu-ok",
+      "names": [],
+      "ok": true,
+      "in_commit": true
+     }
+    ],
+    "files": [
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/gumbel.py",
+      "kind": "modify",
+      "tested_sha256": "b834d9a8593569dfd46c6a2fc55776bb0edcb852cdae6923f6dccd9ce5ee2dd9",
+      "served_sha256": "8793f30567609af00d8c8c8026558f00ddf90a000a0444068128edded0fd2919",
+      "notice": "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): tile argmax clamped to the vocabulary (vllm-project/vllm#50843).",
+      "rewrites": 0
+     },
+     {
+      "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler_utils.py",
+      "kind": "modify",
+      "tested_sha256": "4fd4b84f51a1137b7d6ab92433c19e8cd14aa890ed29251466620167453c1293",
+      "served_sha256": "d1d5ba7ab39b9404bbd2a8f7b322f473f9d921f1095f766368c854b67741f8ec",
+      "notice": "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): tile argmax clamped to the vocabulary (vllm-project/vllm#50843).",
+      "rewrites": 0
+     }
+    ],
+    "env": [],
+    "markers": {
+     "every_rank": [],
+     "rank0": [],
+     "traffic_every_rank": [],
+     "failure": [],
+     "fragments": {}
+    },
+    "credits": [
+     "vllm-project/vllm#50843 (alexbi29)"
+    ]
+   }
+  ],
+  "pending": [],
+  "dropped": [],
+  "not_included": "the TP4 speed levers (prefill levers 1 and 2, the rowspread top-k and pool-width logits) and the fused commit (TP2 serves the unfused commit); the max length as today",
+  "edits": [
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/ops/recoverssm.py",
+    "<host-path>",
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/kda.py",
+    "<host-path>",
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/ops/kpool_compress.py",
+    "<host-path>",
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/attention.py",
+    "<host-path>",
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/model_runner.py",
+    "<host-path>",
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/vllm/v1/sample/ops/topk_topp_triton.py",
+    null,
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/sampler.py",
+    null,
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler.py",
+    null,
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/glm53_utf8_guard.py",
+    null,
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/gumbel.py",
+    null,
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler_utils.py",
+    null,
+    "<host-path>"
+   ],
+   [
+    "env",
+    "GLM53_TOPP_FIX",
+    null,
+    "1"
+   ],
+   [
+    "env",
+    "GLM53_UTF8_GUARD",
+    null,
+    "1"
+   ],
+   [
+    "env",
+    "GLM53_UTF8_GUARD_TOKENIZER",
+    null,
+    "/models/target/tokenizer.json"
+   ],
+   [
+    "env",
+    "GLM53_UTF8_GUARD_FOLD",
+    null,
+    null
+   ],
+   [
+    "env",
+    "GLM53_UTF8_GUARD_GREEDY",
+    null,
+    null
+   ],
+   [
+    "env",
+    "GLM53_SAMPLER_AUDIT",
+    null,
+    null
+   ],
+   [
+    "mount",
+    "/models/target",
+    "<host-path>",
+    "<host-path>"
+   ],
+   [
+    "mount",
+    "/models/target/tokenizer.json",
+    null,
+    "<host-path>"
+   ],
+   [
+    "add",
+    "--override-generation-config",
+    "{\"top_p\":0.95}"
+   ],
+   [
+    "set",
+    "--kv-cache-memory",
+    "12348030976",
+    "11274289152"
+   ]
+  ],
+  "edit_anchors": [
+   {
+    "edit": 5,
+    "after": "image"
+   },
+   {
+    "edit": 6,
+    "after": "image"
+   },
+   {
+    "edit": 7,
+    "after": "image"
+   },
+   {
+    "edit": 8,
+    "after": "image"
+   },
+   {
+    "edit": 9,
+    "after": "image"
+   },
+   {
+    "edit": 10,
+    "after": "image"
+   },
+   {
+    "edit": 11,
+    "after": "image"
+   },
+   {
+    "edit": 12,
+    "after": "image"
+   },
+   {
+    "edit": 13,
+    "after": "image"
+   }
+  ],
+  "markers_present_by_design": [
+   "GLM53_KPOOL_TAIL_RING engaged ring=12 index_kpool=4 num_speculative_tokens=7",
+   "GLM53_UTF8_GUARD engaged mode=1",
+   "\"fold\": false",
+   "\"greedy\": false",
+   "rank0:GLM53_STARTUP_WARMUP done",
+   "rank0:quantization=compressed-tensors"
+  ],
+  "markers_absent_by_design": [],
+  "markers_after_traffic": [],
+  "markers_failure": [
+   "GLM53_STARTUP_WARMUP failed",
+   "GLM53_REPLAY_BOUNDARY invalid",
+   "GLM53_KDA_CKPT plan dropped",
+   "CUDA error",
+   "out of memory",
+   "EngineDeadError",
+   "kpool tail ring of",
+   "w1_weight_global_scale must match"
+  ],
+  "markers_info": [
+   "Traceback (most recent call last)",
+   "CUDA error",
+   "out of memory",
+   "EngineDeadError"
+  ],
+  "stage_mode": "write-once",
+  "remote_root": "<host-path>",
+  "staged": {
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/models/glm5next/nvidia/ops/recoverssm.py",
+    "sha256": "823f27dd99fec2197a63abda3a9d44677c72becf8656a2cdb743f2348e2a8cb7",
+    "dst": "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/ops/recoverssm.py",
+    "components": [
+     "exact-landing-tp2"
+    ]
+   },
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/models/glm5next/nvidia/kda.py",
+    "sha256": "80c08afcd843e5543d8e0a25d3d1fc8534fc712c155f4c3993de567a4e89e8df",
+    "dst": "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/kda.py",
+    "components": [
+     "exact-landing-tp2"
+    ]
+   },
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/models/glm5next/nvidia/ops/kpool_compress.py",
+    "sha256": "f50edff2e0fd9d2807a85682383cb616867e58c5516db9df026fa661d6e371a6",
+    "dst": "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/ops/kpool_compress.py",
+    "components": [
+     "kpool-ring"
+    ]
+   },
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/models/glm5next/nvidia/attention.py",
+    "sha256": "87956e9198ee06076b4d9fb5a6d5fd235fe0fc9ec52bba96b7082c0e6b95f3df",
+    "dst": "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/attention.py",
+    "components": [
+     "kpool-ring"
+    ]
+   },
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/worker/gpu/model_runner.py",
+    "sha256": "fb93f06a693815f6f376ec8727b641a26b6dcca77b6767d114d0ef986fd642ab",
+    "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/model_runner.py",
+    "components": [
+     "kpool-tail-slotmap"
+    ]
+   },
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/sample/ops/topk_topp_triton.py",
+    "sha256": "6d7a945290ebb64e59a43e6b6c3d64f2aa4c953cea2e47bd5232422850d6490c",
+    "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/sample/ops/topk_topp_triton.py",
+    "components": [
+     "topp-utf8-guard"
+    ]
+   },
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/worker/gpu/sample/sampler.py",
+    "sha256": "77e22ab8419a5fc1235c65ae5824c34c9750e93730b4f2c6b2bc3ea80e64d49c",
+    "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/sampler.py",
+    "components": [
+     "topp-utf8-guard"
+    ]
+   },
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/worker/gpu/spec_decode/rejection_sampler.py",
+    "sha256": "d59cb83ce11a92d2ee5fa8822988abc38cde0baeb6a2d14db36c953ce1f6c693",
+    "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler.py",
+    "components": [
+     "topp-utf8-guard"
+    ]
+   },
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/glm53_utf8_guard.py",
+    "sha256": "f28343910ea2a839edbe023a5e19ec36264b696dc7cc521dacfcfcca7378e33b",
+    "dst": "/usr/local/lib/python3.12/dist-packages/glm53_utf8_guard.py",
+    "components": [
+     "topp-utf8-guard"
+    ]
+   },
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/worker/gpu/sample/gumbel.py",
+    "sha256": "8793f30567609af00d8c8c8026558f00ddf90a000a0444068128edded0fd2919",
+    "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/gumbel.py",
+    "components": [
+     "sampler-clamp"
+    ]
+   },
+   "<host-path>": {
+    "local": "outputs/2026-09-25-release-combined/tp2-cleanroom/source/tp2/vllm/v1/worker/gpu/spec_decode/rejection_sampler_utils.py",
+    "sha256": "d1d5ba7ab39b9404bbd2a8f7b322f473f9d921f1095f766368c854b67741f8ec",
+    "dst": "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler_utils.py",
+    "components": [
+     "sampler-clamp"
+    ]
+   }
+  },
+  "external_dirs": {},
+  "base_files": {
+   "<host-path>": "8c9b4dce067a2c548448cb94419620ac3a398334bdb892c3d9f0b7b0c2328356",
+   "<host-path>": "cb79c99c0f2fd6620122f653ce416f48cbf23b4d16bbfed766b72ef7c1653dbf",
+   "<host-path>": "bd3449da201e3b4ed2b8d07e1bdcf834cd293ad1b7e23e990f0fa342008b77cd",
+   "<host-path>": "8ad3c35d81f71675016c529ed2a2f02b682f96b703b650667ce0ba470e086342",
+   "<host-path>": "adb8b2f7db9e43de21aff4ba23a7a076694796db3182747e756baee15a4bee71"
+  },
+  "per_file_delta": {
+   "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/ops/recoverssm.py": {
+    "old_src": "<host-path>",
+    "old_sha256": "8c9b4dce067a2c548448cb94419620ac3a398334bdb892c3d9f0b7b0c2328356",
+    "old": {
+     "kind": "release-staged",
+     "src": "<host-path>",
+     "sha256": "8c9b4dce067a2c548448cb94419620ac3a398334bdb892c3d9f0b7b0c2328356",
+     "local": "outputs/2026-09-25-ringside-release/source/tp2/vllm/models/glm5next/nvidia/ops/recoverssm.py",
+     "built_from": "58ad39dcd449f06e1ed91c8a4ddeae0689ce2cbf75f0cca7acec641569d401af"
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "823f27dd99fec2197a63abda3a9d44677c72becf8656a2cdb743f2348e2a8cb7",
+    "components": [
+     "exact-landing-tp2"
+    ],
+    "notice_lines": [
+     "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): exact-landing final column of the RecoverSSM commit."
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/kda.py": {
+    "old_src": "<host-path>",
+    "old_sha256": "cb79c99c0f2fd6620122f653ce416f48cbf23b4d16bbfed766b72ef7c1653dbf",
+    "old": {
+     "kind": "release-staged",
+     "src": "<host-path>",
+     "sha256": "cb79c99c0f2fd6620122f653ce416f48cbf23b4d16bbfed766b72ef7c1653dbf",
+     "local": "outputs/2026-09-25-ringside-release/source/tp2/vllm/models/glm5next/nvidia/kda.py",
+     "built_from": "e574b6b4c0357a16fc8ea300344bde6cb19b5f81ab01b82ce0d4ce1f2982a505"
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "80c08afcd843e5543d8e0a25d3d1fc8534fc712c155f4c3993de567a4e89e8df",
+    "components": [
+     "exact-landing-tp2"
+    ],
+    "notice_lines": [
+     "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): exact-landing running column for the image's RecoverSSM helper."
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/ops/kpool_compress.py": {
+    "old_src": "<host-path>",
+    "old_sha256": "bd3449da201e3b4ed2b8d07e1bdcf834cd293ad1b7e23e990f0fa342008b77cd",
+    "old": {
+     "kind": "release-staged",
+     "src": "<host-path>",
+     "sha256": "bd3449da201e3b4ed2b8d07e1bdcf834cd293ad1b7e23e990f0fa342008b77cd",
+     "local": "outputs/2026-09-25-ringside-release/source/common/vllm/models/glm5next/nvidia/ops/kpool_compress.py",
+     "built_from": "4bcbd36ef69f52838bbd6fde1d9723729de107cb79c15beada5863ffbdfa3e8c"
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "f50edff2e0fd9d2807a85682383cb616867e58c5516db9df026fa661d6e371a6",
+    "components": [
+     "kpool-ring"
+    ],
+    "notice_lines": [
+     "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): kpool tail ring for speculative decoding (vllm-project/vllm#58454)."
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/models/glm5next/nvidia/attention.py": {
+    "old_src": "<host-path>",
+    "old_sha256": "8ad3c35d81f71675016c529ed2a2f02b682f96b703b650667ce0ba470e086342",
+    "old": {
+     "kind": "release-staged",
+     "src": "<host-path>",
+     "sha256": "8ad3c35d81f71675016c529ed2a2f02b682f96b703b650667ce0ba470e086342",
+     "local": "outputs/2026-09-25-ringside-release/source/tp2/vllm/models/glm5next/nvidia/attention.py",
+     "built_from": "c87b31c9c9ab4588f159183918cbcfea5d90477e315d48acac714c32656b9951"
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "87956e9198ee06076b4d9fb5a6d5fd235fe0fc9ec52bba96b7082c0e6b95f3df",
+    "components": [
+     "kpool-ring"
+    ],
+    "notice_lines": [
+     "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): kpool tail ring for speculative decoding (vllm-project/vllm#58454)."
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/model_runner.py": {
+    "old_src": "<host-path>",
+    "old_sha256": "adb8b2f7db9e43de21aff4ba23a7a076694796db3182747e756baee15a4bee71",
+    "old": {
+     "kind": "release-staged",
+     "src": "<host-path>",
+     "sha256": "adb8b2f7db9e43de21aff4ba23a7a076694796db3182747e756baee15a4bee71",
+     "local": "outputs/2026-09-25-ringside-release/source/tp2/vllm/v1/worker/gpu/model_runner.py",
+     "built_from": "507e468cf64240ba9acf01a65f94ee248447203a02e8fbb65726f28106a14b2e"
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "fb93f06a693815f6f376ec8727b641a26b6dcca77b6767d114d0ef986fd642ab",
+    "components": [
+     "kpool-tail-slotmap"
+    ],
+    "notice_lines": [
+     "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): kpool tail group left out of the generic slot mapping."
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/sample/ops/topk_topp_triton.py": {
+    "old_src": null,
+    "old_sha256": "255619f699898ddaaac959d9bef4494294c76d730abb8e90549afac83a9bcbe9",
+    "old": {
+     "kind": "image",
+     "path": "work/nvfp4-v029-nvidia-20260910/source/vllm/v1/sample/ops/topk_topp_triton.py",
+     "sha256": "255619f699898ddaaac959d9bef4494294c76d730abb8e90549afac83a9bcbe9",
+     "mounted": false
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "6d7a945290ebb64e59a43e6b6c3d64f2aa4c953cea2e47bd5232422850d6490c",
+    "components": [
+     "topp-utf8-guard"
+    ],
+    "notice_lines": [
+     "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): exact top-p recompute of rows the estimated cut cannot guarantee."
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/sampler.py": {
+    "old_src": null,
+    "old_sha256": "408b08c4ac66de271f476460490f360ef2a9b73528a346d132a22326e1674369",
+    "old": {
+     "kind": "image",
+     "path": "work/nvfp4-v029-nvidia-20260910/source/vllm/v1/worker/gpu/sample/sampler.py",
+     "sha256": "408b08c4ac66de271f476460490f360ef2a9b73528a346d132a22326e1674369",
+     "mounted": false
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "77e22ab8419a5fc1235c65ae5824c34c9750e93730b4f2c6b2bc3ea80e64d49c",
+    "components": [
+     "topp-utf8-guard"
+    ],
+    "notice_lines": [
+     "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): opt-in UTF-8 continuation guard and sampler audit hooks."
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler.py": {
+    "old_src": null,
+    "old_sha256": "e20adc9b6c8a62a5be232bae15a1e361e898142966a68ea3ef244b39ffc5ce44",
+    "old": {
+     "kind": "image",
+     "path": "work/nvfp4-v029-nvidia-20260910/source/vllm/v1/worker/gpu/spec_decode/rejection_sampler.py",
+     "sha256": "e20adc9b6c8a62a5be232bae15a1e361e898142966a68ea3ef244b39ffc5ce44",
+     "mounted": false
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "d59cb83ce11a92d2ee5fa8822988abc38cde0baeb6a2d14db36c953ce1f6c693",
+    "components": [
+     "topp-utf8-guard"
+    ],
+    "notice_lines": [
+     "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): opt-in sampler audit of the tokens a verification step emits."
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/glm53_utf8_guard.py": {
+    "old_src": null,
+    "old_sha256": null,
+    "old": {
+     "kind": "new"
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "f28343910ea2a839edbe023a5e19ec36264b696dc7cc521dacfcfcca7378e33b",
+    "components": [
+     "topp-utf8-guard"
+    ],
+    "notice_lines": []
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/gumbel.py": {
+    "old_src": null,
+    "old_sha256": "3ec1df510bdad13e8b0a457b5b67c98affdf6e57369e56cb471246cc8f40dd34",
+    "old": {
+     "kind": "image",
+     "path": "work/nvfp4-v029-nvidia-20260910/source/vllm/v1/worker/gpu/sample/gumbel.py",
+     "sha256": "3ec1df510bdad13e8b0a457b5b67c98affdf6e57369e56cb471246cc8f40dd34",
+     "mounted": false
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "8793f30567609af00d8c8c8026558f00ddf90a000a0444068128edded0fd2919",
+    "components": [
+     "sampler-clamp"
+    ],
+    "notice_lines": [
+     "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): tile argmax clamped to the vocabulary (vllm-project/vllm#50843)."
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler_utils.py": {
+    "old_src": null,
+    "old_sha256": "20ca2e5ac34e9ef93dca388bed72a00d4ff67d569ec6ec2393b21a92d74a1fae",
+    "old": {
+     "kind": "image",
+     "path": "work/nvfp4-v029-nvidia-20260910/source/vllm/v1/worker/gpu/spec_decode/rejection_sampler_utils.py",
+     "sha256": "20ca2e5ac34e9ef93dca388bed72a00d4ff67d569ec6ec2393b21a92d74a1fae",
+     "mounted": false
+    },
+    "new_src": "<host-path>",
+    "new_sha256": "d1d5ba7ab39b9404bbd2a8f7b322f473f9d921f1095f766368c854b67741f8ec",
+    "components": [
+     "sampler-clamp"
+    ],
+    "notice_lines": [
+     "# Modified by the GLM-5.3 RiNGSiDE recipe (othexmr): tile argmax clamped to the vocabulary (vllm-project/vllm#50843)."
+    ]
+   }
+  },
+  "new_mounts": {
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/sample/ops/topk_topp_triton.py": {
+    "src": "<host-path>",
+    "sha256": "6d7a945290ebb64e59a43e6b6c3d64f2aa4c953cea2e47bd5232422850d6490c",
+    "kind": "file",
+    "after": "image",
+    "components": [
+     "topp-utf8-guard"
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/sampler.py": {
+    "src": "<host-path>",
+    "sha256": "77e22ab8419a5fc1235c65ae5824c34c9750e93730b4f2c6b2bc3ea80e64d49c",
+    "kind": "file",
+    "after": "image",
+    "components": [
+     "topp-utf8-guard"
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler.py": {
+    "src": "<host-path>",
+    "sha256": "d59cb83ce11a92d2ee5fa8822988abc38cde0baeb6a2d14db36c953ce1f6c693",
+    "kind": "file",
+    "after": "image",
+    "components": [
+     "topp-utf8-guard"
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/glm53_utf8_guard.py": {
+    "src": "<host-path>",
+    "sha256": "f28343910ea2a839edbe023a5e19ec36264b696dc7cc521dacfcfcca7378e33b",
+    "kind": "file",
+    "after": "image",
+    "components": [
+     "topp-utf8-guard"
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/sample/gumbel.py": {
+    "src": "<host-path>",
+    "sha256": "8793f30567609af00d8c8c8026558f00ddf90a000a0444068128edded0fd2919",
+    "kind": "file",
+    "after": "image",
+    "components": [
+     "sampler-clamp"
+    ]
+   },
+   "/usr/local/lib/python3.12/dist-packages/vllm/v1/worker/gpu/spec_decode/rejection_sampler_utils.py": {
+    "src": "<host-path>",
+    "sha256": "d1d5ba7ab39b9404bbd2a8f7b322f473f9d921f1095f766368c854b67741f8ec",
+    "kind": "file",
+    "after": "image",
+    "components": [
+     "sampler-clamp"
+    ]
+   }
+  },
+  "builder": {
+   "path": "outputs/2026-09-25-release-combined/build_tp2.py",
+   "sha256": "1ab24c6606740cb681f3847169b2fc4027b7509db085feef4b1b87da9c0129b0"
+  },
+  "merge_functions": {
+   "path": "outputs/2026-09-25-release-combined/build_plan.py",
+   "sha256": "0ff1d1a06db0d8d7a1df0e2668e9cd49f9323ff0daadccd7aa0d98b6efedef18"
+  },
+  "components_table": {
+   "path": "outputs/2026-09-25-release-combined/components_tp2.py",
+   "sha256": "d04f1f0abd50a06ab3280a29be76305301ce631ec01a5df0a6d7732504221be0"
+  },
+  "shared_table": {
+   "path": "outputs/2026-09-25-release-combined/components.py",
+   "sha256": "cb622c7711711d43328a7ed8edc62dd1112566c4da4fc600da62407b8cad4536"
+  },
+  "note": "the RiNGSiDE TP2 release plan with the correctness fixes of components_tp2.py applied as data; every other mount serves the release plan's bytes, every other argument is the release plan's",
+  "merge_receipt": {
+   "path": "outputs/2026-09-25-release-combined/tp2-cleanroom/merge-receipt-tp2.json",
+   "sha256": "bc45620c63f6c4d1934efa16a988acc9ceff04765f922e8d6cdcf94ec83a5e81"
+  },
+  "ckpt": {
+   "name": "redhat",
+   "topology": "tp2",
+   "switch": {
+    "nvidia": {
+     "plan": "tp2-cleanroom/candidate-tp2/launch-plan.json",
+     "sha256": "3938cc086e34c6674f3db06dc3521d84c3e53ac693029245bd202ec7a1013a89",
+     "dir": "<host-path>",
+     "hub": "nvidia/GLM-5.3-Flash-NVFP4",
+     "quant": "modelopt NVFP4"
+    },
+    "redhat": {
+     "dir": "<host-path>",
+     "hub": "RedHatAI/GLM-5.3-Flash-NVFP4",
+     "revision": "18d55bfd",
+     "quant": "compressed-tensors mixed-precision",
+     "files": 21,
+     "bytes": 197881157135,
+     "hosts_with_copy": [
+      "<rank-host>",
+      "<rank-host>"
+     ],
+     "sha256": {
+      "config.json": "29c9f4171196910e99b9c069d6b76c56e3cdcd0f436dc1bacbc9513c9a7529ac",
+      "model.safetensors.index.json": "015faae91e8189c7553f1d48ec3d0694b8c02b282d7f58af2d7b4064a81ce4c0",
+      "generation_config.json": "e9e93ee323895fa5e8e160f1f9826fd98b6bd7b3935435f423c3554f88bfa3ac",
+      "tokenizer.json": "0cfe2c099a7702a0921abc315ee039deb51e4a34b4818fc509bd27fa3dc4acc1",
+      "tokenizer_config.json": "77af7d4769cd62c107b90495cac9b0ba81573c86486821bfba2980c04285ec7a"
+     },
+     "plan": "candidate-tp2-redhat/launch-plan.json",
+     "from_ckpt": "nvidia"
+    }
+   },
+   "tokenizer": "nvidia",
+   "tokenizer_bind": {
+    "src": "<host-path>",
+    "dst": "/models/target/tokenizer.json",
+    "sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d"
+   },
+   "from_plan": "outputs/2026-09-25-release-combined/tp2-cleanroom/candidate-tp2/launch-plan.json",
+   "from_plan_sha256": "3938cc086e34c6674f3db06dc3521d84c3e53ac693029245bd202ec7a1013a89",
+   "edits": [
+    [
+     "mount",
+     "/models/target",
+     "<host-path>",
+     "<host-path>"
+    ],
+    [
+     "mount",
+     "/models/target/tokenizer.json",
+     null,
+     "<host-path>"
+    ],
+    [
+     "add",
+     "--override-generation-config",
+     "{\"top_p\":0.95}"
+    ],
+    [
+     "set",
+     "--kv-cache-memory",
+     "12348030976",
+     "11274289152"
+    ]
+   ],
+   "failure_markers": [
+    "w1_weight_global_scale must match"
+   ],
+   "present_markers": [
+    "rank0:quantization=compressed-tensors"
+   ],
+   "kv_trim_bytes": 1073741824,
+   "kv_trim": {
+    "edit": [
+     "set",
+     "--kv-cache-memory",
+     "12348030976",
+     "11274289152"
+    ],
+    "why": "the TP2 profile serves with 0.3-1.0 GiB MemAvailable (chain 292); RedHat's layer 0-2 copies add about 0.2-0.3 GB per rank at TP2 (estimate); 1 GiB less KV keeps the unattended window off memory starvation (coordinator 23:2x); the recipe TP2 RedHat profile carries the same number"
+   },
+   "tp4_counterpart": "candidate-tp4-redhat 63e384cf (build_ckpt.py)",
+   "builder": {
+    "path": "outputs/2026-09-25-release-combined/build_ckpt_tp2.py",
+    "sha256": "2d7e63e6e62e0b09484aa04b8d448f376dfc254b798a10884cea7e3d3dfe7e72"
+   },
+   "switch_constants": {
+    "path": "outputs/2026-09-25-release-combined/build_ckpt.py",
+    "sha256": "52b1766259eac5485a15c20e29f868a4ef4a7ad50bc6c9ceb344cb2c33068242"
+   },
+   "served_model_name": "kept (nvidia/GLM-5.3-Flash-NVFP4) so that the runners stay unchanged",
+   "note": "the clean-room TP2 plan with /models/target on the RedHat checkpoint, top_p set by --override-generation-config, NVIDIA's tokenizer.json and --kv-cache-memory 1073741824 B lower; every other byte is 3938cc08's"
+  }
+ },
+ "engagement_markers": [
+  "GLM53_MOE_MIXED_SPLIT engaged",
+  "GLM53_PREFIX_CACHE_CONTRACT {"
+ ],
+ "env_markers": [
+  "B12X_GLM53_MIXED_SPLIT=1",
+  "B12X_GLM53_MIXED_SPLIT_MIN_PREFILL=1536",
+  "GLM53_PREFIX_CACHE_CONTRACT=1",
+  "GLM53_SPEEDUP_FIRST_TOKEN_REPAY=1"
+ ],
+ "tp2ws_markers": {
+  "rank0": [
+   "GLM53_PREFIX_CACHE_CONTRACT {",
+   "\"retention_interval\": 4608",
+   "\"scheduler_block_size\": 4608"
+  ],
+  "every_rank": [
+   "GLM53_MOE_MIXED_SPLIT engaged"
+  ],
+  "failure": [
+   "CUDA error",
+   "out of memory",
+   "EngineDeadError"
+  ],
+  "info": [
+   "GLM53_MOE_MIXED_SPLIT mixed forwards",
+   "GLM53_MOE_MIXED_SPLIT fallback below_min_prefill",
+   "GLM53_MOE_MIXED_SPLIT fallback not_leading",
+   "Traceback (most recent call last)"
+  ],
+  "env": [
+   "B12X_GLM53_MIXED_SPLIT=1",
+   "B12X_GLM53_MIXED_SPLIT_MIN_PREFILL=1536",
+   "GLM53_PREFIX_CACHE_CONTRACT=1"
+  ]
+ },
+ "replay_boundary_markers": {
+  "rank0": [
+   "GLM53_REPLAY_BOUNDARY on:",
+   "GLM53_REPLAY_BOUNDARY capture 1:"
+  ],
+  "every_rank": [],
+  "failure": [
+   "GLM53_REPLAY_BOUNDARY invalid",
+   "GLM53_KDA_CKPT plan dropped",
+   "CUDA error",
+   "out of memory",
+   "EngineDeadError"
+  ],
+  "info": [
+   "GLM53_REPLAY_BOUNDARY admit",
+   "GLM53_REPLAY_BOUNDARY evict",
+   "GLM53_REPLAY_BOUNDARY capture",
+   "Traceback (most recent call last)",
+   "GLM53_REPLAY_BOUNDARY native"
+  ],
+  "env": [
+   "GLM53_REPLAY_BOUNDARY=1"
+  ]
+ },
+ "ftr_markers": {
+  "rank0": [
+   "\"reason\": \"first-token-repay\""
+  ],
+  "env": [
+   "GLM53_SPEEDUP_FIRST_TOKEN_REPAY=1"
+  ],
+  "failure": [
+   "invalid first-token repay selector",
+   "invalid first-content burst selector",
+   "exclusive selectors",
+   "Traceback"
+  ]
+ }
+}

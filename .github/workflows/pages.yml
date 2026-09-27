@@ -1,0 +1,49 @@
+# Publishes the RiNGSiDE site to GitHub Pages. It runs only when started by hand:
+# Actions → "Deploy to GitHub Pages" → Run workflow.
+# One-time setup: Settings → Pages → Build and deployment → Source: GitHub Actions.
+# site/scripts/pages.mjs verifies SHA256SUMS and the data checks, assembles site/ + benchmark-package/,
+# and switches the page to public mode. Any failed check stops the deploy.
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      indexable:
+        description: Let search engines index the site
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Verify snapshot, run data checks, assemble the public tree
+        run: node site/scripts/pages.mjs --out _site --base-url "${{ steps.pages.outputs.base_url }}" ${{ inputs.indexable == false && '--noindex' || '' }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}site/
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

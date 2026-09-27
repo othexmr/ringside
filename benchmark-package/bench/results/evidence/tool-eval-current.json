@@ -1,0 +1,2401 @@
+{
+  "schema_version": 2,
+  "status": "LOCAL_DRAFT_NOT_RELEASE_QUALIFICATION",
+  "snapshot": {
+    "reviewed": "2026-09-27 18:08:53",
+    "utc_offset": "+07:00",
+    "source": "outputs/2026-09-26-tool-eval-review/progress-20260927-0105.json",
+    "source_sha256": "bff28a55d8011b14f5ec4217707176ab8f51104c8ad0038dfe54066cd841b823",
+    "supplement": "outputs/2026-09-27-recipe-comparison-01/supplement.json",
+    "supplement_sha256": "4d05a84844ca4fb1f6c4c1c22022a158083d348eb5a8d07a2013bd3272bab4f3"
+  },
+  "benchmark": {
+    "repository": "SeraphimSerapis/tool-eval-bench",
+    "version": "2.7.1.dev7+gbd35ba91b",
+    "commit": "bd35ba91b3276a6cfb04c6d7b4acfd481168bf89",
+    "scenarios": 92,
+    "suite": "69 core + 23 Hard Mode (--hardmode)",
+    "trials_per_round": 1
+  },
+  "settings": {
+    "thinking": true,
+    "temperature": 0,
+    "seed": 42,
+    "top_p": 1,
+    "top_k": -1,
+    "min_p": 0,
+    "repetition_penalty": 1,
+    "max_turns": 8,
+    "timeout_seconds": 300,
+    "reference_date": "2026-09-26",
+    "weight_by_difficulty": false,
+    "error_rate": 0,
+    "output_tokens": {
+      "high": 16384,
+      "low": 16384,
+      "max": 32768
+    },
+    "parallel": 4,
+    "round_time": "wall time of one 92-scenario round (phase start to result); excludes model boot, preparation, hardware queue waits and admission probes"
+  },
+  "recipes": {
+    "ringside": {
+      "name": "othexmr/GLM-5.3-Flash-NVFP4-2x-4x-DGX-Sparks-RiNGSiDE",
+      "short": "RiNGSiDE",
+      "checkpoint": "RedHatAI/GLM-5.3-Flash-NVFP4",
+      "revision": "18d55bfd",
+      "image": "017fd0ba",
+      "served_as": "nvidia/GLM-5.3-Flash-NVFP4",
+      "tp": {
+        "4": {
+          "plan": "92817b8d",
+          "note": "release plan 89dfef84 plus the A1e sparse-MLA change"
+        },
+        "2": {
+          "plan": "b80911ec",
+          "note": "release plan"
+        }
+      },
+      "note": "lab image, not the rebuilt public image"
+    },
+    "miaai": {
+      "name": "MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks",
+      "short": "MiaAI-Lab",
+      "commit": "70b2f332",
+      "checkpoint": "brandonmusic/GLM-5.3-Flash-tr3-4bpw",
+      "revision": "5ab363a8",
+      "image": "glm53-flash-sm121:mia-70b2f332-20260926",
+      "tp": {
+        "4": {
+          "note": "TP4 adaptation on the lab ring, compact KV off, K4"
+        },
+        "2": {
+          "note": "compact KV, K7"
+        }
+      },
+      "note": "the recipe at that commit, built clean; lab speed profile"
+    },
+    "tonyd2wild": {
+      "short": "Tony2wild",
+      "name": "tonyd2wild/vllm-glm53-flash",
+      "note": "Tony TP4 2ac4e8dd unchanged; lab common-capacity adaptation retained; TP2 quality abb38bb0, owner stopped after one Max"
+    },
+    "knapcio": {
+      "short": "Knapcio",
+      "name": "knapcio/GLM-5.3-Flash-4x-DGX-Spark-TP4",
+      "note": "dddb0347; owner-approved switchless ring port; native thinking template"
+    }
+  },
+  "cohorts": [
+    {
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 3,
+      "completed": 3,
+      "state": "complete"
+    },
+    {
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 3,
+      "completed": 3,
+      "state": "complete"
+    },
+    {
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "max",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 1,
+      "completed": 1,
+      "state": "complete"
+    },
+    {
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 3,
+      "completed": 3,
+      "state": "complete"
+    },
+    {
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "low",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 3,
+      "completed": 3,
+      "state": "complete"
+    },
+    {
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "max",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 1,
+      "completed": 1,
+      "state": "complete"
+    },
+    {
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 3,
+      "completed": 3,
+      "state": "complete"
+    },
+    {
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 3,
+      "completed": 3,
+      "state": "complete"
+    },
+    {
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "max",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 1,
+      "completed": 1,
+      "state": "complete"
+    },
+    {
+      "recipe": "miaai",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 3,
+      "completed": 3,
+      "state": "complete"
+    },
+    {
+      "recipe": "miaai",
+      "tp": 2,
+      "mode": "low",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 3,
+      "completed": 3,
+      "state": "complete"
+    },
+    {
+      "recipe": "miaai",
+      "tp": 2,
+      "mode": "max",
+      "parallel": 4,
+      "group": "comparison",
+      "required": 1,
+      "completed": 1,
+      "state": "complete"
+    },
+    {
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "group": "concurrency",
+      "required": 3,
+      "completed": 3,
+      "state": "complete",
+      "packet": "outputs/2026-09-26-tool-eval-concurrency-r3"
+    },
+    {
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 16,
+      "group": "concurrency",
+      "required": 3,
+      "completed": 3,
+      "state": "complete",
+      "packet": "outputs/2026-09-26-tool-eval-concurrency-r3"
+    },
+    {
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 8,
+      "group": "concurrency",
+      "required": 3,
+      "completed": 3,
+      "state": "complete",
+      "packet": "outputs/2026-09-26-tool-eval-concurrency-tp2-r3"
+    },
+    {
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "required": 3,
+      "completed": 3,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "max",
+      "parallel": 4,
+      "required": 1,
+      "completed": 1,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "required": 3,
+      "completed": 3,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "required": 3,
+      "completed": 3,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 16,
+      "required": 3,
+      "completed": 3,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "tonyd2wild",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "required": 3,
+      "completed": 3,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "tonyd2wild",
+      "tp": 2,
+      "mode": "max",
+      "parallel": 4,
+      "required": 1,
+      "completed": 1,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "knapcio",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "required": 1,
+      "completed": 1,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "knapcio",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "required": 1,
+      "completed": 1,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "knapcio",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 16,
+      "required": 1,
+      "completed": 1,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "knapcio",
+      "tp": 4,
+      "mode": "max",
+      "parallel": 4,
+      "required": 1,
+      "completed": 1,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 6,
+      "required": 1,
+      "completed": 1,
+      "state": "complete",
+      "group": "reviewed-addition"
+    },
+    {
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "required": 1,
+      "completed": 1,
+      "state": "complete",
+      "group": "reviewed-addition"
+    }
+  ],
+  "rounds": [
+    {
+      "id": "ours-tp4-high-1",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "round": 1,
+      "score": 92,
+      "points": 169,
+      "max_points": 184,
+      "passed": 83,
+      "partial": 3,
+      "failed": 6,
+      "scenarios": 92,
+      "seconds": 395,
+      "started": "2026-09-26 15:31:48",
+      "finished": "2026-09-26 15:38:23",
+      "run_id": "2026-09-26T08-31-50.843347Z_c5e33890",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-vnext-1/tool-eval-vnext/tools-1/result.json",
+        "sha256": "e1a565195e1abc13749b0feba257bca3e93dc6e858ea30a4df40de15f7a5a214"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 3745,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-high-1",
+        "result_sha256": "28fb358535179574fdd0f878bae92bd0fd7ae7c3447c2a32aa5d8b93f5a88d0a",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-high-2",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "round": 2,
+      "score": 89,
+      "points": 163,
+      "max_points": 184,
+      "passed": 77,
+      "partial": 9,
+      "failed": 6,
+      "scenarios": 92,
+      "seconds": 382,
+      "started": "2026-09-26 15:38:23",
+      "finished": "2026-09-26 15:44:45",
+      "run_id": "2026-09-26T08-38-26.193103Z_071e003f",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-vnext-1/tool-eval-vnext/tools-2/result.json",
+        "sha256": "d1af9b31ac3200c81ae3b673f166532bb6b984f9fdfa91e0c097d75bdf9eedc7"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 3500,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-high-2",
+        "result_sha256": "0daeeeba4a32bca2d5930ec8b68fee0e1c85b277e6893758c05d111573f291e2",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-high-3",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "round": 3,
+      "score": 91,
+      "points": 168,
+      "max_points": 184,
+      "passed": 82,
+      "partial": 4,
+      "failed": 6,
+      "scenarios": 92,
+      "seconds": 380,
+      "started": "2026-09-26 16:34:44",
+      "finished": "2026-09-26 16:41:04",
+      "run_id": "2026-09-26T09-34-46.810293Z_549a04c7",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-batched-1/tool-eval-three-rounds/tools-3/result.json",
+        "sha256": "27cb5cc89f1b8e38ac0a2aa19eeb9e2cbe036a6e0c8d1901d0c06eed39a6d727"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 2845,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-high-3",
+        "result_sha256": "a7d343f04b15d892ef3484173e293873a60cefa1b3cccd76327a1acc42e438b8",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-low-1",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "round": 1,
+      "score": 85,
+      "points": 157,
+      "max_points": 184,
+      "passed": 74,
+      "partial": 9,
+      "failed": 9,
+      "scenarios": 92,
+      "seconds": 292,
+      "started": "2026-09-26 17:37:21",
+      "finished": "2026-09-26 17:42:13",
+      "run_id": "2026-09-26T10-37-24.628260Z_204ee60a",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-low3-1/tool-eval-low3/tools-low-1/result.json",
+        "sha256": "11675e4970810f7b14df19cf99ea3253ca9b4720bf0316407c0ff6ffca724a07"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 1503,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-low-1",
+        "result_sha256": "80862c8cc41250d7661168e36980a1faa37af6e5a2731a6206b29d799ad59f52",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-low-2",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "round": 2,
+      "score": 88,
+      "points": 161,
+      "max_points": 184,
+      "passed": 76,
+      "partial": 9,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 281,
+      "started": "2026-09-26 17:42:13",
+      "finished": "2026-09-26 17:46:54",
+      "run_id": "2026-09-26T10-42-15.641886Z_3a3a13c9",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-low3-1/tool-eval-low3/tools-low-2/result.json",
+        "sha256": "5f9179799324b960f0aeaddb1b231be2f07e0c43e0e3543e852983d66a762259"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 1386,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-low-2",
+        "result_sha256": "205fb0ed30c5ca070a2729b687a51b6b3acbe77902959c3bdc1fb8a604de71f5",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-low-3",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "round": 3,
+      "score": 88,
+      "points": 162,
+      "max_points": 184,
+      "passed": 77,
+      "partial": 8,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 302,
+      "started": "2026-09-26 17:46:54",
+      "finished": "2026-09-26 17:51:56",
+      "run_id": "2026-09-26T10-46-57.500957Z_26c84e8f",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-low3-1/tool-eval-low3/tools-low-3/result.json",
+        "sha256": "554f7e77f15935b02b0f6961285da2821684db0a5c27bf76880d22558cf2c5f6"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 2608,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-low-3",
+        "result_sha256": "030d62ceee222bcb6074fd8ba21dfe138883d0b1ec00401373ae67e856cdbd99",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-max-1",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "max",
+      "parallel": 4,
+      "round": 1,
+      "score": 93,
+      "points": 171,
+      "max_points": 184,
+      "passed": 84,
+      "partial": 3,
+      "failed": 5,
+      "scenarios": 92,
+      "seconds": 567,
+      "started": "2026-09-26 16:41:18",
+      "finished": "2026-09-26 16:50:45",
+      "run_id": "2026-09-26T09-41-22.181613Z_6c890284",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-batched-1/tool-eval-max32k/tools-max32k-1/result.json",
+        "sha256": "26a3fd482a3bfb49ec8608457bce87a5ff896035cc6a72c634d226a7080d7959"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 5206,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-max-1",
+        "result_sha256": "c297f6ac587b2db50f2686740bd606a0aa100f5facdc4a3c34455db88cee0d06",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp2-high-1",
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "round": 1,
+      "score": 90,
+      "points": 165,
+      "max_points": 184,
+      "passed": 81,
+      "partial": 3,
+      "failed": 8,
+      "scenarios": 92,
+      "seconds": 832,
+      "started": "2026-09-26 15:56:40",
+      "finished": "2026-09-26 16:10:32",
+      "run_id": "2026-09-26T08-56-43.592542Z_111b8243",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp2-vnext-1/tool-eval-vnext/tools-1/result.json",
+        "sha256": "2604f36c92def7e6ebc0693a16a0ce640b7a68159211b60aceff7e0e28e7ca70"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 4404,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp2-high-1",
+        "result_sha256": "2257a49c9d4b4021063f5c2968382af5b4720da34a6f46494573e5f54101c5d5",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp2-high-2",
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "round": 2,
+      "score": 92,
+      "points": 169,
+      "max_points": 184,
+      "passed": 81,
+      "partial": 7,
+      "failed": 4,
+      "scenarios": 92,
+      "seconds": 776,
+      "started": "2026-09-26 16:10:32",
+      "finished": "2026-09-26 16:23:28",
+      "run_id": "2026-09-26T09-10-34.767283Z_83fd3686",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp2-vnext-1/tool-eval-vnext/tools-2/result.json",
+        "sha256": "0fa9f1cef05421e86affbed564256c8e2dca5c586f79e9e77890a21d0db385c2"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 3252,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp2-high-2",
+        "result_sha256": "746b1e596e7f99e8b37c6ef0fb386e1290335cef3f80a0e3dd31107f12c70ea7",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp2-high-3",
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "round": 3,
+      "score": 89,
+      "points": 164,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 4,
+      "failed": 8,
+      "scenarios": 92,
+      "seconds": 834,
+      "started": "2026-09-26 16:57:11",
+      "finished": "2026-09-26 17:11:05",
+      "run_id": "2026-09-26T09-57-14.134658Z_c66d6565",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp2-batched-1/tool-eval-three-rounds/tools-3/result.json",
+        "sha256": "c6ee397b9f752d4b00a72faa708efa764d9616174f210f3967899bcbc52f8555"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 3252,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp2-high-3",
+        "result_sha256": "3b385a19f862384c031334d56e2b82a8f5631deb589dcc3a2889ce353c224059",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp2-low-1",
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "low",
+      "parallel": 4,
+      "round": 1,
+      "score": 89,
+      "points": 163,
+      "max_points": 184,
+      "passed": 78,
+      "partial": 7,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 664,
+      "started": "2026-09-26 18:06:29",
+      "finished": "2026-09-26 18:17:33",
+      "run_id": "2026-09-26T11-06-32.000870Z_c08ddf1d",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp2-low3-1/tool-eval-low3/tools-low-1/result.json",
+        "sha256": "3e3d1460069f94e7ae86ed89e296af0581a6bf669498d6f3bd368f515f517987"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 3338,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp2-low-1",
+        "result_sha256": "d7a0b909259de4b0c8b26e72862033b71c47fc0a0a0b928fd4bd37efd561c0ad",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp2-low-2",
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "low",
+      "parallel": 4,
+      "round": 2,
+      "score": 89,
+      "points": 163,
+      "max_points": 184,
+      "passed": 78,
+      "partial": 7,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 664,
+      "started": "2026-09-26 18:17:33",
+      "finished": "2026-09-26 18:28:37",
+      "run_id": "2026-09-26T11-17-36.228242Z_5f2e0fad",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp2-low3-1/tool-eval-low3/tools-low-2/result.json",
+        "sha256": "366886b310ab5464827463202092fb7141d076a463a41eae7e1c6829ad0dcd59"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 2856,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp2-low-2",
+        "result_sha256": "4f90af097f41974d335fa016ccb61331013c1bc56e08ec544713507a4fb30fde",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp2-low-3",
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "low",
+      "parallel": 4,
+      "round": 3,
+      "score": 86,
+      "points": 159,
+      "max_points": 184,
+      "passed": 76,
+      "partial": 7,
+      "failed": 9,
+      "scenarios": 92,
+      "seconds": 690,
+      "started": "2026-09-26 18:28:37",
+      "finished": "2026-09-26 18:40:07",
+      "run_id": "2026-09-26T11-28-40.017788Z_83f0d7ac",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp2-low3-1/tool-eval-low3/tools-low-3/result.json",
+        "sha256": "11781ed2d591075ec64ee59a52ccb394ef7dfee7f201225a7a6ecabfdba4fd8b"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 3770,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp2-low-3",
+        "result_sha256": "8cd8cdc64fa2a0a1d679e51c4b3ad9274b26d971bae928e8474b5c17cf1687b4",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp2-max-1",
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "max",
+      "parallel": 4,
+      "round": 1,
+      "score": 92,
+      "points": 169,
+      "max_points": 184,
+      "passed": 82,
+      "partial": 5,
+      "failed": 5,
+      "scenarios": 92,
+      "seconds": 1200,
+      "started": "2026-09-26 17:11:14",
+      "finished": "2026-09-26 17:31:14",
+      "run_id": "2026-09-26T10-11-18.222966Z_10f3d445",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp2-batched-1/tool-eval-max32k/tools-max32k-1/result.json",
+        "sha256": "0de07487d462c02a50d7369026ca288b2231a0427b2667f7dca5601793f0d270"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 6552,
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp2-max-1",
+        "result_sha256": "55847a832d033aa6da7585d98e7cb52c18705aca5b5129c991a9c9d95e06d0d9",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp4-high-1",
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "round": 1,
+      "score": 90,
+      "points": 165,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 5,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 671,
+      "started": "2026-09-26 18:48:13",
+      "finished": "2026-09-26 18:59:24",
+      "run_id": "2026-09-26T11-48-16.064460Z_f5758ac1",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp4-low3-1/tool-eval-three-rounds/tools-1/result.json",
+        "sha256": "b159d7e859ca3c4186b0066fbd936310d4c8e95d01bbdd3abb14adf3453c0d13"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 3009,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp4-high-1",
+        "result_sha256": "5a55d4239328a31340e2c468d2283726796d62bb098a0e9c007f6e3cb378183e",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp4-high-2",
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "round": 2,
+      "score": 88,
+      "points": 162,
+      "max_points": 184,
+      "passed": 77,
+      "partial": 8,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 676,
+      "started": "2026-09-26 18:59:24",
+      "finished": "2026-09-26 19:10:40",
+      "run_id": "2026-09-26T11-59-27.401570Z_370e1fc1",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp4-low3-1/tool-eval-three-rounds/tools-2/result.json",
+        "sha256": "e3e69dd5d0db36776e6ee709b9a68eea2ec94bde8fe2a808991000ec502520a3"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 5391,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp4-high-2",
+        "result_sha256": "da5ee47daed245b8f156f3c06b24a8dc8d3c3805e644b60d1dbfa0e8acdf2c5e",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp4-high-3",
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "round": 3,
+      "score": 91,
+      "points": 168,
+      "max_points": 184,
+      "passed": 82,
+      "partial": 4,
+      "failed": 6,
+      "scenarios": 92,
+      "seconds": 636,
+      "started": "2026-09-26 19:10:40",
+      "finished": "2026-09-26 19:21:16",
+      "run_id": "2026-09-26T12-10-42.721614Z_adc86745",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp4-low3-1/tool-eval-three-rounds/tools-3/result.json",
+        "sha256": "f992e532f6ec7001f24602d6634edd7b5e7e2ee223ba72c3432765a84e70e0ea"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 3093,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp4-high-3",
+        "result_sha256": "72508e0321794df7f4718d82a6829066ffc371b5e2e6ece2bfe5effe9d169433",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp4-low-1",
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "round": 1,
+      "score": 88,
+      "points": 162,
+      "max_points": 184,
+      "passed": 78,
+      "partial": 6,
+      "failed": 8,
+      "scenarios": 92,
+      "seconds": 482,
+      "started": "2026-09-26 21:41:54",
+      "finished": "2026-09-26 21:49:56",
+      "run_id": "2026-09-26T14-41-59.040062Z_aaee5641",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp4-low3-r3-1/tool-eval-low3/tools-low-1/result.json",
+        "sha256": "6eaafa9b34994acc8258fe811653778356173ebd2e380f78b4ecc98273538408"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 1726,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp4-low-1",
+        "result_sha256": "76373f5216b891f9a37586a80861acde8ff6a71766e72213a64a7657e61eb8b0",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp4-low-2",
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "round": 2,
+      "score": 90,
+      "points": 165,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 5,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 506,
+      "started": "2026-09-26 21:49:56",
+      "finished": "2026-09-26 21:58:22",
+      "run_id": "2026-09-26T14-49-59.356777Z_5a66fdc7",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp4-low3-r3-1/tool-eval-low3/tools-low-2/result.json",
+        "sha256": "2e4099e63a0666e10e7ae71d2fca75ed58a37cbd40914b9f32e89dde40103149"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 1904,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp4-low-2",
+        "result_sha256": "8d58d0e9403262cc6d1433f89b8b5a5c448989348787cefd0d53cbaa2de8eceb",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp4-low-3",
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "round": 3,
+      "score": 86,
+      "points": 158,
+      "max_points": 184,
+      "passed": 75,
+      "partial": 8,
+      "failed": 9,
+      "scenarios": 92,
+      "seconds": 479,
+      "started": "2026-09-26 21:58:22",
+      "finished": "2026-09-26 22:06:21",
+      "run_id": "2026-09-26T14-58-25.698331Z_40c170b5",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp4-low3-r3-1/tool-eval-low3/tools-low-3/result.json",
+        "sha256": "d47e61744266dae51b6eae8a970ceda82566c311d4cd5eb6e05cba133586baa5"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 1600,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp4-low-3",
+        "result_sha256": "511f49faa61cbd39f0e3f0606b625d684ef4990c60a68c4a54918306fb91b93a",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp4-max-1",
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "max",
+      "parallel": 4,
+      "round": 1,
+      "score": 92,
+      "points": 170,
+      "max_points": 184,
+      "passed": 84,
+      "partial": 2,
+      "failed": 6,
+      "scenarios": 92,
+      "seconds": 903,
+      "started": "2026-09-26 19:25:18",
+      "finished": "2026-09-26 19:40:21",
+      "run_id": "2026-09-26T12-25-21.578607Z_7280284b",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp4-low3-1/tool-eval-max32k/tools-max32k-1/result.json",
+        "sha256": "2df854970ce66a7ac031e801a559f6819e162ed23b2bfe6f35aa6c762c299617"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 7456,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp4-max-1",
+        "result_sha256": "c6f5fbb87045cece0c2063aef9feee9a2aef3a3f6e2843bc750c366fc3d9ca29",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp2-compact-high-1",
+      "recipe": "miaai",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "round": 1,
+      "score": 92,
+      "points": 169,
+      "max_points": 184,
+      "passed": 81,
+      "partial": 7,
+      "failed": 4,
+      "scenarios": 92,
+      "seconds": 973,
+      "started": "2026-09-26 20:15:26",
+      "finished": "2026-09-26 20:31:39",
+      "run_id": "2026-09-26T13-15-28.704240Z_7c26b66e",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp2-compact-low3-1/tool-eval-three-rounds/tools-1/result.json",
+        "sha256": "bb281bd4ea7313214307aab7e9dc7cdca1e018e3ca271ab5349424243d8bc440"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 3354,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp2-compact-high-1",
+        "result_sha256": "5a5a89b0dfea3805a9f7f6e8d74c9f0ef9485f7c276b74432c0dbf6e88f9b09e",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp2-compact-high-2",
+      "recipe": "miaai",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "round": 2,
+      "score": 90,
+      "points": 165,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 5,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 1029,
+      "started": "2026-09-26 20:31:39",
+      "finished": "2026-09-26 20:48:48",
+      "run_id": "2026-09-26T13-31-42.543353Z_d8d81a8c",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp2-compact-low3-1/tool-eval-three-rounds/tools-2/result.json",
+        "sha256": "a00b5bb0d06c0ec342cc2d3f5a77f5447f39c4e9864ea7c32a72137df8254974"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 5958,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp2-compact-high-2",
+        "result_sha256": "a680e58080736b9e4e47879d66dcb93b604fdde7dc9332443b07366061afd7cb",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp2-compact-high-3",
+      "recipe": "miaai",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "round": 3,
+      "score": 90,
+      "points": 165,
+      "max_points": 184,
+      "passed": 79,
+      "partial": 7,
+      "failed": 6,
+      "scenarios": 92,
+      "seconds": 1009,
+      "started": "2026-09-26 20:48:48",
+      "finished": "2026-09-26 21:05:37",
+      "run_id": "2026-09-26T13-48-51.157846Z_20fd703a",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp2-compact-low3-1/tool-eval-three-rounds/tools-3/result.json",
+        "sha256": "2154474110a60f7fc9fa64cd3342d88f9fb432f3c52456a3c069c875bb0b8a90"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 4449,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp2-compact-high-3",
+        "result_sha256": "3a167f40a7bb23b3cca90d2b0809a8a5a3e73392b60b5d537b6979aee7ee24d9",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp2-compact-low-1",
+      "recipe": "miaai",
+      "tp": 2,
+      "mode": "low",
+      "parallel": 4,
+      "round": 1,
+      "score": 88,
+      "points": 162,
+      "max_points": 184,
+      "passed": 77,
+      "partial": 8,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 698,
+      "started": "2026-09-26 22:09:49",
+      "finished": "2026-09-26 22:21:27",
+      "run_id": "2026-09-26T15-09-53.532214Z_3f30cbca",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp2-compact-low3-r4-1/tool-eval-low3/tools-low-1/result.json",
+        "sha256": "5ac56018e093702de323ba27ad21a60dbb85b25ce497865515b6f91f5e670c21"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 1891,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp2-compact-low-1",
+        "result_sha256": "395dc4de18bd68bc73209ec3c7eda55f568f8c4c18a72a148a17e7f7e85425fc",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp2-compact-low-2",
+      "recipe": "miaai",
+      "tp": 2,
+      "mode": "low",
+      "parallel": 4,
+      "round": 2,
+      "score": 88,
+      "points": 161,
+      "max_points": 184,
+      "passed": 77,
+      "partial": 7,
+      "failed": 8,
+      "scenarios": 92,
+      "seconds": 709,
+      "started": "2026-09-26 22:21:27",
+      "finished": "2026-09-26 22:33:16",
+      "run_id": "2026-09-26T15-21-30.702240Z_bd53232f",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp2-compact-low3-r4-1/tool-eval-low3/tools-low-2/result.json",
+        "sha256": "11f93e0518480f841bf1e779b486ab39458c8024b6beecff5df24d67789b3373"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 1801,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp2-compact-low-2",
+        "result_sha256": "8c9d5cb04933c495b82369d830fed8d58df04c9feef4136b5dbb072725b473ac",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp2-compact-low-3",
+      "recipe": "miaai",
+      "tp": 2,
+      "mode": "low",
+      "parallel": 4,
+      "round": 3,
+      "score": 89,
+      "points": 163,
+      "max_points": 184,
+      "passed": 78,
+      "partial": 7,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 715,
+      "started": "2026-09-26 22:33:16",
+      "finished": "2026-09-26 22:45:11",
+      "run_id": "2026-09-26T15-33-19.956663Z_0e0ccfda",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp2-compact-low3-r4-1/tool-eval-low3/tools-low-3/result.json",
+        "sha256": "c2462e441418932ab2a3fff95e41911f586eaaa23818ce101b5f61ba8cd5404e"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 1786,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp2-compact-low-3",
+        "result_sha256": "f22d8390885c39259346fb0228962aeb539cd8777f2311db218a72fe86596ea8",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "mia-tp2-compact-max-1",
+      "recipe": "miaai",
+      "tp": 2,
+      "mode": "max",
+      "parallel": 4,
+      "round": 1,
+      "score": 90,
+      "points": 166,
+      "max_points": 184,
+      "passed": 81,
+      "partial": 4,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 1308,
+      "started": "2026-09-26 21:11:15",
+      "finished": "2026-09-26 21:33:03",
+      "run_id": "2026-09-26T14-11-19.711606Z_23ed1eb0",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-mia-tp2-compact-low3-1/tool-eval-max32k/tools-max32k-1/result.json",
+        "sha256": "5987f335052970962f0c1d0fc246f911f2ef11718fff9d84233d55441c0dec4c"
+      },
+      "reported_truncation_cases": [],
+      "max_scenario_completion_tokens": 4225,
+      "receipt": {
+        "folder": "tool-eval-logs/current/mia-tp2-compact-max-1",
+        "result_sha256": "14dac75c94bb020aecb21aa3427e0e56590f561eb3f3248a786c047ff552ed1d",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-high-c8-1",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "round": 1,
+      "score": 91,
+      "points": 167,
+      "max_points": 184,
+      "passed": 82,
+      "partial": 3,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 325,
+      "started": "2026-09-26 23:43:18",
+      "finished": "2026-09-26 23:48:43",
+      "run_id": "2026-09-26T16-43-19.805374Z_8c02d858",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-concurrency-1/tool-eval-concurrency/tools-c8-r1/result.json",
+        "sha256": "1ef5958e684ee3440746447f1ceaffb8ca0c56bf1db7f2790f38fefe3004f61b"
+      },
+      "reported_truncation_cases": [],
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-high-c8-1",
+        "result_sha256": "8f02af6f7a01eb7e905dabc29b731996fda0c214d102e390603b1245e972c3fb",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-high-c8-2",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "round": 2,
+      "score": 90,
+      "points": 166,
+      "max_points": 184,
+      "passed": 79,
+      "partial": 8,
+      "failed": 5,
+      "scenarios": 92,
+      "seconds": 337,
+      "started": "2026-09-26 23:59:08",
+      "finished": "2026-09-27 00:04:45",
+      "run_id": "2026-09-26T16-59-10.588460Z_7ae68382",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-concurrency-1/tool-eval-concurrency/tools-c8-r2/result.json",
+        "sha256": "69d91049f70cc96f2b155a0cae3a2933fe2fb7756e4df1c13459a772260e158b"
+      },
+      "reported_truncation_cases": [],
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-high-c8-2",
+        "result_sha256": "fbc4550850116b7e8612305b075172e75861c4ea91b0993fd620a337834e8340",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-high-c8-3",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "round": 3,
+      "score": 86,
+      "points": 159,
+      "max_points": 184,
+      "passed": 77,
+      "partial": 5,
+      "failed": 10,
+      "scenarios": 92,
+      "seconds": 309,
+      "started": "2026-09-27 00:04:45",
+      "finished": "2026-09-27 00:09:54",
+      "run_id": "2026-09-26T17-04-47.872020Z_e2d68f0f",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-concurrency-1/tool-eval-concurrency/tools-c8-r3/result.json",
+        "sha256": "eab337d7ca6f77d03bf219c563d376ffeb2f5737235daf651d0accd5a82b906e"
+      },
+      "reported_truncation_cases": [],
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-high-c8-3",
+        "result_sha256": "1c9116d47cddc66df0cca9831054f0e20ecef330a479011c703962dd0ab82c4e",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-high-c16-1",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 16,
+      "round": 1,
+      "score": 89,
+      "points": 164,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 4,
+      "failed": 8,
+      "scenarios": 92,
+      "seconds": 270,
+      "started": "2026-09-26 23:48:43",
+      "finished": "2026-09-26 23:53:13",
+      "run_id": "2026-09-26T16-48-44.828093Z_87b36a6d",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-concurrency-1/tool-eval-concurrency/tools-c16-r1/result.json",
+        "sha256": "557943a50a1df49b56e26d66873d0308fbad136c43d9e9548577fb3004e73fa2"
+      },
+      "reported_truncation_cases": [],
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-high-c16-1",
+        "result_sha256": "9a866b2231e0904c081b7f538246d30ae90fb4b3b781bae46d5e146b20009f8e",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-high-c16-2",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 16,
+      "round": 2,
+      "score": 91,
+      "points": 167,
+      "max_points": 184,
+      "passed": 81,
+      "partial": 5,
+      "failed": 6,
+      "scenarios": 92,
+      "seconds": 355,
+      "started": "2026-09-26 23:53:13",
+      "finished": "2026-09-26 23:59:08",
+      "run_id": "2026-09-26T16-53-14.866814Z_034d8c06",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-concurrency-1/tool-eval-concurrency/tools-c16-r2/result.json",
+        "sha256": "99e3391415d2957fdd18ad4b194cb366ee4b51e1634cd6f2d8daca2957599dea"
+      },
+      "reported_truncation_cases": [
+        "TC-88"
+      ],
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-high-c16-2",
+        "result_sha256": "313815b10bfdec4fb1ef71aa78bf451d72dc7b75a87727915621ffa0a2aedbaa",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp4-high-c16-3",
+      "recipe": "ringside",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 16,
+      "round": 3,
+      "score": 92,
+      "points": 169,
+      "max_points": 184,
+      "passed": 83,
+      "partial": 3,
+      "failed": 6,
+      "scenarios": 92,
+      "seconds": 272,
+      "started": "2026-09-27 00:09:54",
+      "finished": "2026-09-27 00:14:26",
+      "run_id": "2026-09-26T17-09-56.685469Z_068bb1da",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp4-concurrency-1/tool-eval-concurrency/tools-c16-r3/result.json",
+        "sha256": "035b63a6f40e6ede2df9dc66a47747820bab505571cf42d6a8b2fb1e3a0667b6"
+      },
+      "reported_truncation_cases": [],
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp4-high-c16-3",
+        "result_sha256": "526c4bb26b45d5768de2f3f6d32cc87036ebd34c8c4c66d25149a06f006cdc49",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp2-high-c8-1",
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 8,
+      "round": 1,
+      "score": 93,
+      "points": 172,
+      "max_points": 184,
+      "passed": 84,
+      "partial": 4,
+      "failed": 4,
+      "scenarios": 92,
+      "seconds": 732,
+      "started": "2026-09-27 00:21:09",
+      "finished": "2026-09-27 00:33:21",
+      "run_id": "2026-09-26T17-21-11.556992Z_b7f042e5",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp2-concurrency-1/tool-eval-concurrency/tools-c8-r1/result.json",
+        "sha256": "75f57499008bf70a622918589a94bfabbb507a1951b489453ee55e352cdad7b3"
+      },
+      "reported_truncation_cases": [],
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp2-high-c8-1",
+        "result_sha256": "09deefa71a7d2b66899e011f3f5b38fbd96b5d39f053fe399b1ab433f3761ae5",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp2-high-c8-2",
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 8,
+      "round": 2,
+      "score": 90,
+      "points": 165,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 5,
+      "failed": 7,
+      "scenarios": 92,
+      "seconds": 694,
+      "started": "2026-09-27 00:33:21",
+      "finished": "2026-09-27 00:44:55",
+      "run_id": "2026-09-26T17-33-24.573255Z_740a8f5f",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp2-concurrency-1/tool-eval-concurrency/tools-c8-r2/result.json",
+        "sha256": "87e3ad6a0c1451e212d0d6a86b94d7f20104f085e73fd91e758ca09783fa0a44"
+      },
+      "reported_truncation_cases": [],
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp2-high-c8-2",
+        "result_sha256": "0a6e1f6a1c54271822d8b823951dbecda4add9fbb0344e83b64f36af9f629580",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "ours-tp2-high-c8-3",
+      "recipe": "ringside",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 8,
+      "round": 3,
+      "score": 95,
+      "points": 174,
+      "max_points": 184,
+      "passed": 84,
+      "partial": 6,
+      "failed": 2,
+      "scenarios": 92,
+      "seconds": 728,
+      "started": "2026-09-27 00:44:55",
+      "finished": "2026-09-27 00:57:03",
+      "run_id": "2026-09-26T17-44-58.621042Z_8e7e0b65",
+      "source": {
+        "path": "outputs/2026-09-26-tool-eval-ours-tp2-concurrency-1/tool-eval-concurrency/tools-c8-r3/result.json",
+        "sha256": "7a8443e035a2a531bc1c8d4a0f75d16e7c8957f8c453da82b883d7bd0fba5981"
+      },
+      "reported_truncation_cases": [],
+      "receipt": {
+        "folder": "tool-eval-logs/current/ours-tp2-high-c8-3",
+        "result_sha256": "7e56151faa1bb8586ec4e4054b20e8b12635c38d36926c8225617f7b5a92bcd5",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-high-c4-1",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "round": 1,
+      "score": 89,
+      "seconds": 491.3212888749549,
+      "scenarios": 92,
+      "run_id": "2026-09-27T02-40-37.557831Z_42f775ee",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r1/result.json",
+        "sha256": "5971644ea77e6e14b2b8f0406ac887e5f92c26b9311aa35b39d6eb4f6477c2f8"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 163,
+      "max_points": 184,
+      "passed": 78,
+      "partial": 7,
+      "failed": 7,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-high-c4-1",
+        "result_sha256": "52c691b36f8f2b7440f0c440c05f6e7bfb19a09e5616acb3247e293cf6463eae",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-high-c4-2",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "round": 2,
+      "score": 92,
+      "seconds": 495.8209217499243,
+      "scenarios": 92,
+      "run_id": "2026-09-27T02-48-49.286231Z_a36fa2c2",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r2/result.json",
+        "sha256": "9714939e1efb825ad7b07fa207ad4bc32251a6e8b4a49a0a2729305e43c95d0b"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 170,
+      "max_points": 184,
+      "passed": 82,
+      "partial": 6,
+      "failed": 4,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-high-c4-2",
+        "result_sha256": "bcd01bfa871c4343c4859629cf839a640bcea6ee10fd29e68d93dacccc685081",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-high-c4-3",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "round": 3,
+      "score": 88,
+      "seconds": 550.6849714169512,
+      "scenarios": 92,
+      "run_id": "2026-09-27T02-57-05.610820Z_70703241",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r3/result.json",
+        "sha256": "5dc52c939ff19a3a7bd98f4c0deae38bf670904efa399ae23882683f6e01b0e3"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 161,
+      "max_points": 184,
+      "passed": 77,
+      "partial": 7,
+      "failed": 8,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-high-c4-3",
+        "result_sha256": "e4928ebc4f3e5e8e4dcbb3c7afb7e9535d252c4dc4c3f6a99a61fdb124c2ab88",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-max-c4-1",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "max",
+      "parallel": 4,
+      "round": 1,
+      "score": 92,
+      "seconds": 755.7373335419688,
+      "scenarios": 92,
+      "run_id": "2026-09-27T03-09-59.690826Z_d7aa09a6",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-max-c4-r1/result.json",
+        "sha256": "42d02796eef1de5f2ebda2f0fb73951d054d1f87bdd8a94cc9e3df4558d1d707"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 169,
+      "max_points": 184,
+      "passed": 82,
+      "partial": 5,
+      "failed": 5,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-max-c4-1",
+        "result_sha256": "96f1cf909549f43890eadf967b8e74d2cc599fb1400e45261099588ba88825f5",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-low-c4-1",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "round": 1,
+      "score": 86,
+      "seconds": 430.45708891609684,
+      "scenarios": 92,
+      "run_id": "2026-09-27T03-22-36.173981Z_f1c76c50",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r1/result.json",
+        "sha256": "0c2d6f8ea756213717d52e799dfe5fea8d301ad75726fb16b271613e0d1fa1df"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 159,
+      "max_points": 184,
+      "passed": 75,
+      "partial": 9,
+      "failed": 8,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-low-c4-1",
+        "result_sha256": "72d2290662527a41307081f3ab33d411aa9ee7f2dc19d039256e40d53acef69b",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-low-c4-2",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "round": 2,
+      "score": 88,
+      "seconds": 397.80483829206787,
+      "scenarios": 92,
+      "run_id": "2026-09-27T03-29-47.357462Z_df8b32e2",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r2/result.json",
+        "sha256": "14a0e77e2016671af3844097b281d28b37fd50b84cfd1e9686c7983b79b9777a"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 161,
+      "max_points": 184,
+      "passed": 76,
+      "partial": 9,
+      "failed": 7,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-low-c4-2",
+        "result_sha256": "9a5a0ff6e8d28f4c3fd0379c87f2c076e3af7acf0a7acf99cc0e1ac1e11c81e3",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-low-c4-3",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "low",
+      "parallel": 4,
+      "round": 3,
+      "score": 88,
+      "seconds": 413.7208354999311,
+      "scenarios": 92,
+      "run_id": "2026-09-27T03-36-25.569966Z_a179f75b",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r3/result.json",
+        "sha256": "2b842e8314614bac060949580a49871e2581597617c510295e3ac6ebdfb2cf03"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 161,
+      "max_points": 184,
+      "passed": 76,
+      "partial": 9,
+      "failed": 7,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-low-c4-3",
+        "result_sha256": "966df7b59ee425c27d956fa43fec7ad1758b8ea04366beae1fd3f5522d8e3836",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-high-c8-1",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "round": 1,
+      "score": 90,
+      "seconds": 451.89041554101277,
+      "scenarios": 92,
+      "run_id": "2026-09-27T03-43-19.626438Z_68dc0360",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r1/result.json",
+        "sha256": "f50a0e59549c803493c9189aa8162e170f55f1a90734c3f38017107155320203"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 165,
+      "max_points": 184,
+      "passed": 79,
+      "partial": 7,
+      "failed": 6,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-high-c8-1",
+        "result_sha256": "6687136b9dcbee72ebd990d1ec27234e065728650ddc82228c126d77cbbaba1b",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-high-c16-1",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 16,
+      "round": 1,
+      "score": 91,
+      "seconds": 435.88036375003867,
+      "scenarios": 92,
+      "run_id": "2026-09-27T03-50-51.289058Z_eb809477",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r1/result.json",
+        "sha256": "0940e47214d275fba57014738dddd8adda964e4c40f2e5598208ab9d90e5b1c2"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 167,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 7,
+      "failed": 5,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-high-c16-1",
+        "result_sha256": "4f328e6607ae946054f8c79942179ee3d925e786145856864bd1c4a0ac5ff1da",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-high-c16-2",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 16,
+      "round": 2,
+      "score": 88,
+      "seconds": 431.3664288750151,
+      "scenarios": 92,
+      "run_id": "2026-09-27T03-58-07.219778Z_16e7d38d",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r2/result.json",
+        "sha256": "0b3e6888f47c54c76640811e2342c694504699958bc2df6ebd2bddea1fa49076"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 162,
+      "max_points": 184,
+      "passed": 77,
+      "partial": 8,
+      "failed": 7,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-high-c16-2",
+        "result_sha256": "11b7f6237498f6972ee67a402c63f149ae80ad88cca4dec8fb5cf75f8c5547a5",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-high-c8-2",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "round": 2,
+      "score": 89,
+      "seconds": 424.58306720806286,
+      "scenarios": 92,
+      "run_id": "2026-09-27T04-05-18.611255Z_59f0bb3e",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r2/result.json",
+        "sha256": "0a8e22bc8b5f1aec743cf4550875caeb641c7609ebf7fa9dc0a9cb80236b047e"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 163,
+      "max_points": 184,
+      "passed": 77,
+      "partial": 9,
+      "failed": 6,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-high-c8-2",
+        "result_sha256": "463c01fce4e304af78e80c2cf5ef337efbcb80792335810765fdf5c016dc03be",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-high-c8-3",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "round": 3,
+      "score": 91,
+      "seconds": 464.79149916698225,
+      "scenarios": 92,
+      "run_id": "2026-09-27T04-12-23.042300Z_1f5b7255",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r3/result.json",
+        "sha256": "500776f5ad25cd38f8a2b5d520a003f784b2a07abc53b91168aeec8beedcde84"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 168,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 8,
+      "failed": 4,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-high-c8-3",
+        "result_sha256": "bddd0dcdccebfc4d3b8ffdeb8707af05b69db350dd521ea58f1009c10e14adf0",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp4-high-c16-3",
+      "recipe": "tonyd2wild",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 16,
+      "round": 3,
+      "score": 91,
+      "seconds": 415.88753999990877,
+      "scenarios": 92,
+      "run_id": "2026-09-27T04-20-08.050489Z_b8bd94f7",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r3/result.json",
+        "sha256": "61123eaca238e6f98731efc30970ce7a62bd0aad053e1e7adbaa2d5a4c5965eb"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 167,
+      "max_points": 184,
+      "passed": 81,
+      "partial": 5,
+      "failed": 6,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp4-high-c16-3",
+        "result_sha256": "690f2e3274f48c930914f9ad66db2670b45273c2d520ea21b67599a09b062440",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp2-high-c4-1",
+      "recipe": "tonyd2wild",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "round": 1,
+      "score": 92,
+      "seconds": 1072.601,
+      "scenarios": 92,
+      "run_id": "2026-09-27T09-25-37.372817Z_d6feecd1",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r1/result.json",
+        "sha256": "ae25899e704cf544358abd8fb467bbc4784d70c00374de3ef5385b440352f2f3"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 169,
+      "max_points": 184,
+      "passed": 83,
+      "partial": 3,
+      "failed": 6,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp2-high-c4-1",
+        "result_sha256": "7a95a9405b0e39bafea5b1d037cf432b508b70bb01f1b74860ac5fb1cae03adc",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp2-high-c4-2",
+      "recipe": "tonyd2wild",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "round": 2,
+      "score": 88,
+      "seconds": 856.612,
+      "scenarios": 92,
+      "run_id": "2026-09-27T09-43-30.302829Z_e35f22f7",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r2/result.json",
+        "sha256": "10ccd299f179c96aea74f03e602b71a3cf094080ca7f84b6ec472079f5b3e804"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 162,
+      "max_points": 184,
+      "passed": 78,
+      "partial": 6,
+      "failed": 8,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp2-high-c4-2",
+        "result_sha256": "5b440dd2abe4ccb9a1907c5d7dd6b18e96b63e7e7b9ef4a662c66851f1a196c3",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp2-high-c4-3",
+      "recipe": "tonyd2wild",
+      "tp": 2,
+      "mode": "high",
+      "parallel": 4,
+      "round": 3,
+      "score": 91,
+      "seconds": 846.283,
+      "scenarios": 92,
+      "run_id": "2026-09-27T09-57-46.629759Z_ade825ed",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r3/result.json",
+        "sha256": "df155c83240b8ba28577022d76fbf3ea5dedd92e4e83a5d7ee289b8b21447632"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 167,
+      "max_points": 184,
+      "passed": 81,
+      "partial": 5,
+      "failed": 6,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp2-high-c4-3",
+        "result_sha256": "6ff51ef22a95c76ec6a84c034684f2bd9a32feaf219cff06939ecfe95115cf25",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "tonyd2wild-tp2-max-c4-1",
+      "recipe": "tonyd2wild",
+      "tp": 2,
+      "mode": "max",
+      "parallel": 4,
+      "round": 1,
+      "score": 93,
+      "seconds": 1544.251,
+      "scenarios": 92,
+      "run_id": "2026-09-27T10-18-35.447090Z_9109c766",
+      "source": {
+        "path": "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-max-c4-r1/result.json",
+        "sha256": "62c4d9a843b399a9a47556f5bfc376ea1223095eb47c7bb51786231b941a9c1f"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 171,
+      "max_points": 184,
+      "passed": 84,
+      "partial": 3,
+      "failed": 5,
+      "receipt": {
+        "folder": "tool-eval-logs/current/tonyd2wild-tp2-max-c4-1",
+        "result_sha256": "b6a23a557a61723216dc10926b7f5be67e9b9348aba16254fe211099f6f6b8ed",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "knapcio-tp4-high-c4-1",
+      "recipe": "knapcio",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 4,
+      "round": 1,
+      "score": 91,
+      "seconds": 1158.5778818130493,
+      "scenarios": 92,
+      "run_id": "2026-09-27T06-21-05.677228Z_c068ef1d",
+      "source": {
+        "path": "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-high-c4-r1/result.json",
+        "sha256": "ab627c63c9be346dc680c666a8f9494e6691e4711151f792af6b284325287647"
+      },
+      "reported_truncation_cases": [
+        {
+          "scenario": "TC-46",
+          "note": "Turn 6 hit the max_tokens ceiling (16384) with 98216 characters of reasoning and no answer or tool call.",
+          "status": "partial"
+        }
+      ],
+      "started": "",
+      "finished": "",
+      "points": 167,
+      "max_points": 184,
+      "passed": 81,
+      "partial": 5,
+      "failed": 6,
+      "receipt": {
+        "folder": "tool-eval-logs/current/knapcio-tp4-high-c4-1",
+        "result_sha256": "2d1065868c649ac9723fae500858ba6b7b52d54b779ae6b403b977c287461c2d",
+        "files": [
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "knapcio-tp4-high-c8-1",
+      "recipe": "knapcio",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "round": 1,
+      "score": 89,
+      "seconds": 1081.5228428840637,
+      "scenarios": 92,
+      "run_id": "2026-09-27T06-40-25.393200Z_0deffe1e",
+      "source": {
+        "path": "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-high-c8-r1/result.json",
+        "sha256": "fef4805ab334338f9b755707725261510c86154d8c773274d198bab7abd59ef6"
+      },
+      "reported_truncation_cases": [
+        {
+          "scenario": "TC-46",
+          "note": "Turn 6 hit the max_tokens ceiling (16384) with 98219 characters of reasoning and no answer or tool call.",
+          "status": "partial"
+        }
+      ],
+      "started": "",
+      "finished": "",
+      "points": 164,
+      "max_points": 184,
+      "passed": 78,
+      "partial": 8,
+      "failed": 6,
+      "receipt": {
+        "folder": "tool-eval-logs/current/knapcio-tp4-high-c8-1",
+        "result_sha256": "39361a6c96f7560ec5ec4e2b14f4d47e60456015a821f49319a7d7da24a5db60",
+        "files": [
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "knapcio-tp4-high-c16-1",
+      "recipe": "knapcio",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 16,
+      "round": 1,
+      "score": 90,
+      "seconds": 1544.4434621334076,
+      "scenarios": 92,
+      "run_id": "2026-09-27T06-58-27.425651Z_b3bb7e52",
+      "source": {
+        "path": "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-high-c16-r1/result.json",
+        "sha256": "0a310ef994ae3c600d427acfb1cf6a179d5abbb8b660574eec9b892ca4411ca1"
+      },
+      "reported_truncation_cases": [
+        {
+          "scenario": "TC-62",
+          "note": "Turn 4 hit the max_tokens ceiling (16384) with 98304 characters of reasoning and no answer or tool call.",
+          "status": "partial"
+        }
+      ],
+      "started": "",
+      "finished": "",
+      "points": 166,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 6,
+      "failed": 6,
+      "receipt": {
+        "folder": "tool-eval-logs/current/knapcio-tp4-high-c16-1",
+        "result_sha256": "06a6238d01943469113c0a6bd7e532a9faf5a4b967a41a84de355f47c90f8314",
+        "files": [
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "knapcio-tp4-max-c4-1",
+      "recipe": "knapcio",
+      "tp": 4,
+      "mode": "max",
+      "parallel": 4,
+      "round": 1,
+      "score": 92,
+      "seconds": 2069.2853178977966,
+      "scenarios": 92,
+      "run_id": "2026-09-27T07-24-08.721588Z_c1260beb",
+      "source": {
+        "path": "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-max/result.json",
+        "sha256": "104d5c0e194c90b6005a0baf9aee1615ba64316f419211eebec6525e6ae91d00"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 170,
+      "max_points": 184,
+      "passed": 84,
+      "partial": 2,
+      "failed": 6,
+      "receipt": {
+        "folder": "tool-eval-logs/current/knapcio-tp4-max-c4-1",
+        "result_sha256": "33de95fa514794671726fed77ecc48c270ab7159c9313cc194dc30c7f91547bb",
+        "files": [
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "miaai-tp4-high-c6-1",
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 6,
+      "round": 1,
+      "score": 91,
+      "seconds": 679.0,
+      "scenarios": 92,
+      "run_id": "2026-09-26T19-15-08.491501Z_f6279c85",
+      "source": {
+        "path": "outputs/2026-09-27-tool-eval-mia-tp4-mia-switch-r1-1/tool-eval-mia-switch-r1/tools-t0-high-c6-1/result.json",
+        "sha256": "b98cc4011ce39da8906de16e832c3bece949223f98065331b976c8e5e5051ecf"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 167,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 7,
+      "failed": 5,
+      "receipt": {
+        "folder": "tool-eval-logs/current/miaai-tp4-high-c6-1",
+        "result_sha256": "85905096a94a3a50bb164d1b3cd31f899ba79cea9f6f52b54a3e37ae54094942",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    },
+    {
+      "id": "miaai-tp4-high-c8-1",
+      "recipe": "miaai",
+      "tp": 4,
+      "mode": "high",
+      "parallel": 8,
+      "round": 1,
+      "score": 90,
+      "seconds": 651.0,
+      "scenarios": 92,
+      "run_id": "2026-09-26T19-26-27.797132Z_ec0a3137",
+      "source": {
+        "path": "outputs/2026-09-27-tool-eval-mia-tp4-mia-switch-r1-1/tool-eval-mia-switch-r1/tools-t0-high-c8-1/result.json",
+        "sha256": "d6c61b041afc5b4db1bb450f17c7278d55186e717888ee11a9c2c34dbb6cdd1f"
+      },
+      "reported_truncation_cases": [],
+      "started": "",
+      "finished": "",
+      "points": 165,
+      "max_points": 184,
+      "passed": 80,
+      "partial": 5,
+      "failed": 7,
+      "receipt": {
+        "folder": "tool-eval-logs/current/miaai-tp4-high-c8-1",
+        "result_sha256": "86955938d8381c3c4e2f08591c9dff48e5787d12ee82857731ab4a79127d77e3",
+        "files": [
+          "console.log",
+          "report-1.md",
+          "result.json"
+        ]
+      }
+    }
+  ],
+  "limits": "Per-turn finish reasons are not fully retained. Reported truncation is recorded per round; no report does not prove no cap exhaustion. Effort, token ceiling and concurrency cohorts remain separate."
+}

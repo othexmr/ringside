@@ -1,0 +1,78 @@
+{
+  "arm": {
+    "key": "ours-tp4",
+    "title": "ours-tp4 / staged recipe, fresh tool-eval capture",
+    "owner": "ours",
+    "topology": "tp4",
+    "plan": "outputs/2026-09-26-speed-backlog/smla-a1e/candidate-tp4-redhat-rowsplit-smla-a1e/launch-plan.json",
+    "plan_sha256": "92817b8ddf02c603bbf3d3fb8dfe81aaaf31ac0bc0a81a19545d8e0c00eac3e0",
+    "runner": "outputs/2026-09-19-mia-exl3-pair-rerun/run_own_tp4_bench_window.py",
+    "flags": [
+      "--ready-seconds",
+      "3600",
+      "--label",
+      "llama-benchy-ours-tp4"
+    ],
+    "served_model": "nvidia/GLM-5.3-Flash-NVFP4",
+    "reference_window": "outputs/2026-09-26-sb-smla-a1e-tp4-1",
+    "provenance": "A1e serving gate PASS vs control357; latest qualified TP4 lever, plan92817b8d. Lab image017fd0ba; not the rebuilt public Docker image.",
+    "image": "sha256:017fd0ba0a265dd81b78b352b14d33df03e9996f8f45870d4c3df84e08b1ebcb"
+  },
+  "benchmark_commit": "bd35ba91b3276a6cfb04c6d7b4acfd481168bf89",
+  "settings": {
+    "seed": 42,
+    "top_p": 1.0,
+    "top_k": -1,
+    "min_p": 0.0,
+    "repetition_penalty": 1.0,
+    "max_tokens": 32768,
+    "chat_template_kwargs": {
+      "enable_thinking": true,
+      "reasoning_effort": "max"
+    }
+  },
+  "started": "2026-09-26 16:41:07",
+  "phases": [
+    {
+      "phase": "tools-max32k-1",
+      "command": [
+        "<local-path>",
+        "-m",
+        "tool_eval_bench",
+        "run",
+        "--base-url",
+        "http://<private-ip>:8888",
+        "--model",
+        "nvidia/GLM-5.3-Flash-NVFP4",
+        "--backend",
+        "vllm",
+        "--temperature",
+        "0",
+        "--seed",
+        "42",
+        "--timeout",
+        "300",
+        "--no-live",
+        "--backend-kwargs",
+        "{\"seed\": 42, \"top_p\": 1.0, \"top_k\": -1, \"min_p\": 0.0, \"repetition_penalty\": 1.0, \"max_tokens\": 32768, \"chat_template_kwargs\": {\"enable_thinking\": true, \"reasoning_effort\": \"max\"}}",
+        "--hardmode",
+        "--parallel",
+        "4",
+        "--label",
+        "ours-tp4-thinking-max-32768-tools-max32k-1",
+        "--reference-date",
+        "2026-09-26",
+        "--json-file",
+        "<local-path>",
+        "--output-dir",
+        "<local-path>"
+      ],
+      "started": "2026-09-26 16:41:18",
+      "exit": 0,
+      "finished": "2026-09-26 16:50:45"
+    }
+  ],
+  "status": "CAPTURE_COMPLETE_NOT_RELEASE_QUALIFICATION",
+  "log_errors": [],
+  "finished": "2026-09-26 16:50:47"
+}

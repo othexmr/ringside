@@ -1,0 +1,74 @@
+[
+  {
+    "recipe": "RiNGSiDE",
+    "tp": 4,
+    "effort": "high",
+    "concurrency": 16,
+    "temperature": 1,
+    "top_p": 0.95,
+    "score": 90,
+    "seconds": 280.0,
+    "status": "completed and clean release",
+    "receipt": "evidence/sampled/tools-sampled-high-c16-1/result.json"
+  },
+  {
+    "recipe": "RiNGSiDE",
+    "tp": 4,
+    "effort": "high",
+    "concurrency": 4,
+    "temperature": 1,
+    "top_p": 0.95,
+    "score": 92,
+    "seconds": 433.0,
+    "status": "completed and clean release",
+    "receipt": "evidence/sampled/tools-sampled-high-c4-1/result.json"
+  },
+  {
+    "recipe": "RiNGSiDE",
+    "tp": 4,
+    "effort": "high",
+    "concurrency": 8,
+    "temperature": 1,
+    "top_p": 0.95,
+    "score": 91,
+    "seconds": 357.0,
+    "status": "completed and clean release",
+    "receipt": "evidence/sampled/tools-sampled-high-c8-1/result.json"
+  },
+  {
+    "recipe": "RiNGSiDE",
+    "tp": 4,
+    "effort": "low",
+    "concurrency": 4,
+    "temperature": 1,
+    "top_p": 0.95,
+    "score": 88,
+    "seconds": 313.0,
+    "status": "completed and clean release",
+    "receipt": "evidence/sampled/tools-sampled-low-c4-1/result.json"
+  },
+  {
+    "recipe": "RiNGSiDE",
+    "tp": 4,
+    "effort": "max",
+    "concurrency": 4,
+    "temperature": 1,
+    "top_p": 0.95,
+    "score": 91,
+    "seconds": 666.0,
+    "status": "completed and clean release",
+    "receipt": "evidence/sampled/tools-sampled-max-c4-1/result.json"
+  },
+  {
+    "recipe": "Mia",
+    "tp": 4,
+    "effort": "low",
+    "concurrency": 4,
+    "temperature": 1,
+    "top_p": 0.95,
+    "score": 86,
+    "seconds": 513,
+    "status": "completed Low retained; parent cancelled/failed, other efforts incomplete",
+    "receipt": "evidence/sampled/mia-low-c4/result.json"
+  }
+]

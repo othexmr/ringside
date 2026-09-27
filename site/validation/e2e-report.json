@@ -1,0 +1,206 @@
+{
+  "passed": 40,
+  "total": 40,
+  "results": [
+    {
+      "name": "Headline claims equal what the JSON gives",
+      "pass": true,
+      "detail": "fastest median in 8/8 matched settings; slowest-beats-their-fastest in 8/8; hero: \"Fastest round in 8 of 8 matched settings — at the same scores.\""
+    },
+    {
+      "name": "Round-time race: every bar equals the JSON median/single value; RiNGSiDE bar shortest in each setting",
+      "pass": true,
+      "detail": "26/26 bars across 8 matched settings"
+    },
+    {
+      "name": "Section 01 default view: every recipe's C4 rounds (TP4 and TP2 panels), at their data positions",
+      "pass": true,
+      "detail": "41 marks (expected 41); values 41/41 equal to JSON; positions within 0.75 px 41/41; accessible labels 41/41"
+    },
+    {
+      "name": "Section 01 with C6/C8/C16: all 60 rounds from four recipes",
+      "pass": true,
+      "detail": "60 marks (expected 60); values 60/60 equal to JSON; positions within 0.75 px 60/60; accessible labels 60/60"
+    },
+    {
+      "name": "Section 01 recipe filter: RiNGSiDE only leaves our 23 rounds (13 TP4, 10 TP2)",
+      "pass": true,
+      "detail": "23 marks (expected 23); values 23/23 equal to JSON; positions within 0.75 px 23/23; accessible labels 23/23"
+    },
+    {
+      "name": "Section 01 status reports shown/total",
+      "pass": true,
+      "detail": "23 rounds shown of 60 · 23 of them RiNGSiDE"
+    },
+    {
+      "name": "RiNGSiDE cohort table: 9 cohorts, singletons labelled single",
+      "pass": true,
+      "detail": "TP4 High · 16K · C4: 91 (89–92) / 6:22 (6:20–6:35) · TP4 High · 16K · C8: 90 (86–91) / 5:25 (5:09–5:37) · TP4 High · 16K · C16: 91 (89–92) / 4:32 (4:30–5:55) · TP4 Low · 16K · C4: 88 (85–88) / 4:52 (4:41–5:02) · TP4 Max · 32K · C4: 93 · single / 9:27 · single · TP2 High · 16K · C4: 90 (89–92) / 13:52 (12:56–13:54) · TP2 High · 16K · C8: 93 (90–95) / 12:08 (11:34–12:12) · TP2 Low · 16K · C4: 89 (86–89) / 11:04 (11:04–11:30) · TP2 Max · 32K · C4: 92 · single / 20:00 · single"
+    },
+    {
+      "name": "Section 02 panels: all 60 main rounds, each at its data position",
+      "pass": true,
+      "detail": "60 marks (expected 60); values 60/60 equal to JSON; positions within 0.75 px 60/60; accessible labels 60/60"
+    },
+    {
+      "name": "Section 02: one panel per matched setting",
+      "pass": true,
+      "detail": "10 panels"
+    },
+    {
+      "name": "Section 02 TP filter: TP4 only",
+      "pass": true,
+      "detail": "39 marks (expected 39); values 39/39 equal to JSON; positions within 0.75 px 39/39; accessible labels 39/39"
+    },
+    {
+      "name": "Section 02 recipe filter: Knapcio hidden",
+      "pass": true,
+      "detail": "35 marks (expected 35); values 35/35 equal to JSON; positions within 0.75 px 35/35; accessible labels 35/35"
+    },
+    {
+      "name": "Coverage matrix equals JSON medians/single values; gaps hatched, not zero",
+      "pass": true,
+      "detail": "10 settings × 4 recipes: 40/40 cells correct, 12 not-measured cells"
+    },
+    {
+      "name": "RigMark TP4: every plotted value equals speed-evidence.json",
+      "pass": true,
+      "detail": "7 charts, 127 points; line-chart positions within 0.75 px: 115/115"
+    },
+    {
+      "name": "SparkBench TP4: every plotted value equals speed-evidence.json",
+      "pass": true,
+      "detail": "4 charts, 64 points"
+    },
+    {
+      "name": "RigMark TP2: every plotted value equals speed-evidence.json",
+      "pass": true,
+      "detail": "7 charts, 68 points; line-chart positions within 0.75 px: 59/59"
+    },
+    {
+      "name": "SparkBench TP2: every plotted value equals speed-evidence.json",
+      "pass": true,
+      "detail": "4 charts, 48 points"
+    },
+    {
+      "name": "TP2 speed view plots nothing for Knapcio",
+      "pass": true,
+      "detail": "0 Knapcio points at TP2"
+    },
+    {
+      "name": "Null decode-first cell drawn as ∅, not zero (TP2 Mia C6)",
+      "pass": true,
+      "detail": "M∅"
+    },
+    {
+      "name": "All-runs table renders 60 rows; speed-cells table 309 rows",
+      "pass": true,
+      "detail": "progressive rendering completed"
+    },
+    {
+      "name": "In-browser integrity checks all pass",
+      "pass": true,
+      "detail": "Snapshot integrity · 11/11 checks pass in this browser"
+    },
+    {
+      "name": "Scenario grid: 60 rounds × 92 scenarios",
+      "pass": true,
+      "detail": "60 rows, 5520 cells"
+    },
+    {
+      "name": "Keyboard: Space toggles a filter chip; Enter on a mark opens the inspector; focus moves in; Escape closes",
+      "pass": true,
+      "detail": "chip aria-pressed=false; inspector \"RiNGSiDE · TP4 · High · 16K cap · C4 · round 1\""
+    },
+    {
+      "name": "Keyboard: arrow keys switch RigMark/SparkBench tabs",
+      "pass": true,
+      "detail": "SparkBench selected=true"
+    },
+    {
+      "name": "Deep link #run/ours-tp4-high-c16-2 opens the inspector with its truncation, receipt hashes and 92-scenario strip",
+      "pass": true,
+      "detail": "strip cells 92"
+    },
+    {
+      "name": "No console errors (desktop light)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "1360px light: no horizontal page scroll, charts render, marks positioned",
+      "pass": true,
+      "detail": "overflow 0px; body rgb(251, 246, 239); 60 matched marks; errors 0"
+    },
+    {
+      "name": "1360px dark: no horizontal page scroll, charts render, marks positioned",
+      "pass": true,
+      "detail": "overflow 0px; body rgb(12, 10, 29); 60 matched marks; errors 0"
+    },
+    {
+      "name": "390px light: no horizontal page scroll, charts render, marks positioned",
+      "pass": true,
+      "detail": "overflow 0px; body rgb(251, 246, 239); 60 matched marks; errors 0"
+    },
+    {
+      "name": "390px dark: no horizontal page scroll, charts render, marks positioned",
+      "pass": true,
+      "detail": "overflow 0px; body rgb(12, 10, 29); 60 matched marks; errors 0"
+    },
+    {
+      "name": "768px light: no horizontal page scroll, charts render, marks positioned",
+      "pass": true,
+      "detail": "overflow 0px; body rgb(251, 246, 239); 60 matched marks; errors 0"
+    },
+    {
+      "name": "prefers-reduced-motion stops decorative animation and glitter motion",
+      "pass": true,
+      "detail": "ring animation-duration 1e-06s; live glitter particles after trail/burst/rain: 0"
+    },
+    {
+      "name": "Opens directly from file:// (charts, tables and receipt extracts load)",
+      "pass": true,
+      "detail": "60 marks; extracts true; errors 0"
+    },
+    {
+      "name": "Glitter layers are decorative: pointer-events none, aria-hidden, on by default; trail and bursts spawn",
+      "pass": true,
+      "detail": "[[\"none\",\"true\"],[\"none\",\"true\"],[\"none\",\"true\"]]; toggle pressed=true; live particles after trail + wordmark click: 178"
+    },
+    {
+      "name": "Mouse click on a chart mark opens the inspector through the glitter layers",
+      "pass": true,
+      "detail": "inspector opened"
+    },
+    {
+      "name": "Glitter toggle switches off, persists across reload, and stops bursts",
+      "pass": true,
+      "detail": "after click [\"false\",\"off\",\"off\"]; after reload pressed=false, burst particles=0"
+    },
+    {
+      "name": "Accessibility basics: labelled marks and buttons, alt text, one h1, lang set",
+      "pass": true,
+      "detail": "{\"unlabeledMarks\":0,\"marks\":175,\"unnamedButtons\":0,\"imgsNoAlt\":0,\"h1\":1,\"lang\":\"en\"}"
+    },
+    {
+      "name": "No external runtime requests (scripts/styles are local; no analytics)",
+      "pass": true,
+      "detail": "all local"
+    },
+    {
+      "name": "Disco ball canvas is decorative: pointer-events none, aria-hidden; spins (faster after a wordmark click), holds a still frame under reduced motion",
+      "pass": true,
+      "detail": "lit samples 41428; animating true; spin rate 0.50 → 3.30 after click; reduced-motion still true (lit 41543, spin 0 → 0)"
+    },
+    {
+      "name": "X cards: every card renders inside its exact size, and its headline numbers and race bars equal the JSON",
+      "pass": true,
+      "detail": "6 cards; hero 8 of 8, 8/8, TP4 1.30–1.59×; speed 346 tok/s, 2.8 s"
+    },
+    {
+      "name": "Trailer: every scene renders without errors, and the numbers it draws equal the JSON",
+      "pass": true,
+      "detail": "72 strings drawn over 8 scenes; race 6:22 · 91/100, 11:11 · 90/100, 8:16 · 89/100, 19:19 · 91/100; 1.30–1.59×; 346 tok/s; 2.8 s"
+    }
+  ]
+}

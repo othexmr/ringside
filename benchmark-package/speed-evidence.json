@@ -1,0 +1,1054 @@
+{
+  "status": "LOCAL_REVIEW_NOT_PUBLICATION",
+  "rows": [
+    {
+      "cold": {
+        "8192": 1.712,
+        "32768": 6.464,
+        "65536": 12.868
+      },
+      "replay": {
+        "8192": 0.427,
+        "32768": 0.54,
+        "65536": 0.7
+      },
+      "decode": {
+        "code": 105.33,
+        "prose": 61.688,
+        "structured": 145.446
+      },
+      "agg": {
+        "1": 77.004,
+        "12": 283.196,
+        "16": 345.817,
+        "2": 105.052,
+        "3": 136.366,
+        "4": 155.457,
+        "5": 180.75,
+        "6": 191.894,
+        "8": 232.644
+      },
+      "prose_agg": {
+        "1": 58.883,
+        "12": 194.424,
+        "16": 225.643,
+        "2": 75.059,
+        "3": 97.165,
+        "4": 110.771,
+        "5": 123.122,
+        "6": 132.739,
+        "8": 153.999
+      },
+      "staggered": {
+        "12": [
+          2.67,
+          9.818
+        ],
+        "16": [
+          2.804,
+          10.064
+        ],
+        "2": [
+          2.423,
+          7.657
+        ],
+        "4": [
+          2.467,
+          7.848
+        ],
+        "6": [
+          2.547,
+          9.414
+        ],
+        "8": [
+          2.526,
+          9.506
+        ]
+      },
+      "protocol": "6e0e24a6ff5061721b83a482d1967c6b4e07517f",
+      "runs": 2,
+      "staggered_rounds": 2,
+      "id": "tp4-ringside",
+      "tp": "TP4",
+      "table": "main",
+      "recipe": "othexmr/GLM-5.3-Flash-NVFP4-2x-4x-DGX-Sparks-RiNGSiDE",
+      "admits": 16,
+      "lab_plan": "89dfef84",
+      "prefill_suite": {
+        "8192": {
+          "cold_s": 1.712,
+          "replay_s": 0.427,
+          "cold_tok_s": 4784.587,
+          "replay_tok_s": 19197.427
+        },
+        "32768": {
+          "cold_s": 6.464,
+          "replay_s": 0.54,
+          "cold_tok_s": 5069.112,
+          "replay_tok_s": 60711.05
+        },
+        "65536": {
+          "cold_s": 12.868,
+          "replay_s": 0.7,
+          "cold_tok_s": 5093.149,
+          "replay_tok_s": 93606.658
+        },
+        "131072": {
+          "cold_s": 25.984,
+          "replay_s": 0.715,
+          "cold_tok_s": 5044.347,
+          "replay_tok_s": 183306.824
+        },
+        "262136": {
+          "cold_s": 53.568,
+          "replay_s": 0.768,
+          "cold_tok_s": 4893.499,
+          "replay_tok_s": 341343.461
+        }
+      },
+      "configuration": "release window of the TP4 profile, lab plan 89dfef84 (the RiNGSiDE release plan); RigMark cells are medians of 2 runs; sparkDash (a Python reproduction of MiaAI-Lab/sparkDash's decode-benchmark protocol) the median of 2 rounds in the same boot; replay matrix not run on it",
+      "sparkdash": {
+        "prosex1": 82.06,
+        "prosex2": 51.48,
+        "prosex3": 44.41,
+        "prosex4": 40.1,
+        "structuredx1": 159.87,
+        "structuredx2": 102.11,
+        "structuredx3": 92.86,
+        "structuredx4": 76.81,
+        "codex1": 151.28,
+        "codex2": 103.13,
+        "codex3": 97.22,
+        "codex4": 77.65,
+        "jsonx1": 108.38,
+        "jsonx2": 76.06,
+        "jsonx3": 62.61,
+        "jsonx4": 54.28
+      },
+      "sparkdash_window": "2026-09-26-ringside-redhat-rowsplit-tp4-1",
+      "lab_receipt": "2026-09-26-ringside-redhat-rowsplit-tp4-1",
+      "sparkdash_rounds": 2,
+      "recipe_key": "ringside",
+      "tp_size": 4,
+      "raw_settings": {
+        "concurrency": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8,
+          12,
+          16
+        ],
+        "concurrency_runs": 2,
+        "concurrency_tokens": 256,
+        "concurrency_workload": "code",
+        "decode_tokens": 4096,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "reasoning_effort": "low"
+          }
+        },
+        "prefill_depths": [
+          8192,
+          32768,
+          65536,
+          131072,
+          262136
+        ],
+        "prefill_runs": 2,
+        "runs": 2,
+        "seed": 20260905,
+        "staggered": [],
+        "staggered_arrival_tokens": 256,
+        "staggered_delay_seconds": 1.0,
+        "staggered_depth": 32768,
+        "staggered_incumbent_tokens": 1024,
+        "staggered_runs": 3,
+        "staggered_workload": "code",
+        "temperature": 0.0,
+        "top_p": 1.0
+      }
+    },
+    {
+      "tp": "TP4",
+      "cold": {
+        "8192": 10.528,
+        "32768": 14.719,
+        "65536": 29.647
+      },
+      "replay": {
+        "8192": 0.56,
+        "32768": 0.373,
+        "65536": 0.655
+      },
+      "decode": {
+        "code": 70.561,
+        "prose": 36.883,
+        "structured": 80.842
+      },
+      "agg": {
+        "1": 49.737,
+        "2": 43.248,
+        "3": 107.873,
+        "4": 75.624,
+        "5": 105.465,
+        "6": 107.658
+      },
+      "staggered": {
+        "2": [
+          6.349,
+          42.019
+        ],
+        "4": [
+          6.392,
+          51.342
+        ],
+        "6": [
+          6.476,
+          null
+        ]
+      },
+      "sparkdash": {
+        "prosex1": 50.69,
+        "prosex2": 39.78,
+        "prosex3": 35.15,
+        "prosex4": 31.48,
+        "structuredx1": 87.55,
+        "structuredx2": 76.71,
+        "structuredx3": 67.85,
+        "structuredx4": 56.21,
+        "codex1": 81.62,
+        "codex2": 74.64,
+        "codex3": 65.73,
+        "codex4": 56.1,
+        "jsonx1": 72.14,
+        "jsonx2": 54.99,
+        "jsonx3": 46.79,
+        "jsonx4": 40.46
+      },
+      "id": "tp4-miaai-7cded8e",
+      "table": "main",
+      "recipe": "MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks",
+      "configuration": "commit 7cded8e, their default-off speed options on except KDA_BF16_LARGE_M and DRAFT_KV_COMPACT; image built by their Dockerfile with one self-test skipped; TP4 on this ring's NCCL transport",
+      "admits": 4,
+      "runs": 1,
+      "lab_receipt": "2026-09-23-mia-7cded8e-tp4-full-2",
+      "prefill_suite": {
+        "8192": {
+          "cold_s": 10.528,
+          "replay_s": 0.56
+        },
+        "32768": {
+          "cold_s": 14.719,
+          "replay_s": 0.373
+        },
+        "65536": {
+          "cold_s": 29.647,
+          "replay_s": 0.655
+        }
+      },
+      "recipe_key": "miaai",
+      "tp_size": 4,
+      "raw_settings": {
+        "concurrency": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "concurrency_runs": 1,
+        "concurrency_tokens": 256,
+        "concurrency_workload": "code",
+        "decode_tokens": 4096,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "reasoning_effort": "low"
+          }
+        },
+        "prefill_depths": [
+          8192,
+          32768,
+          65536
+        ],
+        "prefill_runs": 1,
+        "runs": 1,
+        "seed": 20260905,
+        "staggered": [],
+        "staggered_arrival_tokens": 256,
+        "staggered_delay_seconds": 1.0,
+        "staggered_depth": 32768,
+        "staggered_incumbent_tokens": 1024,
+        "staggered_runs": 3,
+        "staggered_workload": "code",
+        "temperature": 0.0,
+        "top_p": 1.0
+      }
+    },
+    {
+      "tp": "TP4",
+      "cold": {
+        "8192": 4.522,
+        "32768": 14.165,
+        "65536": 28.385
+      },
+      "replay": {
+        "8192": 1.627,
+        "32768": 1.326,
+        "65536": 1.604
+      },
+      "decode": {
+        "code": 82.453,
+        "prose": 35.814,
+        "structured": 127.44
+      },
+      "agg": {
+        "1": 58.297,
+        "2": 41.801,
+        "3": 55.12,
+        "4": 111.184,
+        "5": 83.262,
+        "6": 92.436
+      },
+      "staggered": {
+        "2": [
+          7.935,
+          14.583
+        ],
+        "4": [
+          8.052,
+          14.711
+        ],
+        "6": [
+          8.156,
+          14.902
+        ]
+      },
+      "id": "tp4-tonyd2wild-2ac4e8dd",
+      "table": "main",
+      "recipe": "tonyd2wild/GLM-5.3-Flash-NVFP4-1M-KV-4x-DGX-Spark",
+      "configuration": "commit 2ac4e8dd, the recipe's image at 262,144 context and 6 request slots (the lab's choice; the published launch uses 500,000 and 64), on this ring's NCCL transport (the recipe's optional all-peer RoCE route needs connectivity a ring does not have); sparkDash from a separate window of the same launch plan",
+      "admits": 6,
+      "sparkdash": {
+        "prosex1": 53.93,
+        "prosex2": 39.61,
+        "prosex3": 31.54,
+        "prosex4": 30.41,
+        "structuredx1": 131.98,
+        "structuredx2": 100.93,
+        "structuredx3": 90.95,
+        "structuredx4": 83.15,
+        "codex1": 120.75,
+        "codex2": 86.3,
+        "codex3": 60.56,
+        "codex4": 69.99,
+        "jsonx1": 101.23,
+        "jsonx2": 59.33,
+        "jsonx3": 58.56,
+        "jsonx4": 51.23
+      },
+      "sparkdash_window": "2026-09-22-sparkdash-tony-4",
+      "runs": 1,
+      "lab_receipt": "2026-09-21-tony-common-capacity-full-2",
+      "prefill_suite": {
+        "8192": {
+          "cold_s": 4.522,
+          "replay_s": 1.627
+        },
+        "32768": {
+          "cold_s": 14.165,
+          "replay_s": 1.326
+        },
+        "65536": {
+          "cold_s": 28.385,
+          "replay_s": 1.604
+        }
+      },
+      "recipe_key": "tonyd2wild",
+      "tp_size": 4,
+      "raw_settings": {
+        "concurrency": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "concurrency_runs": 1,
+        "concurrency_tokens": 256,
+        "concurrency_workload": "code",
+        "decode_tokens": 4096,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "reasoning_effort": "low"
+          }
+        },
+        "prefill_depths": [
+          8192,
+          32768,
+          65536
+        ],
+        "prefill_runs": 1,
+        "runs": 1,
+        "seed": 20260905,
+        "staggered": [],
+        "staggered_arrival_tokens": 256,
+        "staggered_delay_seconds": 1.0,
+        "staggered_depth": 32768,
+        "staggered_incumbent_tokens": 1024,
+        "staggered_runs": 3,
+        "staggered_workload": "code",
+        "temperature": 0.0,
+        "top_p": 1.0
+      }
+    },
+    {
+      "cold": {
+        "8192": 3.559,
+        "32768": 12.944,
+        "65536": 25.664
+      },
+      "replay": {
+        "8192": 0.704,
+        "32768": 0.862,
+        "65536": 1.105
+      },
+      "decode": {
+        "code": 56.537,
+        "prose": 32.962,
+        "structured": 83.373
+      },
+      "agg": {
+        "1": 43.979,
+        "2": 54.587,
+        "3": 68.982,
+        "4": 77.784,
+        "5": 84.538,
+        "6": 97.286
+      },
+      "prose_agg": {
+        "1": 32.269,
+        "2": 43.644,
+        "3": 49.621,
+        "4": 57.804,
+        "5": 63.556,
+        "6": 70.278
+      },
+      "staggered": {
+        "2": [
+          4.696,
+          14.381
+        ],
+        "4": [
+          5.153,
+          14.814
+        ],
+        "6": [
+          4.899,
+          15.424
+        ]
+      },
+      "protocol": "6e0e24a6ff5061721b83a482d1967c6b4e07517f",
+      "runs": 2,
+      "staggered_rounds": 2,
+      "id": "tp2-ringside",
+      "tp": "TP2",
+      "table": "main",
+      "recipe": "othexmr/GLM-5.3-Flash-NVFP4-2x-4x-DGX-Sparks-RiNGSiDE",
+      "admits": 6,
+      "lab_plan": "69ad74fc",
+      "configuration": "final TP2 run, lab plan 69ad74fc (the TP2 profile's base, before the release's changes and fixes); RigMark cells are medians of 2 runs; one window, no fresh reference; sparkDash (a Python reproduction of MiaAI-Lab/sparkDash's decode-benchmark protocol) from a separate window of the same plan; replay matrix not run on it",
+      "sparkdash": {
+        "prosex1": 45.82,
+        "prosex2": 28.67,
+        "prosex3": 21.77,
+        "prosex4": 20.95,
+        "structuredx1": 82.91,
+        "structuredx2": 54.47,
+        "structuredx3": 42.83,
+        "structuredx4": 67.1,
+        "codex1": 85.69,
+        "codex2": 53.11,
+        "codex3": 43.29,
+        "codex4": 43.21,
+        "jsonx1": 68.09,
+        "jsonx2": 40.26,
+        "jsonx3": 30.02,
+        "jsonx4": 28.73
+      },
+      "sparkdash_window": "2026-09-25-sparkdash-tp2-final-1",
+      "lab_receipt": "2026-09-25-tp2-final-1",
+      "prefill_suite": {
+        "8192": {
+          "cold_s": 3.559,
+          "replay_s": 0.704
+        },
+        "32768": {
+          "cold_s": 12.944,
+          "replay_s": 0.862
+        },
+        "65536": {
+          "cold_s": 25.664,
+          "replay_s": 1.105
+        }
+      },
+      "recipe_key": "ringside",
+      "tp_size": 2,
+      "raw_settings": {
+        "concurrency": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "concurrency_runs": 2,
+        "concurrency_tokens": 256,
+        "concurrency_workload": "code",
+        "decode_tokens": 4096,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "reasoning_effort": "low"
+          }
+        },
+        "prefill_depths": [
+          8192,
+          32768,
+          65536
+        ],
+        "prefill_runs": 2,
+        "runs": 2,
+        "seed": 20260905,
+        "staggered": [],
+        "staggered_arrival_tokens": 256,
+        "staggered_delay_seconds": 1.0,
+        "staggered_depth": 32768,
+        "staggered_incumbent_tokens": 1024,
+        "staggered_runs": 3,
+        "staggered_workload": "code",
+        "temperature": 0.0,
+        "top_p": 1.0
+      }
+    },
+    {
+      "tp": "TP2",
+      "cold": {
+        "8192": 5.18,
+        "32768": 19.794,
+        "65536": 39.048
+      },
+      "replay": {
+        "8192": 0.764,
+        "32768": 0.56,
+        "65536": 0.815
+      },
+      "decode": {
+        "code": 48.588,
+        "prose": 25.026,
+        "structured": 75.281
+      },
+      "agg": {
+        "1": 37.469,
+        "2": 51.285,
+        "3": 68.832,
+        "4": 70.707,
+        "5": 65.51,
+        "6": 67.268
+      },
+      "staggered": {
+        "2": [
+          5.658,
+          54.872
+        ],
+        "4": [
+          5.758,
+          69.062
+        ],
+        "6": [
+          5.772,
+          null
+        ]
+      },
+      "sparkdash": {
+        "prosex1": 36.51,
+        "prosex2": 26.59,
+        "prosex3": 21.08,
+        "prosex4": 18.61,
+        "structuredx1": 78.12,
+        "structuredx2": 51.94,
+        "structuredx3": 52.78,
+        "structuredx4": 47.72,
+        "codex1": 72.98,
+        "codex2": 62.86,
+        "codex3": 50.46,
+        "codex4": 50.16,
+        "jsonx1": 52.86,
+        "jsonx2": 31.76,
+        "jsonx3": 31.09,
+        "jsonx4": 25.1
+      },
+      "id": "tp2-miaai-7cded8e",
+      "table": "main",
+      "recipe": "MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks",
+      "configuration": "commit 7cded8e, their default-off speed options and compact draft pages on; image built by their Dockerfile with one self-test skipped",
+      "admits": 4,
+      "runs": 1,
+      "lab_receipt": "2026-09-23-mia-7cded8e-tp2-compact-full-1",
+      "prefill_suite": {
+        "8192": {
+          "cold_s": 5.18,
+          "replay_s": 0.764
+        },
+        "32768": {
+          "cold_s": 19.794,
+          "replay_s": 0.56
+        },
+        "65536": {
+          "cold_s": 39.048,
+          "replay_s": 0.815
+        }
+      },
+      "recipe_key": "miaai",
+      "tp_size": 2,
+      "raw_settings": {
+        "concurrency": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "concurrency_runs": 1,
+        "concurrency_tokens": 256,
+        "concurrency_workload": "code",
+        "decode_tokens": 4096,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "reasoning_effort": "low"
+          }
+        },
+        "prefill_depths": [
+          8192,
+          32768,
+          65536
+        ],
+        "prefill_runs": 1,
+        "runs": 1,
+        "seed": 20260905,
+        "staggered": [],
+        "staggered_arrival_tokens": 256,
+        "staggered_delay_seconds": 1.0,
+        "staggered_depth": 32768,
+        "staggered_incumbent_tokens": 1024,
+        "staggered_runs": 3,
+        "staggered_workload": "code",
+        "temperature": 0.0,
+        "top_p": 1.0
+      }
+    },
+    {
+      "tp": "TP2",
+      "cold": {
+        "8192": 6.292,
+        "32768": 28.561,
+        "65536": 57.397
+      },
+      "replay": {
+        "8192": 2.244,
+        "32768": 0.61,
+        "65536": 8.123
+      },
+      "decode": {
+        "code": 41.693,
+        "prose": 15.811,
+        "structured": 63.477
+      },
+      "agg": {
+        "1": 24.343,
+        "2": 38.258,
+        "3": 51.132,
+        "4": 47.311,
+        "5": 62.727,
+        "6": 84.746
+      },
+      "staggered": {
+        "2": [
+          17.854,
+          19.8
+        ],
+        "4": [
+          11.326,
+          26.503
+        ],
+        "6": [
+          22.747,
+          20.236
+        ]
+      },
+      "sparkdash": {
+        "prosex1": 24.59,
+        "prosex2": 18.83,
+        "prosex3": 17.97,
+        "prosex4": 14.24,
+        "structuredx1": 66.88,
+        "structuredx2": 51.11,
+        "structuredx3": 43.21,
+        "structuredx4": 42.55,
+        "codex1": 56.58,
+        "codex2": 42.66,
+        "codex3": 41.03,
+        "codex4": 42.37,
+        "jsonx1": 45.58,
+        "jsonx2": 32.89,
+        "jsonx3": 27.96,
+        "jsonx4": 25.83
+      },
+      "id": "tp2-tonyd2wild-9fea48c",
+      "table": "main",
+      "recipe": "tonyd2wild/GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark",
+      "configuration": "commit 9fea48c with five recorded changes: this pair's direct link and addresses, a pinned drafter, the recipe's RoCE all-reduce off (it needs another image from the same author), the chat template of the author's TP4 recipe, the author's documented prefix-cache repair",
+      "admits": 6,
+      "runs": 1,
+      "lab_receipt": "2026-09-23-tony-tp2-9fea48c-full-1",
+      "prefill_suite": {
+        "8192": {
+          "cold_s": 6.292,
+          "replay_s": 2.244
+        },
+        "32768": {
+          "cold_s": 28.561,
+          "replay_s": 0.61
+        },
+        "65536": {
+          "cold_s": 57.397,
+          "replay_s": 8.123
+        }
+      },
+      "recipe_key": "tonyd2wild",
+      "tp_size": 2,
+      "raw_settings": {
+        "concurrency": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "concurrency_runs": 1,
+        "concurrency_tokens": 256,
+        "concurrency_workload": "code",
+        "decode_tokens": 4096,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "reasoning_effort": "low"
+          }
+        },
+        "prefill_depths": [
+          8192,
+          32768,
+          65536
+        ],
+        "prefill_runs": 1,
+        "runs": 1,
+        "seed": 20260905,
+        "staggered": [],
+        "staggered_arrival_tokens": 256,
+        "staggered_delay_seconds": 1.0,
+        "staggered_depth": 32768,
+        "staggered_incumbent_tokens": 1024,
+        "staggered_runs": 3,
+        "staggered_workload": "code",
+        "temperature": 0.0,
+        "top_p": 1.0
+      }
+    },
+    {
+      "cold": {
+        "8192": 3.823,
+        "32768": 14.804,
+        "65536": 29.722
+      },
+      "replay": {
+        "8192": 0.689,
+        "32768": 0.408,
+        "65536": 0.678
+      },
+      "decode": {
+        "code": 44.883,
+        "prose": 46.014,
+        "structured": 126.46
+      },
+      "agg": {
+        "1": 63.858,
+        "12": 259.387,
+        "16": 297.724,
+        "2": 97.865,
+        "3": 114.903,
+        "4": 151.208,
+        "5": 161.429,
+        "6": 174.014,
+        "8": 210.483
+      },
+      "prose_agg": {
+        "1": 40.831,
+        "12": 175.838,
+        "16": 209.414,
+        "2": 59.88,
+        "3": 84.787,
+        "4": 100.126,
+        "5": 105.926,
+        "6": 120.34,
+        "8": 139.969
+      },
+      "staggered": {
+        "12": [
+          7.173,
+          15.661
+        ],
+        "16": [
+          7.117,
+          15.942
+        ],
+        "2": [
+          6.862,
+          15.26
+        ],
+        "4": [
+          6.916,
+          15.38
+        ],
+        "6": [
+          6.994,
+          15.38
+        ],
+        "8": [
+          7.089,
+          15.534
+        ]
+      },
+      "protocol": "6e0e24a6ff5061721b83a482d1967c6b4e07517f",
+      "runs": 1,
+      "staggered_rounds": 1,
+      "prefill_suite": {
+        "8192": {
+          "cold_s": 3.823,
+          "replay_s": 0.689,
+          "cold_tok_s": 2142.982,
+          "replay_tok_s": 11889.643
+        },
+        "32768": {
+          "cold_s": 14.804,
+          "replay_s": 0.408,
+          "cold_tok_s": 2213.392,
+          "replay_tok_s": 80259.236
+        },
+        "65536": {
+          "cold_s": 29.722,
+          "replay_s": 0.678,
+          "cold_tok_s": 2204.973,
+          "replay_tok_s": 96727.535
+        },
+        "131072": {
+          "cold_s": 60.419,
+          "replay_s": 1.168,
+          "cold_tok_s": 2169.392,
+          "replay_tok_s": 112214.951
+        },
+        "262136": {
+          "cold_s": 125.182,
+          "replay_s": 1.188,
+          "cold_tok_s": 2094.041,
+          "replay_tok_s": 220690.352
+        }
+      },
+      "id": "tp4-knapcio",
+      "tp": "TP4",
+      "tp_size": 4,
+      "recipe_key": "knapcio",
+      "recipe": "knapcio switchless port dddb0347",
+      "sparkdash": {
+        "prosex1": 57.6,
+        "prosex2": 49.09,
+        "prosex3": 38.6,
+        "prosex4": 35.64,
+        "structuredx1": 146.95,
+        "structuredx2": 87.2,
+        "structuredx3": 91.06,
+        "structuredx4": 45.8,
+        "codex1": 117.21,
+        "codex2": 79.53,
+        "codex3": 79.04,
+        "codex4": 66.1,
+        "jsonx1": 111.04,
+        "jsonx2": 65.11,
+        "jsonx3": 67.2,
+        "jsonx4": 48.66
+      },
+      "sparkdash_rounds": 1,
+      "lab_receipt": "2026-09-27-knapcio-matched-speed-run-01",
+      "raw_settings": {
+        "concurrency": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8,
+          12,
+          16
+        ],
+        "concurrency_runs": 1,
+        "concurrency_tokens": 256,
+        "concurrency_workload": "code",
+        "decode_tokens": 4096,
+        "extra_body": {
+          "chat_template_kwargs": {
+            "reasoning_effort": "low"
+          }
+        },
+        "prefill_depths": [
+          8192,
+          32768,
+          65536,
+          131072,
+          262136
+        ],
+        "prefill_runs": 1,
+        "runs": 1,
+        "seed": 20260905,
+        "staggered": [],
+        "staggered_arrival_tokens": 256,
+        "staggered_delay_seconds": 1.0,
+        "staggered_depth": 32768,
+        "staggered_incumbent_tokens": 1024,
+        "staggered_runs": 3,
+        "staggered_workload": "code",
+        "temperature": 0.0,
+        "top_p": 1.0
+      }
+    }
+  ],
+  "caveat": "Knapcio native template ignores enable_thinking=false; effective thinking-off equivalence is unproved. Recipe-level comparison, not isolated quantization or kernel measurement.",
+  "evidence_sha256": {
+    "work/hw/jobs/20260927-131321-knapcio-ring-r2-c76387/state.json": "fee3380c750108947622697b706e3f4b69342b8a9bb2e7c87d750c34f20e1659",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/terminal.json": "e8b79a21abd60f25a8e972c6e599c0307bf45556b159fe4f2383c67f895a02a8",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1-admission/tunnel-closure.json": "35fd305fac8967afd4c14d53651d8e787b2554d42552931d6599831e6365c91d",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/rank0.log": "aad8c5712b83175c4c78c20763fc6bb505c39eab9878c77d05ea68c721f640da",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/rank1.log": "6e02d2bcdae6c651fe33efd3f058d64e2c46d6439af8acb14e429cc81a868d00",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/rank2.log": "ebc818114f30108809cae62955e83ec151b146d7d63682117f707d32860508e5",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/rank3.log": "526cd51ee67dd67ce603a17a77cd406f638eae19d37738cc9450e85450ca7ed1",
+    "outputs/2026-09-27-knapcio-matched-speed-run-01/terminal.json": "40868c576464c14099b705113cdbdfacea08335fd250f5de25031ad9dd09b18a",
+    "outputs/2026-09-27-knapcio-matched-speed-run-01/sparkbench-historical-process.json": "9a9dc3f27e68a3036099838ca714583a30f0493f65293e6d13cc81533e6a951a",
+    "outputs/2026-09-27-knapcio-matched-speed-run-01/rigmark-code-full-process.json": "1f9251f2c087b4709354e57208a8d3e5a88eac093cf315dae71d704a4b6fe79b",
+    "outputs/2026-09-27-knapcio-matched-speed-run-01/rigmark-prose-concurrency-process.json": "89f4a10d38bda7fb59a4509edb1e0b07acfd6628dfff545512a22a7230e65d52",
+    "outputs/2026-09-27-tony-tp4-greedy-review-01/review.json": "57a7b9177620ce7494061cd125088c1304d1f9de3ed9d86384e90115fa4e837c",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/terminal.json": "736149e77a54df10a535622a9a794b3d3c848e4c97726281ca621cc911c44696",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/receipt.json": "4f464e288c4a0fd546ca456c4e004246b72f1f125c9e95f9879c44d6fb7fa955",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/rank0.log": "7fb056df2fb21051ebe3326c3d8463cddc9c6715f8a491728e1a10ddb161bdb6",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/rank1.log": "c38d33b848ee05512c5edbdbf5bf1eb62f6864047b444f2d41e374b99224bf92",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/rank2.log": "6d64acb0a1070c03de10a58102af92bbe0df255cc28862941e7519bd0c8196ea",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/rank3.log": "d5d63e3e82d7f47209936bb451bc05b990527243d42fa8c20ebe43711d3f1454",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r1/process.json": "152fde669bac75e9e81de4b1c98e5f69e893ebf92e8f331b86da8a3e94a61cab",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r1/console.log": "6214e39b200040eeb73568442569efb2ab574d1a1f93b4d36dae1fd13c8d448e",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r1/result.json": "5971644ea77e6e14b2b8f0406ac887e5f92c26b9311aa35b39d6eb4f6477c2f8",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r2/process.json": "85af9c840c26266c5682cccbf24e220a9f0fee3dea22719772a3fdf39eb6553f",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r2/console.log": "8bf8eda12bc291f35b7ccf105de7d0bd03a75f8f8ec38b0aaf9a03fcfe7fb461",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r2/result.json": "9714939e1efb825ad7b07fa207ad4bc32251a6e8b4a49a0a2729305e43c95d0b",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r3/process.json": "5c2b38716a57972a85473366bf0eb4bf572a2233712ded554624fc973875baad",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r3/console.log": "f33fbefcec4b9d6dd04c52d265d836ea99910229635e47f920b7dccead417144",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r3/result.json": "5dc52c939ff19a3a7bd98f4c0deae38bf670904efa399ae23882683f6e01b0e3",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/spec/process.json": "f0a0fe6c0bf1590f506188ffc622bb54b1e599500018ce7a250907cdb91d4f1d",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/spec/console.log": "52e276bf4edf2e898cc3366767ea81eee95e761aa2ee66546bf36a73fcaf68c8",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-max-c4-r1/process.json": "18b0715d3adea66d189277b52ab9c5a4b894a1319341828ffa0118f851d819ab",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-max-c4-r1/console.log": "62e0d9699182fab8ad6fe8e64ff184423732fe8678731a0ed6ebd7de7821bc0b",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-max-c4-r1/result.json": "42d02796eef1de5f2ebda2f0fb73951d054d1f87bdd8a94cc9e3df4558d1d707",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r1/process.json": "7d9023bdeed7f91f0bcb512ff7ed4ca5beb056192be1e4aed41585c342c19739",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r1/console.log": "ef0e5e573e263dc5a5131179c0ae715faeeca2be593cda9170127f8737fd0334",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r1/result.json": "0c2d6f8ea756213717d52e799dfe5fea8d301ad75726fb16b271613e0d1fa1df",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r2/process.json": "2c9a09008a4b119089aadbe444f4e5420e9efa408643104fc58c8b0c682afa98",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r2/console.log": "b5fdc156a3e2edd40296430056ef3a6c4aec024096ff81ff9d5032b3e7461579",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r2/result.json": "14a0e77e2016671af3844097b281d28b37fd50b84cfd1e9686c7983b79b9777a",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r3/process.json": "0a0f9e3a98e84b48dc2417afbc5684c3460f0b4f8723ce74fd517cee35cd1831",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r3/console.log": "bd6fef70af57e6250e37660c25a59aeedc56b1e2188e48b6d22d41e2cc58fcaa",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-low-c4-r3/result.json": "2b842e8314614bac060949580a49871e2581597617c510295e3ac6ebdfb2cf03",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r1/process.json": "6466c8d8ed5a154592bfcadc8dcdf03b7938b528c0e03a1a8ed2c64ca883fdd3",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r1/console.log": "7df420569a9e9d5d614fa305580e631c8c50c6daa21f426f3ac82191013a1352",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r1/result.json": "f50a0e59549c803493c9189aa8162e170f55f1a90734c3f38017107155320203",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r1/process.json": "622f7e8242e60adb75b4293d71272bc08113392205a35f445424727fe110d598",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r1/console.log": "9ecb7a93b540830d6652984880d9bb31f9d71e2ffeaa78fe43cc887b5e68f731",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r1/result.json": "0940e47214d275fba57014738dddd8adda964e4c40f2e5598208ab9d90e5b1c2",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r2/process.json": "784a80ba8c5434c57ca2299414d1a36ce047d91109d2b9ae65619c7b8a3e3ab3",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r2/console.log": "58b35cb729bdfdbdb5c84cad5fc49a4c7dce3a0f204d05e3bebfd3de31e8db2a",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r2/result.json": "0b3e6888f47c54c76640811e2342c694504699958bc2df6ebd2bddea1fa49076",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r2/process.json": "dddb0fcf00b1434d5ee1390ec49b179740ba20cf26dc82af579e4d2529f961cf",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r2/console.log": "0ba4be212beaf5614699fd988c2851f5bf881065cdaf93fcdc8615b63fd6469b",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r2/result.json": "0a8e22bc8b5f1aec743cf4550875caeb641c7609ebf7fa9dc0a9cb80236b047e",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r3/process.json": "7f00294a48f71c4ca6d95da354b3bedd8413dc7b13723f10a5ca5800056b2387",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r3/console.log": "f95a308cbaa9b3270b37f93112e84127e9430e4e8f54836c2e96dbe6a672ba4e",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c8-r3/result.json": "500776f5ad25cd38f8a2b5d520a003f784b2a07abc53b91168aeec8beedcde84",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r3/process.json": "23cec721a04f655d77583d9b56305780e0257a1cb43064b69ed78852b986e5a6",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r3/console.log": "abfabee3b7984fee231b4b6716b0398a0b4f6acf4d7edfc4d45a025fee5609e7",
+    "outputs/2026-09-27-tony-tp4-combined-run-01/tool-eval-tony-combined/greedy-high-c16-r3/result.json": "61123eaca238e6f98731efc30970ce7a62bd0aad053e1e7adbaa2d5a4c5965eb",
+    "outputs/2026-09-27-tony-tp2-stop-after-max1-01/review.json": "da8527832ad42079ce516a40a27839d3094e293ba8094029b104c2bb3b472464",
+    "work/2026-09-27-tony-tp2-stop-after-max1-01/closure.json": "182cd1496adb69474df78fd9324d2904c238983d851c3cfec37b971626661e3a",
+    "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r1/result.json": "ae25899e704cf544358abd8fb467bbc4784d70c00374de3ef5385b440352f2f3",
+    "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r1/process.json": "580e3812be96b3b9af280847faeef69aa9ad3929a56f62c2f42873b51ef7d63a",
+    "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r2/result.json": "10ccd299f179c96aea74f03e602b71a3cf094080ca7f84b6ec472079f5b3e804",
+    "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r2/process.json": "e9fb1728b7d9a7b861e4895e76331a7ee5982cec7b24cdcb1e784885ddfbbff3",
+    "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r3/result.json": "df155c83240b8ba28577022d76fbf3ea5dedd92e4e83a5d7ee289b8b21447632",
+    "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-high-c4-r3/process.json": "e17d36cb43cabc5824c1f3d9cd13b6edb4f8febb3fa6c55f7f47db2140f37b34",
+    "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-max-c4-r1/result.json": "62c4d9a843b399a9a47556f5bfc376ea1223095eb47c7bb51786231b941a9c1f",
+    "outputs/2026-09-27-tony-tp2-combined-run-01/tool-eval-tony-combined/greedy-max-c4-r1/process.json": "16a6ab2511ff9b20cc316ffae70066ec1e07ec0e2b89f9efb4bec759d763c476",
+    "outputs/2026-09-27-knapcio-ring-progress-review-01/review.json": "ed30333716e838192113df9d628181220e4ee3a669421a8361b055af137ffcb6",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-high-c4-r1/result.json": "ab627c63c9be346dc680c666a8f9494e6691e4711151f792af6b284325287647",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-high-c4-r1/reports/2026/09/2026-09-27T06-21-05.677228Z_c068ef1d--knapcio-dddb0347-tool-eval-high-c4-r1.md": "42a95c7746c391b894b9caa506cb12f70b19a6c3ecaf68324a82111428689a78",
+    "outputs/2026-09-27-knapcio-ring-progress-review-02/review.json": "318c508ba1e1542910a36d244fed851abaffaec8d08a073a22f041e3aa006cc0",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-high-c8-r1/result.json": "fef4805ab334338f9b755707725261510c86154d8c773274d198bab7abd59ef6",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-high-c8-r1/reports/2026/09/2026-09-27T06-40-25.393200Z_0deffe1e--knapcio-dddb0347-tool-eval-high-c8-r1.md": "6781c0557f47c7791822e36aa7a53503b9d411d70e43aaf8f05b21d804f24082",
+    "outputs/2026-09-27-knapcio-ring-progress-review-03/review.json": "7d049c8219ff7e2024171688cbd3c5df8717f479793d5e9ca1a5503524826684",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-high-c16-r1/result.json": "0a310ef994ae3c600d427acfb1cf6a179d5abbb8b660574eec9b892ca4411ca1",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-high-c16-r1/reports/2026/09/2026-09-27T06-58-27.425651Z_b3bb7e52--knapcio-dddb0347-tool-eval-high-c16-r1.md": "3d0ae98cfdd5f8bb4b0405e2f67cc25d7222cabc2dbbb29722f12c2cf15a8538",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-high-c16-r1-process.json": "faa603a055896beeb760eda77d7bca66b842a79b73df09947e293125bb82662b",
+    "outputs/2026-09-27-knapcio-ring-progress-review-04/review.json": "db75779d7a5c0633108c29a047b5f6005a21dc147581f46a56df2f4e02c41b5d",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-max/result.json": "104d5c0e194c90b6005a0baf9aee1615ba64316f419211eebec6525e6ae91d00",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-max/reports/2026/09/2026-09-27T07-24-08.721588Z_c1260beb--knapcio-dddb0347-max-t0-c4-single.md": "7a326e92a3b5dc436e5bfe2cea9df3a4a6b699759e8fa6b4af6d824fc6276e16",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/tool-eval-max-process.json": "95a203fcdb9f7e2738d6d38400b4d4166fcc8c7aef91f01b42c84d0a5cafc02f",
+    "outputs/2026-09-27-knapcio-ring-serving-run-02/knapcio-B1/phases.json": "d610d1c7af1de68cdd75e055cc7c0723ebf2f0ccf93bf8831daf0842db16d968",
+    "outputs/2026-09-26-tool-eval-review/mia-tp4-t0-c6-c8-complete-01.json": "09edf5ba15114d40abb9819c7f1712a1f5f5ba1c8771ef3a6845c1271292b138",
+    "outputs/2026-09-27-tool-eval-mia-tp4-mia-switch-r1-1/terminal.json": "65f310f36fb1b5c3d62abb4a50467f4f0a39f300e4e48f1b382da9a881f090c6",
+    "outputs/2026-09-27-tool-eval-mia-tp4-mia-switch-r1-1/tool-eval-mia-switch-r1/receipt.json": "b287e20d89877e4d2844cf1690f06b05af8b931d31f67bcbc1b66d58b99fca88",
+    "outputs/2026-09-27-tool-eval-mia-tp4-mia-switch-r1-1/tool-eval-mia-switch-r1/tools-t0-high-c8-1/result.json": "d6c61b041afc5b4db1bb450f17c7278d55186e717888ee11a9c2c34dbb6cdd1f",
+    "outputs/2026-09-27-tool-eval-mia-tp4-mia-switch-r1-1/tool-eval-mia-switch-r1/tools-t0-high-c6-1/result.json": "b98cc4011ce39da8906de16e832c3bece949223f98065331b976c8e5e5051ecf",
+    "<local-path>": "d77238c4abc2f328d27c511ce694429f8c1de1809fd748a88b71ef9d87aff4c9",
+    "outputs/2026-09-26-ringside-redhat-rowsplit-tp4-1/native/code-full.json": "68347f634b792e3ee4b4ae7093d7b3686abbb6feacb628f0df584a49aed25f9c",
+    "outputs/2026-09-26-ringside-redhat-rowsplit-tp4-1/native/prose-concurrency.json": "9482dab6efa43d8f581a6f312e734cbdd854cf6514582e59f75942d4dd115362",
+    "outputs/2026-09-26-ringside-redhat-rowsplit-tp4-1/sparkdash.json": "856123eea9be1e601db20e1b216e5233a9f2a1805191dac7aeca38ae164b3240",
+    "outputs/2026-09-23-mia-7cded8e-tp4-full-2/native/code-full.json": "1d0812cc6adf5d35c14abefc24688d29dbc8a53dc144d7cd3a0b78cf5d1f221a",
+    "outputs/2026-09-23-mia-7cded8e-tp4-full-2/native/prose-concurrency.json": "aee59f93adedd6cb1d3b138b43aab2a4439f8708597958042deb90efe6a0549b",
+    "outputs/2026-09-23-mia-7cded8e-tp4-full-2/sparkdash.json": "2410a46af4d22b1c9df3c20eba8f86ed8201ff4e1aefe4511bc4a6fe6572763e",
+    "outputs/2026-09-21-tony-common-capacity-full-2/native/code-full.json": "8a238e04312a75b740b2e1f9cb69d6bd144e1641d53fcf0ce8cd2785b0d97d09",
+    "outputs/2026-09-21-tony-common-capacity-full-2/native/prose-concurrency.json": "36fc3e510896b3ca1d4c4fb338a26439c19674ee2d31008c7e4dff44b5e11e7c",
+    "outputs/2026-09-22-sparkdash-tony-4/sparkdash.json": "6611d52a07e9cfdea13ad91222e33f706b36c30e628cb5c3adc02b098912ca72",
+    "outputs/2026-09-25-tp2-final-1/native/code-full.json": "c0bed6e5cfefc0e68f5235d4bfdc00c9045bbad005f1a5ec910279bb9cdb762d",
+    "outputs/2026-09-25-tp2-final-1/native/prose-concurrency.json": "409a94f46f8d4423e15122cec623c2393a7025d2f1dbd6f018ffe016f11371dd",
+    "outputs/2026-09-25-sparkdash-tp2-final-1/sparkdash.json": "28f410b55c921c98f8652393ee28375a21d8fea6e171caea9709bd281cb532b5",
+    "outputs/2026-09-23-mia-7cded8e-tp2-compact-full-1/native/code-full.json": "dfad1b635fde0b3f4d9a4adc39f26fc153798802f50900e179ba9f4e33175a84",
+    "outputs/2026-09-23-mia-7cded8e-tp2-compact-full-1/native/prose-concurrency.json": "e08fd94136122e89aebfc933ba9a4fe218d9b240cb8bb574f0ec55a82841b597",
+    "outputs/2026-09-23-mia-7cded8e-tp2-compact-full-1/sparkdash.json": "f5a51aa17c6de51d5ece8f83a16c988e24028464de73022e50c8e87fae8a603c",
+    "outputs/2026-09-23-tony-tp2-9fea48c-full-1/native/code-full.json": "0b1f47063ed0e20ee9f07204300e7d5bf965bf87886ecfa549ea4bef9ad4b446",
+    "outputs/2026-09-23-tony-tp2-9fea48c-full-1/native/prose-concurrency.json": "3f338efe6878082aadd0787fcd685c49e84f9f6d1289096cd8f6fa0b10a6bf3e",
+    "outputs/2026-09-23-tony-tp2-9fea48c-full-1/sparkdash.json": "f103f9e64624597f1ce9d6825433af5b288d3c35dde57b5ffe87d5e70edf5a5a",
+    "outputs/2026-09-27-knapcio-matched-speed-run-01/native/code-full.json": "8372ae484fb5ff57d6298ceefacadf1406f967eac28e0e9b50cf2fb248e548d5",
+    "outputs/2026-09-27-knapcio-matched-speed-run-01/native/prose-concurrency.json": "7db45f3a2f8c3924302b9cdae0ce8987555d00e96fc61ec8eb7d342b487860f3",
+    "outputs/2026-09-27-knapcio-matched-speed-run-01/sparkdash.json": "0190d91b3528a2cab72037a6b7511968ef106047c6ee11e4724180ad2843255b"
+  }
+}

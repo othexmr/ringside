@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>RiNGSiDE Benchmark Review</title>
+<meta name="description" content="RiNGSiDE: our GLM-5.3 Flash recipe on 2 and 4 DGX Sparks. Tool-eval score against completed-round time beside the MiaAI-Lab, tonyd2wild and knapcio recipes, plus RigMark and SparkBench speed, with every run and receipt inspectable.">
+<link rel="canonical" href="https://othexmr.github.io/ringside/site/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RiNGSiDE">
+<meta property="og:title" content="RiNGSiDE: fastest round in 8 of 8 matched settings, at the same scores">
+<meta property="og:description" content="GLM-5.3 Flash on DGX Sparks. A complete-recipe comparison with MiaAI-Lab, tonyd2wild and knapcio: every round, setting and receipt inspectable.">
+<meta property="og:url" content="https://othexmr.github.io/ringside/site/">
+<meta property="og:image" content="https://othexmr.github.io/ringside/site/social/out/ringside-hero-1600x900.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="RiNGSiDE wordmark and a mirror ball: fastest round in 8 of 8 matched settings, at the same scores.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://othexmr.github.io/ringside/site/social/out/ringside-hero-1600x900.png">
+<link rel="icon" href="assets/ring.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+<script>
+  // Theme before first paint (per-viewer convenience only).
+  try { var t = localStorage.getItem('rs-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<noscript><div class="noscript">This review site draws its charts and tables with JavaScript. The source data is in <a href="../benchmark-package/">benchmark-package/</a> (for example <a href="../benchmark-package/tool-eval-rounds.csv">tool-eval-rounds.csv</a> and <a href="../benchmark-package/speed-cells.csv">speed-cells.csv</a>).</div></noscript>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top" aria-label="RiNGSiDE review, back to top">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="bg-g" x1="0" x2="1"><stop offset="0" stop-color="#4a8cff"/><stop offset="1" stop-color="#f04d93"/></linearGradient></defs><circle cx="16" cy="16" r="11" fill="none" stroke="url(#bg-g)" stroke-width="2.5"/><circle cx="16" cy="16" r="5.5" fill="url(#bg-g)"/><path d="M16 1.5Q16.6 5.4 20 6Q16.6 6.6 16 10Q15.4 6.6 12 6Q15.4 5.4 16 1.5Z" fill="#ffd36b"/></svg>
+      <span>RiNGSiDE</span>
+    </a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#ringside"><span class="n">R1</span>Main event</a>
+      <a href="#matched"><span class="n">R2</span>Bouts</a>
+      <a href="#speed"><span class="n">R3</span>Speed</a>
+      <a href="#evidence"><span class="n">🔔</span>Scorecards</a>
+    </nav>
+    <button class="tb-btn" type="button" id="glitter-toggle" aria-pressed="true" title="Glitter effects (decoration only)"><span class="spark" aria-hidden="true">✦</span> <span class="lbl">Glitter on</span></button>
+    <button class="tb-btn" type="button" id="theme-toggle" aria-label="Colour theme: automatic. Change theme">◐ <span>Auto</span></button>
+  </div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<div class="hero" id="top">
+  <div class="beam b1" aria-hidden="true"></div><div class="beam b2" aria-hidden="true"></div><div class="beam b3" aria-hidden="true"></div><div class="beam b4" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div>
+      <p class="kicker"><span class="pill">No new runs</span><span class="pill">Every number has a receipt</span></p>
+      <p class="hero-tag">Fight night · GLM-5.3 Flash · DGX Spark</p>
+      <h1 class="wordmark" id="wordmark" aria-label="RiNGSiDE" title="Click for glitter">R<span class="dotless d4">ı</span>NGS<span class="dotless d2">ı</span>DE<svg class="wm-sparkle" style="left:-.12em;top:.08em" viewBox="-10 -10 20 20" aria-hidden="true"><path d="M0-10Q1.6-1.6 10 0Q1.6 1.6 0 10Q-1.6 1.6-10 0Q-1.6-1.6 0-10Z" fill="currentColor"/></svg><svg class="wm-sparkle" style="right:1.2em;top:.02em;animation-delay:.9s;width:.14em;height:.14em" viewBox="-10 -10 20 20" aria-hidden="true"><path d="M0-10Q1.6-1.6 10 0Q1.6 1.6 0 10Q-1.6 1.6-10 0Q-1.6-1.6 0-10Z" fill="currentColor"/></svg><svg class="wm-sparkle" style="right:-.16em;bottom:.02em;animation-delay:1.7s" viewBox="-10 -10 20 20" aria-hidden="true"><path d="M0-10Q1.6-1.6 10 0Q1.6 1.6 0 10Q-1.6 1.6-10 0Q-1.6-1.6 0-10Z" fill="currentColor"/></svg><svg class="wm-sparkle" style="left:2.6em;bottom:-.04em;animation-delay:2.3s;width:.12em;height:.12em" viewBox="-10 -10 20 20" aria-hidden="true"><path d="M0-10Q1.6-1.6 10 0Q1.6 1.6 0 10Q-1.6 1.6-10 0Q-1.6-1.6 0-10Z" fill="currentColor"/></svg></h1>
+      <p class="hero-claim" id="hero-claim"></p>
+      <p class="hero-lede">Our GLM-5.3 Flash recipe on <strong>four DGX Sparks cabled as a switchless ring (TP4)</strong> and on <strong>two Sparks (TP2)</strong>, in the ring with three recipes we admire: every tool-calling round, scored against the time it took.</p>
+      <p class="hero-meta">Sparring partners: <strong>MiaAI-Lab</strong> (Mia), <strong>tonyd2wild</strong> (Tony2wild) and <strong>knapcio</strong> (Knapcio). Weights by <strong>zai-org</strong> (GLM-5.3 Flash), <strong>RedHatAI</strong>, <strong>NVIDIA</strong> and <strong>brandonmusic</strong> (Brandon); DFlash2 drafters by <strong>incoai</strong> on z-lab's DFlash. Recipe: <a href="https://github.com/othexmr/GLM-5.3-Flash-NVFP4-2x-4x-DGX-Sparks-RiNGSiDE" rel="noopener noreferrer">othexmr/GLM-5.3-Flash-NVFP4-2x-4x-DGX-Sparks-RiNGSiDE</a>. <a href="#recipes">Who's in each corner →</a></p>
+    </div>
+    <div class="hero-stage" aria-hidden="true">
+      <svg viewBox="0 0 400 470" id="stage">
+        <defs>
+          <radialGradient id="glow4" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4a8cff" stop-opacity=".7"/><stop offset="1" stop-color="#4a8cff" stop-opacity="0"/></radialGradient>
+          <radialGradient id="glow2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#f04d93" stop-opacity=".7"/><stop offset="1" stop-color="#f04d93" stop-opacity="0"/></radialGradient>
+          <linearGradient id="ringg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#4a8cff"/><stop offset=".5" stop-color="#b18cff"/><stop offset="1" stop-color="#4a8cff"/></linearGradient>
+        </defs>
+        <circle cx="200" cy="214" r="160" fill="none" stroke="rgba(255,255,255,.08)"/>
+        <g class="ring-dash"><circle cx="200" cy="214" r="160" fill="none" stroke="url(#ringg)" stroke-width="3" stroke-dasharray="70 30 6 30" stroke-linecap="round"/></g>
+        <g>
+          <circle cx="313" cy="101" r="40" fill="url(#glow4)" class="node-pulse"/>
+          <circle cx="313" cy="327" r="40" fill="url(#glow4)" class="node-pulse" style="animation-delay:.8s"/>
+          <circle cx="87" cy="327" r="40" fill="url(#glow4)" class="node-pulse" style="animation-delay:1.6s"/>
+          <circle cx="87" cy="101" r="40" fill="url(#glow4)" class="node-pulse" style="animation-delay:2.4s"/>
+          <g fill="#120e2c" stroke="#4a8cff" stroke-width="2.2">
+            <rect x="291" y="83" width="44" height="36" rx="9"/><rect x="291" y="309" width="44" height="36" rx="9"/>
+            <rect x="65" y="309" width="44" height="36" rx="9"/><rect x="65" y="83" width="44" height="36" rx="9"/>
+          </g>
+          <g fill="#d6ceff" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10.5" text-anchor="middle">
+            <text x="313" y="105">GB10</text><text x="313" y="331">GB10</text><text x="87" y="331">GB10</text><text x="87" y="105">GB10</text>
+          </g>
+        </g>
+        <text x="200" y="400" fill="#9cc2ff" font-family="Bricolage, system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="3" text-anchor="middle">TP4 · FOUR-SPARK RING</text>
+        <circle cx="200" cy="440" r="36" fill="url(#glow2)" class="node-pulse" style="animation-delay:1.2s"/>
+        <line x1="180" y1="440" x2="220" y2="440" stroke="#f04d93" stroke-width="3"/>
+        <g fill="#120e2c" stroke="#f04d93" stroke-width="2.2"><rect x="150" y="428" width="32" height="24" rx="6"/><rect x="218" y="428" width="32" height="24" rx="6"/></g>
+        <text x="268" y="445" fill="#ff9cc8" font-family="Bricolage, system-ui, sans-serif" font-size="12" font-weight="800" letter-spacing="2.5">TP2</text>
+      </svg>
+    </div>
+  </div>
+  <div class="stats" id="hero-stats" aria-label="RiNGSiDE tool-eval scorecards at four requests in parallel"></div>
+</div>
+<div class="marquee" role="note" aria-label="Snapshot facts"><div class="marquee-track" id="marquee"></div></div>
+
+<main id="main">
+
+<!-- ============ 01 RiNGSiDE ============ -->
+<section class="section" id="ringside" aria-labelledby="h-ringside">
+  <div class="section-head">
+    <div class="round-tag holo-text"><span class="bell" aria-hidden="true">🔔</span>Round 1 · The main event</div>
+    <h2 id="h-ringside">Same scores. Shorter rounds.</h2>
+    <p class="dek">All 60 completed temperature-zero, 92-case tool-eval rounds from four recipes — 23 of them ours — at matched settings. Up is a higher score; left is a faster round. Every mark is one completed round.</p>
+  </div>
+  <div class="callouts" id="ringside-callouts"></div>
+
+  <h3>The round-time race</h3>
+  <p class="prose small">Each group is one matched setting (TP size, effort and output cap, scenarios in parallel). Bars are the median completed-round time of each recipe (the single round where only one was run); the dots on each bar are the individual rounds. Settings measured for only one recipe are left out of the race and stay in Round 2.</p>
+  <div class="grid-2">
+    <div class="chart-card hero-chart"><h4><span class="tag tp4">TP4</span> Four Sparks</h4><p class="unit">shorter bar = faster round · labels: time · score · round time relative to RiNGSiDE</p><div class="chart" id="race-4"></div></div>
+    <div class="chart-card hero-chart"><h4><span class="tag tp2">TP2</span> Two Sparks</h4><p class="unit">shorter bar = faster round · Knapcio has no TP2 measurement</p><div class="chart" id="race-2"></div></div>
+  </div>
+
+  <h3>Quality × time, everyone in the ring</h3>
+  <div class="controls" id="ringside-controls" aria-label="Filter the quality and time charts"></div>
+  <div class="legend" id="ringside-legend"></div>
+  <p class="table-status" id="ringside-chart-title" aria-live="polite"></p>
+  <div class="grid-2" id="ringside-chart">
+    <div class="chart-card hero-chart"><h4><span class="tag tp4">TP4</span> Score against completed-round time</h4><p class="unit">92 cases · temperature 0 · thinking on · time excludes boot, preparation and queue</p><div class="chart" id="qt-4"></div></div>
+    <div class="chart-card hero-chart"><h4><span class="tag tp2">TP2</span> Score against completed-round time</h4><p class="unit">92 cases · temperature 0 · thinking on · time excludes boot, preparation and queue</p><div class="chart" id="qt-2"></div></div>
+  </div>
+  <p class="chart-foot">Faint marks: individual rounds. Outlined mark with whiskers: median and observed min–max of a repeated three-round cohort — not a confidence interval. Solid mark: a single round, which has no variance estimate. Shape is effort for every recipe; RiNGSiDE is filled and glowing; M, T and K are Mia, Tony2wild and Knapcio. <span class="flag-badge">★</span> reported output-cap truncation. These are complete recipes — weights, runtime, drafter, template and topology differ — not an isolated quantisation or kernel result.</p>
+
+  <h3>Our corner: High effort as requests in parallel rise</h3>
+  <p class="prose">Separate cohorts, never pooled with the C4 comparison: three rounds each at 8 and 16 scenarios in parallel on TP4, and at 8 on TP2. TP2 was not run at 16.</p>
+  <div class="grid-2">
+    <div class="chart-card"><h4>Median score by scenarios in parallel</h4><p class="unit">score / 100 · whiskers are observed ranges · faint marks are rounds</p><div class="chart" id="conc-score"></div></div>
+    <div class="chart-card"><h4>Median completed-round time by scenarios in parallel</h4><p class="unit">minutes · lower is faster</p><div class="chart" id="conc-time"></div></div>
+  </div>
+
+  <h3>Every RiNGSiDE cohort</h3>
+  <div class="table-wrap" style="max-height:none"><table class="data-table" id="ringside-table" aria-label="RiNGSiDE cohorts with every round's score and time"></table></div>
+
+  <div class="caveat"><span class="ico" aria-hidden="true">i</span><div><strong>What these rounds were run on.</strong> Both TP sizes used the <strong>RedHatAI/GLM-5.3-Flash-NVFP4 checkpoint at 18d55bfd</strong> (compressed-tensors), served under the alias <code>nvidia/GLM-5.3-Flash-NVFP4</code>, in lab image <code>017fd0ba</code> — not the rebuilt public image. TP4 used lab plan <code>92817b8d</code> (the release plan 89dfef84 plus the A1e sparse-MLA change); TP2 used release plan <code>b80911ec</code>. A lab-plan hash is a SHA-256 prefix of a launch plan, <strong>not a Git commit</strong>.</div></div>
+</section>
+
+<!-- ============ 02 Matched ============ -->
+<section class="section" id="matched" aria-labelledby="h-matched">
+  <div class="section-head">
+    <div class="round-tag holo-text"><span class="bell" aria-hidden="true">🔔</span>Round 2 · Every bout, up close</div>
+    <h2 id="h-matched">Same rules, four corners.</h2>
+    <p class="dek">RiNGSiDE beside Mia, Tony2wild and Knapcio at matched settings: the same tool-eval suite, temperature, seed, effort, output cap, tensor-parallel size and number of scenarios in parallel. Only cohorts that share all of those settings share a panel. These are complete historical recipes — weights, runtime, drafter, template and topology all differ — so this is not an isolated quantisation, kernel or model-quality result.</p>
+  </div>
+
+  <h3 id="recipes">What was compared: recipes and weights</h3>
+  <p class="prose small">Where each fact comes from: <span class="tag src-receipt">receipt</span> recorded in the packaged benchmark receipts or evidence JSON · <span class="tag src-repo">repo</span> stated in our recipe repository (read at <code>6606f76</code>) · <span class="tag src-brief">team</span> stated by the RiNGSiDE team and not recorded in either. Where sources differ, all are shown.</p>
+  <div class="recipes" id="recipe-cards"></div>
+
+  <h3>Coverage and medians at every matched setting</h3>
+  <p class="prose small">Median score and median completed-round time for repeated cohorts; the single observation for singletons. The badge compares each recipe's round time with RiNGSiDE's in the same row (ratio of medians or single values). Hatched cells were not measured — they are gaps, not zeros. Select a cell to jump to its panel.</p>
+  <div class="matrix-wrap"><table class="matrix" id="matrix" aria-label="Matched-setting coverage and medians by recipe"></table></div>
+
+  <div class="controls" id="matched-controls" aria-label="Filter matched-setting panels"></div>
+  <div class="legend" id="matched-legend"></div>
+  <div class="panel-grid" id="matched-panels"></div>
+
+  <div class="grid-2" style="margin-top:18px">
+    <div class="caveat"><span class="ico" aria-hidden="true">!</span><div><strong>Knapcio</strong> was measured at recipe <code>dddb0347</code>, ported with the owner's approval to this lab's direct-cabled switchless ring. Its native NVIDIA chat template ignores the thinking-off flag, so equivalent effective thinking behaviour is <strong>unproved</strong>. A later fork revision is not the measured runtime. Every Knapcio cohort is a single round; three High rounds reported output-cap truncation (TC-46 twice, TC-62). No TP2 and no Low-effort Knapcio measurement exists.</div></div>
+    <div class="caveat"><span class="ico" aria-hidden="true">!</span><div><strong>Parent campaigns stay as recorded.</strong> Tony2wild TP4 kept 13 completed greedy rounds; its parent job was owner-stopped after sampled rounds were skipped. Tony2wild TP2 kept three High/C4 rounds and one Max/C4 round; its parent was owner-stopped after that first Max, with ten planned rounds unrun. Knapcio's parent remains cancelled/failed after the owner removed the second recipe boot. The completed client results were reviewed and remain valid observations; the parent jobs are <strong>not</strong> relabelled successful.</div></div>
+  </div>
+</section>
+
+<!-- ============ 03 Speed ============ -->
+<section class="section" id="speed" aria-labelledby="h-speed">
+  <div class="section-head">
+    <div class="round-tag holo-text"><span class="bell" aria-hidden="true">🔔</span>Round 3 · Speed</div>
+    <h2 id="h-speed">Two stopwatches, never mixed.</h2>
+    <p class="dek">RigMark and SparkBench, speed-only, from separate historical windows. RigMark and SparkBench measure different things with different units; decode rate, aggregate throughput, cold and warm time-to-first-token, and both staggered-arrival directions are shown as distinct charts and never merged.</p>
+  </div>
+  <div class="caveat"><span class="ico" aria-hidden="true">!</span><div><strong>Speed windows are not the quality runs.</strong> RiNGSiDE TP4 speed used lab plan <code>89dfef84</code> (quality: <code>92817b8d</code>), both on RedHatAI 18d55bfd. RiNGSiDE TP2 speed used lab plan <code>69ad74fc</code> on <strong>NVIDIA weights (423acf37)</strong>, whereas TP2 quality used RedHatAI weights and plan <code>b80911ec</code>. Mia's speed windows used recipe <code>7cded8e</code> (quality: <code>70b2f332</code>); Tony2wild TP2 speed used <code>9fea48c</code> (quality: <code>abb38bb0</code>). No quality point on this site is an identical-configuration pair with a speed point.</div></div>
+  <div class="tabs" role="tablist" aria-label="Speed benchmark">
+    <button class="tab" role="tab" id="tab-rigmark" aria-controls="panel-rigmark" aria-selected="true">RigMark <small>alexellis/rigmark</small></button>
+    <button class="tab" role="tab" id="tab-spark" aria-controls="panel-spark" aria-selected="false" tabindex="-1">SparkBench <small>sparkDash reproduction</small></button>
+  </div>
+  <div class="controls" id="speed-controls" aria-label="Filter speed charts"></div>
+  <div class="legend" id="speed-legend"></div>
+  <div role="tabpanel" id="panel-rigmark" aria-labelledby="tab-rigmark">
+    <p class="prose small">RigMark protocol <code>6e0e24a6</code> (v1.1.0, clean worktree), temperature 0, <code>reasoning_effort: low</code>. Decode and cold/warm prefill come from each window's <code>code-full</code> receipt; prose throughput and both staggered directions come from its <code>prose-concurrency</code> receipt (prose workload, 32K-token long request, 1 s stagger).</p>
+    <div class="panel-grid wide" id="rigmark-grid"></div>
+  </div>
+  <div role="tabpanel" id="panel-spark" aria-labelledby="tab-spark" hidden>
+    <p class="prose small">SparkBench here is a Python reproduction of MiaAI-Lab/sparkDash's decode-benchmark protocol: 400 output tokens, 1–4 concurrent streams, four workloads. Each value is the <strong>mean per-stream decode rate</strong> — not RigMark's aggregate end-to-end throughput.</p>
+    <div class="panel-grid" id="spark-grid"></div>
+  </div>
+  <h3>Speed windows and their receipts</h3>
+  <p class="prose small">Each recipe's window, sample count, settings and the checkpoint its receipt records. Original and redacted-export hashes come from <code>evidence/export-manifest.json</code>.</p>
+  <div class="grid-2" id="speed-windows"></div>
+</section>
+
+<!-- ============ 04 Evidence ============ -->
+<section class="section" id="evidence" aria-labelledby="h-evidence">
+  <div class="section-head">
+    <div class="round-tag holo-text"><span class="bell" aria-hidden="true">🔔</span>Final bell · Scorecards</div>
+    <h2 id="h-evidence">Show us the receipts.</h2>
+    <p class="dek">Every run, every setting, every source identity and every receipt. Nothing below is estimated; missing measurements stay missing.</p>
+  </div>
+
+  <div class="card card-pad" id="integrity"></div>
+
+  <h3>Exact source identities</h3>
+  <p class="prose small">Verbatim from <code>benchmark-package/source-identities.json</code>. Recipe commits and lab-plan hashes are different identity types, and quality and speed sometimes used different sources or checkpoints.</p>
+  <div class="table-wrap" style="max-height:none"><table class="data-table" id="identities" aria-label="Source identities by recipe and TP size"></table></div>
+
+  <h3>Interpretation rules</h3>
+  <ol class="rules">
+    <li><strong>Main quality charts use only completed temperature-zero, 92-case rounds.</strong> Temperature-one observations and the older 69-case results sit in separate appendices below, on their own axes, and never share a median.</li>
+    <li><strong>Every result's score and elapsed time is shown.</strong> Medians and observed ranges exist only for repeated cohorts; single rounds have no variance estimate. A missing measurement is shown as missing, never as zero.</li>
+    <li><strong>A quality/time point is one completed tool-eval round</strong> — the wall time of one 92-scenario phase — excluding model boot, preparation, hardware queue waits and admission probes. Effort, output cap, concurrency and TP size stay attached to every point.</li>
+    <li><strong>RigMark and SparkBench are distinct metrics.</strong> Decode rate, aggregate throughput, cold and warm TTFT, and the two staggered-arrival directions each keep their own label and unit.</li>
+    <li><strong>Quality and speed used different sources in places.</strong> RiNGSiDE tool-eval used RedHatAI weights at both TP sizes; the historical TP2 speed profile used NVIDIA weights. A lab-plan hash is not a Git commit. No identical-configuration quality/speed claim is made.</li>
+    <li><strong>Truncation and campaign status are preserved.</strong> Reported output-cap truncations stay flagged; owner-stopped (Tony2wild) and cancelled/failed (Knapcio) parent campaigns are not relabelled successful. An absent truncation report does not prove the cap was never reached.</li>
+    <li><strong>Knapcio is the measured <code>dddb0347</code> switchless port.</strong> Its native template ignores thinking-off, so equivalent effective thinking behaviour is unproved.</li>
+    <li><strong>This compares complete historical recipes</strong>, not an isolated quantisation, kernel, transport or universal model-quality effect.</li>
+    <li><strong>Warm replay is a cached-prefix measurement, not full-token prefill.</strong> RigMark's warm replay re-sends the same prompt, so the server may reuse its prefix cache. RiNGSiDE's plans document prefix-cache retention and a replay boundary. No packaged receipt documents speculative prefill; it is left unknown. A <a href="https://x.com/plotarmordev/status/2104177769412514182" rel="noopener noreferrer">separate speculative-prefill recall example</a> (36/36 facts recalled with full prefill versus 11/36 with speculative prefill, Qwen3.8 Flash Next Q5 on an M5 Ultra) is <strong>not a RiNGSiDE measurement</strong> and its numbers do not transfer here.</li>
+  </ol>
+
+  <h3>Tool-eval settings (all 60 main rounds)</h3>
+  <div class="card card-pad"><dl class="kv" id="settings-kv"></dl></div>
+
+  <h3 id="all-runs">All 60 tool-eval rounds</h3>
+  <p class="prose small">Every completed temperature-zero round, with its receipt. Filter, sort, search and export the current view. The original <code>tool-eval-rounds.csv</code> remains the reference file.</p>
+  <div class="controls" id="runs-controls" aria-label="Filter the rounds table"></div>
+  <div class="table-wrap"><table class="data-table" id="runs-table" aria-label="All tool-eval rounds"></table></div>
+  <p class="table-status" id="runs-status" aria-live="polite"></p>
+
+  <h3>Scenario outcomes, run by run</h3>
+  <p class="prose small">Each row is one round; each cell one of the 92 scenarios in receipt order (TC-01 … TC-92). Light cell: pass. Hatched: partial. Dark: fail. Copied from each round's <code>result.json</code> at build time; select a row to inspect it.</p>
+  <div class="card card-pad"><div id="scenario-grid" class="scen-grid"><p class="lazy-note">Loading receipt extracts…</p></div></div>
+
+  <h3>Speed cells</h3>
+  <p class="prose small">All 309 cells of <code>speed-cells.csv</code>, including the two recorded as empty (Mia decode-first at 6 requests, TP4 and TP2, where the only round had no valid overlap).</p>
+  <div class="controls" id="cells-controls" aria-label="Filter the speed-cells table"></div>
+  <div class="table-wrap"><table class="data-table" id="cells-table" aria-label="All speed cells"></table></div>
+  <p class="table-status" id="cells-status" aria-live="polite"></p>
+
+  <h3>Appendix A · Temperature-one observations</h3>
+  <p class="prose small">Six single rounds at temperature 1, top_p 0.95, seed 42. Separate axis; never pooled with the temperature-zero medians.</p>
+  <div class="chart-card"><h4>Temperature-one rounds</h4><p class="unit">score / 100 against completed-round time · six single observations · their own axis</p><div class="chart" id="sampled-chart"></div></div>
+  <div class="table-wrap" style="max-height:none;margin-top:14px"><table class="data-table" id="sampled-table" aria-label="Temperature-one observations"></table></div>
+
+  <h3>Appendix B · Earlier 69-case benchmark</h3>
+  <div class="card card-pad" id="historical"></div>
+
+  <h3>Appendix C · The earlier 37-round chart snapshot</h3>
+  <div class="card card-pad" id="baseline37"></div>
+
+  <h3>Downloads</h3>
+  <div class="btn-row" id="downloads"></div>
+
+  <h3>Credits</h3>
+  <div class="card card-pad prose" id="credits">
+    <p><strong>Recipes.</strong> RiNGSiDE — othexmr (ours): <a href="https://github.com/othexmr/GLM-5.3-Flash-NVFP4-2x-4x-DGX-Sparks-RiNGSiDE" rel="noopener noreferrer">othexmr/GLM-5.3-Flash-NVFP4-2x-4x-DGX-Sparks-RiNGSiDE</a>. Mia — MiaAI-Lab. Tony2wild — tonyd2wild. Knapcio — knapcio. Each comparison recipe is its author's independent work; the lab's adaptations (ring transport, capacity, pinned drafter) are recorded with each window and do not change authorship. The measured RiNGSiDE runs used lab image <code>017fd0ba</code>; the repository today (read at <code>6606f76</code>) is later than, and not identical to, what was measured.</p>
+    <p><strong>Weights and drafters.</strong> zai-org — <code>zai-org/GLM-5.3-Flash</code>, the base model. RedHatAI — <code>RedHatAI/GLM-5.3-Flash-NVFP4</code>. NVIDIA — <code>nvidia/GLM-5.3-Flash-NVFP4</code> (whose <code>tokenizer.json</code> RiNGSiDE also reads). Brandon (<a href="https://huggingface.co/brandonmusic" rel="noopener noreferrer">brandonmusic</a>) — <code>brandonmusic/GLM-5.3-Flash-tr3-4bpw</code> (EXL3). Inco AI (incoai) — <code>incoai/GLM-5.3-Flash-DFlash2</code>, DFlash 2 on the DFlash method of Jian Chen, Yesheng Liang and Zhijian Liu (z-lab/dflash). Knapcio's lossless8 conversion and Tony2wild's offline NVFP4 dense conversion are their authors' own weight preparations.</p>
+    <p><strong>RiNGSiDE is built on</strong> (from its <code>docs/credits.md</code>): vLLM; the GLM-5.3 model sources of ZJY0516/vllm; b12x kernels (local-inference-lab); the LibertAI sparse-MLA plugin; NVIDIA NCCL with switchless patches from SparkRing and alexellis/switchless-nccl; Humming; FlashInfer; InstantTensor; and the chat template of MiaAI-Lab's recipe, with the thinking gate by Raymond Lucke (rwl4). The idea of the TP4 prefill indexer row split comes from rhys101's and knapcio's DeepSeek-V4.1-Flash recipes.</p>
+    <p><strong>Benchmarks.</strong> SeraphimSerapis/tool-eval-bench (2.7.1.dev7+gbd35ba91b), alexellis/rigmark (protocol 6e0e24a6; staggered-arrival and replay sections from the othexmr/rigmark fork), and MiaAI-Lab/sparkDash, whose decode-benchmark protocol was reproduced in Python for these measurements.</p>
+  </div>
+</section>
+</main>
+
+<footer class="site-foot">
+  <p>Built from the hash-verified <code>benchmark-package/</code> snapshot of historical measurements; no benchmark was run to make this site. A complete-recipe comparison: weights, runtime, drafter and topology all differ. Mia, Tony2wild and Knapcio are independently authored recipes, credited with thanks.</p>
+  <p id="foot-build"></p>
+</footer>
+
+<dialog class="inspector" id="inspector" aria-labelledby="insp-title"></dialog>
+
+<script src="generated/snapshot.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/glitter.js"></script>
+<script src="assets/js/discoball.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/sections.js"></script>
+<script src="assets/js/evidence.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

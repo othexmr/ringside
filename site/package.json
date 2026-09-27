@@ -1,0 +1,24 @@
+{
+  "name": "ringside-benchmark-review-site",
+  "private": true,
+  "description": "RiNGSiDE GLM-5.3 Flash on DGX Sparks: interactive benchmark review site built from the hash-verified snapshot.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "validate": "node scripts/validate.mjs",
+    "test:e2e": "node scripts/e2e.mjs",
+    "screenshots": "node scripts/e2e.mjs --screenshots",
+    "serve": "node scripts/serve.mjs",
+    "social": "node scripts/social.mjs",
+    "trailer": "node scripts/trailer.mjs",
+    "soundtrack": "node scripts/soundtrack.mjs",
+    "pages": "node scripts/pages.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

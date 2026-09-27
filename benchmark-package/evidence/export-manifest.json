@@ -1,0 +1,191 @@
+[
+  {
+    "source": "outputs/2026-09-26-ringside-redhat-rowsplit-tp4-1/native/code-full.json",
+    "original_sha256": "68347f634b792e3ee4b4ae7093d7b3686abbb6feacb628f0df584a49aed25f9c",
+    "export": "evidence/raw/outputs/2026-09-26-ringside-redhat-rowsplit-tp4-1/native/code-full.json",
+    "export_sha256": "2911705b16be8051a408f4ac68addd5fb38b3c64fb4ab8ae412b71e81f253aff",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-26-ringside-redhat-rowsplit-tp4-1/native/prose-concurrency.json",
+    "original_sha256": "9482dab6efa43d8f581a6f312e734cbdd854cf6514582e59f75942d4dd115362",
+    "export": "evidence/raw/outputs/2026-09-26-ringside-redhat-rowsplit-tp4-1/native/prose-concurrency.json",
+    "export_sha256": "83ea3e347f1ba6032af695280be4b3a8218243c0b4b5f596ff4c7d78b81c5662",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-26-ringside-redhat-rowsplit-tp4-1/sparkdash.json",
+    "original_sha256": "856123eea9be1e601db20e1b216e5233a9f2a1805191dac7aeca38ae164b3240",
+    "export": "evidence/raw/outputs/2026-09-26-ringside-redhat-rowsplit-tp4-1/sparkdash.json",
+    "export_sha256": "667863596b4d2e04606d0b574e21dce127966f12b607060b9afe3ad564bdfd71",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-23-mia-7cded8e-tp4-full-2/native/code-full.json",
+    "original_sha256": "1d0812cc6adf5d35c14abefc24688d29dbc8a53dc144d7cd3a0b78cf5d1f221a",
+    "export": "evidence/raw/outputs/2026-09-23-mia-7cded8e-tp4-full-2/native/code-full.json",
+    "export_sha256": "1d0812cc6adf5d35c14abefc24688d29dbc8a53dc144d7cd3a0b78cf5d1f221a",
+    "redacted": false
+  },
+  {
+    "source": "outputs/2026-09-23-mia-7cded8e-tp4-full-2/native/prose-concurrency.json",
+    "original_sha256": "aee59f93adedd6cb1d3b138b43aab2a4439f8708597958042deb90efe6a0549b",
+    "export": "evidence/raw/outputs/2026-09-23-mia-7cded8e-tp4-full-2/native/prose-concurrency.json",
+    "export_sha256": "aee59f93adedd6cb1d3b138b43aab2a4439f8708597958042deb90efe6a0549b",
+    "redacted": false
+  },
+  {
+    "source": "outputs/2026-09-23-mia-7cded8e-tp4-full-2/sparkdash.json",
+    "original_sha256": "2410a46af4d22b1c9df3c20eba8f86ed8201ff4e1aefe4511bc4a6fe6572763e",
+    "export": "evidence/raw/outputs/2026-09-23-mia-7cded8e-tp4-full-2/sparkdash.json",
+    "export_sha256": "409df0821ec4c54bd7ba2fac02e61e0bf40b01b62ced15f4aee7c64ee4e26855",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-21-tony-common-capacity-full-2/native/code-full.json",
+    "original_sha256": "8a238e04312a75b740b2e1f9cb69d6bd144e1641d53fcf0ce8cd2785b0d97d09",
+    "export": "evidence/raw/outputs/2026-09-21-tony-common-capacity-full-2/native/code-full.json",
+    "export_sha256": "8a238e04312a75b740b2e1f9cb69d6bd144e1641d53fcf0ce8cd2785b0d97d09",
+    "redacted": false
+  },
+  {
+    "source": "outputs/2026-09-21-tony-common-capacity-full-2/native/prose-concurrency.json",
+    "original_sha256": "36fc3e510896b3ca1d4c4fb338a26439c19674ee2d31008c7e4dff44b5e11e7c",
+    "export": "evidence/raw/outputs/2026-09-21-tony-common-capacity-full-2/native/prose-concurrency.json",
+    "export_sha256": "36fc3e510896b3ca1d4c4fb338a26439c19674ee2d31008c7e4dff44b5e11e7c",
+    "redacted": false
+  },
+  {
+    "source": "outputs/2026-09-22-sparkdash-tony-4/sparkdash.json",
+    "original_sha256": "6611d52a07e9cfdea13ad91222e33f706b36c30e628cb5c3adc02b098912ca72",
+    "export": "evidence/raw/outputs/2026-09-22-sparkdash-tony-4/sparkdash.json",
+    "export_sha256": "b26449ae6573ab59dd01d7877a2cc5c3f274600069c308393c741658ea1fffe9",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-25-tp2-final-1/native/code-full.json",
+    "original_sha256": "c0bed6e5cfefc0e68f5235d4bfdc00c9045bbad005f1a5ec910279bb9cdb762d",
+    "export": "evidence/raw/outputs/2026-09-25-tp2-final-1/native/code-full.json",
+    "export_sha256": "050682d396b8098e4546bbcc7c6f8bb7e10bd01d9afeeb5c13ec5e2d36a85853",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-25-tp2-final-1/native/prose-concurrency.json",
+    "original_sha256": "409a94f46f8d4423e15122cec623c2393a7025d2f1dbd6f018ffe016f11371dd",
+    "export": "evidence/raw/outputs/2026-09-25-tp2-final-1/native/prose-concurrency.json",
+    "export_sha256": "00a0ed730dd741b54b6855a02d7df5eb0c548b30f12c562582616361e0d0530c",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-25-sparkdash-tp2-final-1/sparkdash.json",
+    "original_sha256": "28f410b55c921c98f8652393ee28375a21d8fea6e171caea9709bd281cb532b5",
+    "export": "evidence/raw/outputs/2026-09-25-sparkdash-tp2-final-1/sparkdash.json",
+    "export_sha256": "86c9003050e684fa22c81ed80b83e730fce3b1256ea7a542cc05fd43687c385d",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-23-mia-7cded8e-tp2-compact-full-1/native/code-full.json",
+    "original_sha256": "dfad1b635fde0b3f4d9a4adc39f26fc153798802f50900e179ba9f4e33175a84",
+    "export": "evidence/raw/outputs/2026-09-23-mia-7cded8e-tp2-compact-full-1/native/code-full.json",
+    "export_sha256": "3964810424ed431923d0204ab130ebf49e75e4474af33d2862937469367d07c6",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-23-mia-7cded8e-tp2-compact-full-1/native/prose-concurrency.json",
+    "original_sha256": "e08fd94136122e89aebfc933ba9a4fe218d9b240cb8bb574f0ec55a82841b597",
+    "export": "evidence/raw/outputs/2026-09-23-mia-7cded8e-tp2-compact-full-1/native/prose-concurrency.json",
+    "export_sha256": "5f05ee06caa35591e15727f0d772b368953da507935a7b9ce1095360d786dd33",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-23-mia-7cded8e-tp2-compact-full-1/sparkdash.json",
+    "original_sha256": "f5a51aa17c6de51d5ece8f83a16c988e24028464de73022e50c8e87fae8a603c",
+    "export": "evidence/raw/outputs/2026-09-23-mia-7cded8e-tp2-compact-full-1/sparkdash.json",
+    "export_sha256": "55464dbb35381cc1f21727466d1c5f28f879ad452c9abb7e125c39d106053f88",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-23-tony-tp2-9fea48c-full-1/native/code-full.json",
+    "original_sha256": "0b1f47063ed0e20ee9f07204300e7d5bf965bf87886ecfa549ea4bef9ad4b446",
+    "export": "evidence/raw/outputs/2026-09-23-tony-tp2-9fea48c-full-1/native/code-full.json",
+    "export_sha256": "ced4455a66764730d07774cbe048a44910aecffc807742b5e3fa7974ab422cf0",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-23-tony-tp2-9fea48c-full-1/native/prose-concurrency.json",
+    "original_sha256": "3f338efe6878082aadd0787fcd685c49e84f9f6d1289096cd8f6fa0b10a6bf3e",
+    "export": "evidence/raw/outputs/2026-09-23-tony-tp2-9fea48c-full-1/native/prose-concurrency.json",
+    "export_sha256": "2ef6ec4c0f0afe5c49b021b6b250de8a65a7483131bbe8004385b2299edb26ef",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-23-tony-tp2-9fea48c-full-1/sparkdash.json",
+    "original_sha256": "f103f9e64624597f1ce9d6825433af5b288d3c35dde57b5ffe87d5e70edf5a5a",
+    "export": "evidence/raw/outputs/2026-09-23-tony-tp2-9fea48c-full-1/sparkdash.json",
+    "export_sha256": "be9590748e3200b49baa0240f0096b41f753fefa20c716298206011fd0ae3eb1",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-27-knapcio-matched-speed-run-01/native/code-full.json",
+    "original_sha256": "8372ae484fb5ff57d6298ceefacadf1406f967eac28e0e9b50cf2fb248e548d5",
+    "export": "evidence/raw/outputs/2026-09-27-knapcio-matched-speed-run-01/native/code-full.json",
+    "export_sha256": "8372ae484fb5ff57d6298ceefacadf1406f967eac28e0e9b50cf2fb248e548d5",
+    "redacted": false
+  },
+  {
+    "source": "outputs/2026-09-27-knapcio-matched-speed-run-01/native/prose-concurrency.json",
+    "original_sha256": "7db45f3a2f8c3924302b9cdae0ce8987555d00e96fc61ec8eb7d342b487860f3",
+    "export": "evidence/raw/outputs/2026-09-27-knapcio-matched-speed-run-01/native/prose-concurrency.json",
+    "export_sha256": "7db45f3a2f8c3924302b9cdae0ce8987555d00e96fc61ec8eb7d342b487860f3",
+    "redacted": false
+  },
+  {
+    "source": "outputs/2026-09-27-knapcio-matched-speed-run-01/sparkdash.json",
+    "original_sha256": "0190d91b3528a2cab72037a6b7511968ef106047c6ee11e4724180ad2843255b",
+    "export": "evidence/raw/outputs/2026-09-27-knapcio-matched-speed-run-01/sparkdash.json",
+    "export_sha256": "0190d91b3528a2cab72037a6b7511968ef106047c6ee11e4724180ad2843255b",
+    "redacted": false
+  },
+  {
+    "source": "outputs/2026-09-26-tool-eval-ours-tp4-sampled-r2-1/tool-eval-sampled-r2/tools-sampled-high-c16-1/result.json",
+    "original_sha256": "38ca81696f82660cc5442d28651dad9ce721d5492e9b1aaf103291e8f8b6a06a",
+    "export": "evidence/sampled/tools-sampled-high-c16-1/result.json",
+    "export_sha256": "bdefe4c7ead7c3dad845f6dffa752d47d72ba80fd2daca4b5261c8f1adf1bcda",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-26-tool-eval-ours-tp4-sampled-r2-1/tool-eval-sampled-r2/tools-sampled-high-c4-1/result.json",
+    "original_sha256": "a52aa0791200900e3786349981978d5fb50eb57c7478262a5f4e8864cf2872a1",
+    "export": "evidence/sampled/tools-sampled-high-c4-1/result.json",
+    "export_sha256": "fad7b174fa8d197b32ce4aea2a57ec23184d49903f2167b73cfeacdc32e4b2d7",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-26-tool-eval-ours-tp4-sampled-r2-1/tool-eval-sampled-r2/tools-sampled-high-c8-1/result.json",
+    "original_sha256": "2f3f57165c750105c7fcc357d59f2c383095a3d8c2d18d7683884b93416eb813",
+    "export": "evidence/sampled/tools-sampled-high-c8-1/result.json",
+    "export_sha256": "8f4e1909b47375ba2207275d05d198db45da13e74b345002dcd6f0c149d67a17",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-26-tool-eval-ours-tp4-sampled-r2-1/tool-eval-sampled-r2/tools-sampled-low-c4-1/result.json",
+    "original_sha256": "627c9c5650ed9a7162559548e9f9df4cf65156cb8c6f7791df955916cb1fa361",
+    "export": "evidence/sampled/tools-sampled-low-c4-1/result.json",
+    "export_sha256": "a07940a5d9c8e973404c3a0cb2b12e8ac5376fa7183eb829cf9ff3a01a5a7cf0",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-26-tool-eval-ours-tp4-sampled-r2-1/tool-eval-sampled-r2/tools-sampled-max-c4-1/result.json",
+    "original_sha256": "9db5e76b6fe18faeae607d6484f9b7860342b6659dd1a71bfc48455fe35a96fe",
+    "export": "evidence/sampled/tools-sampled-max-c4-1/result.json",
+    "export_sha256": "c6b3d9ff0aa94ec1e63284e5b2c0187277bc5f345c15701e2219a3e47a2e5df7",
+    "redacted": true
+  },
+  {
+    "source": "outputs/2026-09-26-tool-eval-mia-tp4-sampled-r2-1/tool-eval-sampled-r2/tools-sampled-low-c4-1/result.json",
+    "original_sha256": "df0d3637a2d3059c7709225bbd6ab1eb1a409b54d15d3f5b6797caef0ee378c9",
+    "export": "evidence/sampled/mia-low-c4/result.json",
+    "export_sha256": "db6aa5934476461e957df2364aeb4a198f8975792337b10f2f7368d2d28351ed",
+    "redacted": true
+  }
+]

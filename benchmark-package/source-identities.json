@@ -1,0 +1,54 @@
+{
+  "tool_eval_commit": "bd35ba91b3276a6cfb04c6d7b4acfd481168bf89",
+  "rows": [
+    {
+      "recipe": "RiNGSiDE",
+      "tp": "TP4",
+      "tool_eval_source": "lab plan 92817b8d",
+      "speed_source": "lab plan 89dfef84",
+      "checkpoint_note": "RedHatAI 18d55bfd (quality); speed checkpoint in source receipt"
+    },
+    {
+      "recipe": "RiNGSiDE",
+      "tp": "TP2",
+      "tool_eval_source": "lab plan b80911ec",
+      "speed_source": "lab plan 69ad74fc",
+      "checkpoint_note": "RedHatAI 18d55bfd (quality); NVIDIA (speed)"
+    },
+    {
+      "recipe": "Mia",
+      "tp": "TP4",
+      "tool_eval_source": "recipe 70b2f332767d303c7b13e60af1b0530adad349c2",
+      "speed_source": "recipe 7cded8e2ed9d7502f32591cfeeeea4747db3d393",
+      "checkpoint_note": "brandonmusic 5ab363a8 (quality)"
+    },
+    {
+      "recipe": "Mia",
+      "tp": "TP2",
+      "tool_eval_source": "recipe 70b2f332767d303c7b13e60af1b0530adad349c2",
+      "speed_source": "recipe 7cded8e2ed9d7502f32591cfeeeea4747db3d393",
+      "checkpoint_note": "brandonmusic 5ab363a8 (quality)"
+    },
+    {
+      "recipe": "Tony2wild",
+      "tp": "TP4",
+      "tool_eval_source": "recipe 2ac4e8dd661b12e6a1d7e69df711707abd6b9cd4",
+      "speed_source": "recipe 2ac4e8dd661b12e6a1d7e69df711707abd6b9cd4",
+      "checkpoint_note": "see run receipts"
+    },
+    {
+      "recipe": "Tony2wild",
+      "tp": "TP2",
+      "tool_eval_source": "recipe abb38bb0c4225855919d55309cd3e506d7941468",
+      "speed_source": "recipe 9fea48c13b0de4a427fd443718ddd3e39863a013",
+      "checkpoint_note": "one Max/C4; owner-stopped partial campaign"
+    },
+    {
+      "recipe": "Knapcio",
+      "tp": "TP4",
+      "tool_eval_source": "recipe dddb034717cb84c362d8a370b81723fa4ee0c4d2",
+      "speed_source": "recipe dddb034717cb84c362d8a370b81723fa4ee0c4d2",
+      "checkpoint_note": "NVIDIA target; measured switchless port"
+    }
+  ]
+}

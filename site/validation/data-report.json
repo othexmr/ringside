@@ -1,0 +1,136 @@
+{
+  "passed": 26,
+  "total": 26,
+  "results": [
+    {
+      "name": "SHA256SUMS verifies the snapshot",
+      "pass": true,
+      "detail": "278/278 files match"
+    },
+    {
+      "name": "benchmark-package/ and original-chart-generator/ unchanged in git",
+      "pass": true,
+      "detail": "no modified, staged or untracked files"
+    },
+    {
+      "name": "Generated bundles are current",
+      "pass": true,
+      "detail": "build.mjs --check passed"
+    },
+    {
+      "name": "60 main rounds, all temperature-zero 92-case",
+      "pass": true,
+      "detail": "60 rounds; settings.temperature 0; 92 scenarios each"
+    },
+    {
+      "name": "23 RiNGSiDE rounds: 13 TP4 + 10 TP2",
+      "pass": true,
+      "detail": "23 = 13 TP4 + 10 TP2"
+    },
+    {
+      "name": "Per-recipe round counts",
+      "pass": true,
+      "detail": "{\"ringside\":{\"tp4\":13,\"tp2\":10},\"miaai\":{\"tp4\":9,\"tp2\":7},\"tonyd2wild\":{\"tp4\":13,\"tp2\":4},\"knapcio\":{\"tp4\":4,\"tp2\":0}}"
+    },
+    {
+      "name": "Every cohort complete with its recorded round count",
+      "pass": true,
+      "detail": "28 cohorts, 60 rounds"
+    },
+    {
+      "name": "tool-eval-rounds.csv equals the JSON",
+      "pass": true,
+      "detail": "60/60 rows equal (score, seconds to full stored precision, settings, run id, truncation ids)"
+    },
+    {
+      "name": "37-round snapshot = 23 RiNGSiDE + 14 Mia, identical to the 60-round file",
+      "pass": true,
+      "detail": "37 rounds; 37/37 byte-identical records"
+    },
+    {
+      "name": "The 37-round snapshot contains exactly our 23 rounds",
+      "pass": true,
+      "detail": "23/23 RiNGSiDE run ids present"
+    },
+    {
+      "name": "Each round result.json matches receipt.result_sha256",
+      "pass": true,
+      "detail": "60/60"
+    },
+    {
+      "name": "Summary score/points/pass-partial-fail/concurrency equal each receipt",
+      "pass": true,
+      "detail": "60/60 rounds agree with their result.json"
+    },
+    {
+      "name": "Tool-eval receipt manifest export hashes",
+      "pass": true,
+      "detail": "215/215"
+    },
+    {
+      "name": "Speed/sampled receipt manifest export hashes",
+      "pass": true,
+      "detail": "27/27"
+    },
+    {
+      "name": "Receipt folders list the files they hold",
+      "pass": true,
+      "detail": "all listed files present; rounds without console.log (shown as absent, not hidden): knapcio-tp4-high-c4-1, knapcio-tp4-high-c8-1, knapcio-tp4-high-c16-1, knapcio-tp4-max-c4-1"
+    },
+    {
+      "name": "Reported truncations: 4 rounds, each confirmed as reasoning_truncated in its receipt",
+      "pass": true,
+      "detail": "ours-tp4-high-c16-2 TC-88:fail/reasoning_truncated · knapcio-tp4-high-c4-1 TC-46:partial/reasoning_truncated · knapcio-tp4-high-c8-1 TC-46:partial/reasoning_truncated · knapcio-tp4-high-c16-1 TC-62:partial/reasoning_truncated"
+    },
+    {
+      "name": "No unreported reasoning_truncated scenarios",
+      "pass": true,
+      "detail": "other budget/truncation kinds (not output-cap reports, left as recorded): ours-tp2-high-2 TC-62 budget_exceeded · ours-tp4-high-c16-2 TC-62 budget_exceeded"
+    },
+    {
+      "name": "TP2 gaps as documented",
+      "pass": true,
+      "detail": "Knapcio TP2 none; Tony2wild TP2 = 3 High/C4 + 1 Max/C4; no TP2 C16; only RiNGSiDE at TP2 C8"
+    },
+    {
+      "name": "No Knapcio Low measurement",
+      "pass": true,
+      "detail": "Knapcio TP4 cohorts: High C4/C8/C16 and Max C4, all singletons"
+    },
+    {
+      "name": "speed-cells.csv equals speed-evidence.json",
+      "pass": true,
+      "detail": "309/309 CSV cells equal; JSON holds 309 cells; 2 empty cells kept empty"
+    },
+    {
+      "name": "No TP2 Knapcio speed row",
+      "pass": true,
+      "detail": "7 speed rows: tp4-ringside, tp4-miaai-7cded8e, tp4-tonyd2wild-2ac4e8dd, tp2-ringside, tp2-miaai-7cded8e, tp2-tonyd2wild-9fea48c, tp4-knapcio"
+    },
+    {
+      "name": "Null staggered values identified (not zeroed)",
+      "pass": true,
+      "detail": "tp4-miaai-7cded8e C6 decode-first · tp2-miaai-7cded8e C6 decode-first"
+    },
+    {
+      "name": "RigMark cold/warm TTFT equal the raw code-full receipts (to stored 3 decimals)",
+      "pass": true,
+      "detail": "50/50 values"
+    },
+    {
+      "name": "Source identities: 7 rows, tool-eval suite commit bd35ba91",
+      "pass": true,
+      "detail": "RiNGSiDE TP4: lab plan 92817b8d / lab plan 89dfef84 · RiNGSiDE TP2: lab plan b80911ec / lab plan 69ad74fc · Mia TP4: recipe 70b2f332767d303c7b13e60af1b0530adad349c2 / recipe 7cded8e2ed9d7502f32591cfeeeea4747db3d393 · Mia TP2: recipe 70b2f332767d303c7b13e60af1b0530adad349c2 / recipe 7cded8e2ed9d7502f32591cfeeeea4747db3d393 · Tony2wild TP4: recipe 2ac4e8dd661b12e6a1d7e69df711707abd6b9cd4 / recipe 2ac4e8dd661b12e6a1d7e69df711707abd6b9cd4 · Tony2wild TP2: recipe abb38bb0c4225855919d55309cd3e506d7941468 / recipe 9fea48c13b0de4a427fd443718ddd3e39863a013 · Knapcio TP4: recipe dddb034717cb84c362d8a370b81723fa4ee0c4d2 / recipe dddb034717cb84c362d8a370b81723fa4ee0c4d2"
+    },
+    {
+      "name": "Temperature-one appendix: 6 observations match their receipts",
+      "pass": true,
+      "detail": "6/6 (temperature 1, top_p 0.95, score)"
+    },
+    {
+      "name": "69-case history kept separate: 2 rounds, no elapsed time",
+      "pass": true,
+      "detail": "96/100 (133/138), 96/100 (133/138)"
+    }
+  ]
+}

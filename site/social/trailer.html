@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>RiNGSiDE trailer</title>
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  html, body { margin: 0; background: #09071a; overflow: hidden; }
+  body { background: #09071a; }
+  canvas#v { display: block; width: 1920px; height: 1080px; }
+  .preload { position: absolute; left: -9999px; font-family: Bricolage; font-weight: 800; }
+</style>
+</head>
+<body>
+<span class="preload" style="font-stretch:75%">RıNGSıDE 0123456789</span><span class="preload" style="font-family:'JetBrains Mono'">0</span>
+<canvas id="v" width="1920" height="1080"></canvas>
+<script src="../generated/snapshot.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/sections.js"></script>
+<script src="../assets/js/discoball.js"></script>
+<script>
+/* RiNGSiDE trailer. renderAt(t) draws frame t (seconds) and nothing else: no timers, no randomness at draw
+   time, so site/scripts/trailer.mjs can capture it frame by frame. Every number comes from the snapshot. */
+(function () {
+  'use strict';
+  const RS = window.RS; const D = RS.data; const R = RS.RECIPES;
+  const W = 1920, Hh = 1080; const DUR = 40;
+  const cv = document.getElementById('v'); const ctx = cv.getContext('2d');
+  const HL = RS.headline();
+  const race = HL.matched.find((s) => s.tp === 4 && s.mode === 'high' && s.parallel === 4);
+  const raceE = race.entries.map((e) => ({ ...e, st: RS.cohortStats(e.rounds) })).sort((a, b) => a.st.atSecs - b.st.atSecs);
+  const oursRace = raceE.find((e) => e.recipe === 'ringside');
+  const sp4 = D.speed.rows.find((r) => r.recipe_key === 'ringside' && r.tp_size === 4);
+  const REPO = 'github.com/othexmr/GLM-5.3-Flash-NVFP4-2x-4x-DGX-Sparks-RiNGSiDE';
+  const f2 = (x) => x.toFixed(2);
+
+  // ---------- helpers ----------
+  const clamp = (x) => Math.max(0, Math.min(1, x));
+  const seg = (t, a, b) => clamp((t - a) / (b - a));
+  const eOut = (x) => 1 - Math.pow(1 - x, 3);
+  const eBack = (x) => { const c = 1.9; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+  const vis = (t, a, b, fi = .45, fo = .45) => Math.min(seg(t, a, a + fi), 1 - seg(t, b - fo, b));
+  let seed = 11; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const HOLO = ['#ff5fb0', '#a979ff', '#4fd2ff', '#ffd24f', '#ff7ac6'];
+  function font(size, weight = 800, stretch = 'condensed', fam = 'Bricolage') { ctx.font = `${weight} ${size}px ${fam}`; ctx.fontStretch = stretch; }
+  function text(str, x, y, o = {}) {
+    ctx.save(); font(o.size || 40, o.weight ?? 800, o.stretch ?? 'condensed', o.mono ? 'JetBrains Mono' : 'Bricolage');
+    ctx.textAlign = o.align || 'left'; ctx.textBaseline = o.base || 'alphabetic'; ctx.globalAlpha = o.alpha ?? 1;
+    if (o.spacing) ctx.letterSpacing = `${o.spacing}px`;
+    if (o.glow) { ctx.shadowColor = o.glow; ctx.shadowBlur = o.glowSize || 24; }
+    if (o.holo) {
+      const w = ctx.measureText(str).width; const x0 = o.align === 'center' ? x - w / 2 : o.align === 'right' ? x - w : x;
+      const g = ctx.createLinearGradient(x0, 0, x0 + w, 0); const sh = (o.shift || 0) % 1;
+      o.holo.forEach((c, i) => g.addColorStop(((i / (o.holo.length - 1)) + sh) % 1, c));
+      ctx.fillStyle = g;
+    } else ctx.fillStyle = o.color || '#fbf7ff';
+    ctx.fillText(str, x, y); ctx.restore();
+  }
+  function star(x, y, r, rot, color, alpha) {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(rot); ctx.globalAlpha = alpha; ctx.fillStyle = color; ctx.beginPath();
+    ctx.moveTo(0, -r); ctx.quadraticCurveTo(r * .16, -r * .16, r, 0); ctx.quadraticCurveTo(r * .16, r * .16, 0, r);
+    ctx.quadraticCurveTo(-r * .16, r * .16, -r, 0); ctx.quadraticCurveTo(-r * .16, -r * .16, 0, -r); ctx.fill(); ctx.restore();
+  }
+
+  // ---------- fixed random fields ----------
+  const STARS = Array.from({ length: 340 }, () => ({ x: rnd() * W, y: rnd() * Hh, r: rnd() < .22 ? 3 + rnd() * 7 : .7 + rnd() * 1.8, ph: rnd() * 6.3, sp: .8 + rnd() * 2.2, c: ['#ffffff', '#ffe28a', '#ffb3d6', '#9cc2ff', '#d6c2ff'][(rnd() * 5) | 0] }));
+  const BURSTS = [];
+  const burst = (t0, x, y, n, colors, power = 1) => { const ps = []; for (let i = 0; i < n; i++) { const a = rnd() * 6.283; const v = (180 + rnd() * 620) * power; ps.push({ vx: Math.cos(a) * v, vy: Math.sin(a) * v - 160, life: 1 + rnd() * 1.1, r: 5 + rnd() * 11, c: colors[(rnd() * colors.length) | 0], rot: rnd() * 6, star: rnd() < .65 }); } BURSTS.push({ t0, x, y, ps }); };
+  const WHITE = ['#ffffff', '#ffe28a', '#ffb3d6', '#9cc2ff', '#d6c2ff'];
+  burst(4.05, 740, 470, 170, WHITE, 1.3);
+  const finishT = (secs) => 13 + 5.5 * (secs / raceE[raceE.length - 1].st.atSecs);
+  burst(finishT(oursRace.st.atSecs) + .02, 1250, 395, 90, ['#4a8cff', '#9cc2ff', '#ffffff', '#ffd36b'], .9);
+  burst(20.4, 960, 470, 190, WHITE, 1.4);
+  burst(34.3, 1260, 520, 160, WHITE, 1.2);
+  function drawBursts(t) {
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    for (const b of BURSTS) {
+      const dt = t - b.t0; if (dt < 0 || dt > 2.4) continue;
+      for (const p of b.ps) {
+        if (dt > p.life) continue;
+        const drag = (1 - Math.exp(-2.2 * dt)) / 2.2;
+        const x = b.x + p.vx * drag; const y = b.y + p.vy * drag + 260 * dt * dt;
+        const a = 1 - dt / p.life;
+        if (p.star) RS.drawBurst(ctx, x, y, p.r * 4.5, p.c, a); else { ctx.globalAlpha = a; ctx.fillStyle = p.c; ctx.beginPath(); ctx.arc(x, y, p.r * .35, 0, 7); ctx.fill(); }
+      }
+    }
+    ctx.restore();
+  }
+
+  // ---------- stage ----------
+  function stage(t, ball) {
+    const g = ctx.createRadialGradient(W * .7, Hh * .15, 0, W * .6, Hh * .4, W * .85);
+    g.addColorStop(0, '#2d1f60'); g.addColorStop(.45, '#140f33'); g.addColorStop(1, '#07051a');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, Hh);
+    const on = seg(t, .3, 2.2);
+    // spotlights
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    [[.28, [110, 165, 255], 0], [.62, [255, 96, 176], 1.7], [.84, [180, 140, 255], 3.1], [.08, [255, 214, 110], 4.2]].forEach(([fx, c, ph], i) => {
+      const ang = Math.sin(t * .55 + ph) * .32; const x0 = W * fx; const len = Hh * 1.35;
+      ctx.save(); ctx.translate(x0, -40); ctx.rotate(ang);
+      const lg = ctx.createLinearGradient(0, 0, 0, len); lg.addColorStop(0, `rgba(${c.join(',')},${.42 * on})`); lg.addColorStop(.75, `rgba(${c.join(',')},${.05 * on})`); lg.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = lg; ctx.beginPath(); ctx.moveTo(-14, 0); ctx.lineTo(14, 0); ctx.lineTo(260, len); ctx.lineTo(-260, len); ctx.closePath(); ctx.fill();
+      RS.drawBurst(ctx, 0, 0, 140, `rgb(${c.join(',')})`, on * .9);
+      ctx.restore();
+    });
+    ctx.restore();
+    // twinkling glitter field
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    for (const s of STARS) {
+      const tw = Math.pow(.5 + .5 * Math.sin(t * s.sp + s.ph), 3) * on;
+      if (s.r > 2.6) RS.drawBurst(ctx, s.x, s.y, s.r * 5 * (.6 + .4 * tw), s.c, tw * .9);
+      else { ctx.globalAlpha = (.25 + .6 * tw); ctx.fillStyle = s.c; ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 7); ctx.fill(); }
+    }
+    ctx.restore();
+    if (ball) {
+      RS.Disco.drawSpots(ctx, ball.x, ball.y, ball.r, t, { reach: W / ball.r * .7, every: 2, w: W, h: Hh, size: 11, alpha: .75 * (ball.spots ?? 1) });
+      RS.Disco.drawBall(ctx, ball.x, ball.y, ball.r, t, { string: (ball.y + 60) / ball.r, maxGlints: 7 });
+    }
+  }
+
+  // ---------- pieces ----------
+  function wordmark(x, y, size, t, alpha = 1, align = 'left') {
+    ctx.save(); font(size, 800, 'condensed');
+    const full = 'RıNGSıDE'; const w = ctx.measureText(full).width; const x0 = align === 'center' ? x - w / 2 : x;
+    text(full, x0, y, { size, holo: ['#ffffff', '#ffe9a8', '#ffffff', '#d8c8ff', '#ffffff', '#ffc6e2', '#ffffff', '#bfe6ff', '#ffffff'], shift: t * .06, alpha, glow: 'rgba(169,121,255,.7)', glowSize: 40 });
+    font(size, 800, 'condensed');
+    const xh = ctx.measureText('x').actualBoundingBoxAscent; const iw = ctx.measureText('ı').width;
+    [[ctx.measureText('R').width, '#4a8cff'], [ctx.measureText('RıNGS').width, '#f04d93']].forEach(([off, c], k) => {
+      const cx = x0 + off + iw / 2; const cy = y - xh - size * .13; const pulse = 1 + .12 * Math.sin(t * 3 + k * 1.6);
+      ctx.globalAlpha = alpha; ctx.shadowColor = c; ctx.shadowBlur = size * .28; ctx.fillStyle = c;
+      ctx.beginPath(); ctx.arc(cx, cy, size * .082 * pulse, 0, 7); ctx.fill();
+    });
+    ctx.restore();
+    return w;
+  }
+  function footnote(t, a, str) {
+    // wrap to at most two lines inside the frame
+    ctx.save(); font(22, 500, 'normal'); const max = W - 140; const words = str.split(' '); const lines = ['']; 
+    for (const w of words) { const tryL = lines[lines.length - 1] ? lines[lines.length - 1] + ' ' + w : w; if (ctx.measureText(tryL).width > max && lines[lines.length - 1]) lines.push(w); else lines[lines.length - 1] = tryL; }
+    ctx.restore();
+    lines.slice(-2).forEach((l, i, arr) => text(l, 70, Hh - 34 - (arr.length - 1 - i) * 30, { size: 22, weight: 500, stretch: 'normal', color: '#a79fc9', alpha: a }));
+  }
+  const METHOD = 'Complete-recipe comparison · historical measurements · tool-eval-bench 2.7.1, 92 cases, temperature 0 · round time excludes boot and queue';
+  function token(x, y, r, recipe, shape = 'circle', alpha = 1) {
+    ctx.save(); ctx.globalAlpha = alpha;
+    ctx.fillStyle = '#1a1634'; ctx.strokeStyle = '#c9c2e6'; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.lineJoin = 'round';
+    if (shape === 'square') { const a = r * .95; ctx.rect(x - a, y - a, 2 * a, 2 * a); }
+    else if (shape === 'diamond') { const a = r * 1.25; ctx.moveTo(x, y - a); ctx.lineTo(x + a, y); ctx.lineTo(x, y + a); ctx.lineTo(x - a, y); ctx.closePath(); }
+    else ctx.arc(x, y, r, 0, 7);
+    ctx.fill(); ctx.stroke(); ctx.restore();
+    text(R[recipe].mono, x, y + r * .38, { size: r * 1.05, align: 'center', stretch: 'normal', alpha });
+  }
+  function oursMark(x, y, r, shape, color, alpha = 1) {
+    ctx.save(); ctx.globalAlpha = alpha; ctx.fillStyle = color; ctx.shadowColor = color; ctx.shadowBlur = r * 2.2;
+    ctx.beginPath();
+    if (shape === 'square') { const a = r * .9; ctx.rect(x - a, y - a, 2 * a, 2 * a); }
+    else if (shape === 'diamond') { const a = r * 1.25; ctx.moveTo(x, y - a); ctx.lineTo(x + a, y); ctx.lineTo(x, y + a); ctx.lineTo(x - a, y); ctx.closePath(); }
+    else ctx.arc(x, y, r, 0, 7);
+    ctx.fill(); ctx.restore();
+  }
+
+  // ---------- scenes ----------
+  function sIntro(t) {
+    const drop = eOut(seg(t, .2, 3.2));
+    stage(t, { x: 960, y: -260 + drop * 700, r: 190, spots: seg(t, 1.5, 3.5) });
+    text('FIGHT NIGHT', 960, 900, { size: 46, align: 'center', color: '#ffd36b', spacing: 22, alpha: vis(t, 1.4, 4.05, .6, .3), stretch: 'normal' });
+    text('GLM-5.3 Flash · DGX Spark', 960, 960, { size: 34, weight: 600, align: 'center', color: '#d9d2f5', alpha: vis(t, 2, 4.05, .6, .3), stretch: 'normal' });
+  }
+  function sWordmark(t) {
+    stage(t, { x: 1540, y: 330, r: 150 });
+    const k = eBack(seg(t, 4, 4.7)); const a = vis(t, 4, 8.2, .2, .45);
+    ctx.save(); ctx.translate(740, 520); ctx.scale(.6 + .4 * k, .6 + .4 * k); wordmark(0, 0, 240, t, a, 'center'); ctx.restore();
+    text('Our GLM-5.3 Flash recipe', 740, 660, { size: 48, weight: 700, align: 'center', stretch: 'normal', alpha: vis(t, 4.6, 8.2) });
+    text('four DGX Sparks · a switchless ring · plus a two-Spark pair', 740, 725, { size: 36, weight: 500, align: 'center', color: '#d9d2f5', stretch: 'normal', alpha: vis(t, 5.1, 8.2) });
+  }
+  function sStats(t) {
+    stage(t, null);
+    const cases = Array.from(new Set(D.rounds.map((r) => r.scenarios)));
+    const items = [[String(new Set(D.rounds.map((r) => r.recipe)).size), 'recipes in the ring'], [String(D.rounds.length), 'completed tool-eval rounds'], [cases.join('/'), 'tool-calling scenarios per round']];
+    items.forEach(([n, l], i) => {
+      const t0 = 8.2 + i * .75; const k = eBack(seg(t, t0, t0 + .45)); const a = vis(t, t0, 12.2, .25, .4);
+      const x = 380 + i * 580;
+      ctx.save(); ctx.translate(x, 470); ctx.scale(k, k);
+      text(n, 0, 0, { size: 230, align: 'center', holo: HOLO, shift: t * .1, alpha: a, glow: 'rgba(169,121,255,.6)', glowSize: 30 });
+      ctx.restore();
+      text(l, x, 560, { size: 38, weight: 700, align: 'center', stretch: 'normal', alpha: a });
+    });
+    const a = vis(t, 10.4, 12.2, .5, .4);
+    text('RiNGSiDE (ours)   vs   Mia · MiaAI-Lab   ·   Tony2wild · tonyd2wild   ·   Knapcio · knapcio', 960, 740, { size: 34, weight: 600, align: 'center', color: '#ffd36b', stretch: 'normal', alpha: a });
+    text('Same benchmark · matched settings · temperature 0 · every round has a receipt', 960, 800, { size: 30, weight: 500, align: 'center', color: '#d9d2f5', stretch: 'normal', alpha: a });
+  }
+  function sRace(t) {
+    stage(t, null);
+    const a = vis(t, 12.2, 20.2, .35, .45);
+    text('THE ROUND-TIME RACE', 110, 150, { size: 34, color: '#ffd36b', spacing: 12, stretch: 'normal', alpha: a });
+    text(`TP4 · four DGX Sparks · ${RS.EFFORT_LABEL[race.mode]} effort · ${D.cap(race.mode) / 1024}K cap · 4 scenarios in parallel`, 110, 205, { size: 34, weight: 600, stretch: 'normal', color: '#d9d2f5', alpha: a });
+    const maxS = raceE[raceE.length - 1].st.atSecs; const clockS = seg(t, 13, 18.5) * maxS;
+    text(RS.mmss(clockS), 1810, 205, { size: 96, align: 'right', mono: true, weight: 700, stretch: 'normal', alpha: a, color: '#ffffff' });
+    text('race replay · round time, time-lapse', 1810, 250, { size: 22, align: 'right', weight: 500, stretch: 'normal', color: '#a79fc9', alpha: a });
+    const x0 = 420, x1 = 1380, y0 = 340, gap = 150;
+    raceE.forEach((e, i) => {
+      const y = y0 + i * gap; const ours = R[e.recipe].ours; const done = clockS >= e.st.atSecs;
+      const w = (Math.min(clockS, e.st.atSecs) / maxS) * (x1 - x0);
+      if (ours) oursMark(150, y, 16, 'circle', '#4a8cff', a); else token(150, y, 18, e.recipe, 'circle', a);
+      text(R[e.recipe].name, 185, y + 13, { size: 40, weight: ours ? 800 : 650, stretch: 'normal', alpha: a });
+      ctx.save(); ctx.globalAlpha = a;
+      ctx.fillStyle = 'rgba(255,255,255,.06)'; ctx.beginPath(); ctx.roundRect(x0, y - 22, x1 - x0, 44, 22); ctx.fill();
+      if (ours) { const g = ctx.createLinearGradient(x0, 0, x0 + w, 0); g.addColorStop(0, 'rgba(74,140,255,.55)'); g.addColorStop(1, '#4a8cff'); ctx.fillStyle = g; ctx.shadowColor = '#4a8cff'; ctx.shadowBlur = 30; }
+      else ctx.fillStyle = 'rgba(201,194,230,.35)';
+      if (w > 1) { ctx.beginPath(); ctx.roundRect(x0, y - 22, Math.max(44, w), 44, 22); ctx.fill(); }
+      ctx.restore();
+      if (done) {
+        const la = a * seg(t, finishT(e.st.atSecs), finishT(e.st.atSecs) + .3);
+        const lab = `${RS.mmss(e.st.atSecs)} · ${e.st.atScore}/100${e.st.repeated ? '' : ' (single)'}${ours ? '' : ` · ${f2(e.st.atSecs / oursRace.st.atSecs)}×`}`;
+        text(lab, x0 + Math.max(44, w) + 22, y + 13, { size: 34, weight: 700, stretch: 'normal', alpha: la, color: ours ? '#ffffff' : '#d9d2f5' });
+        if (ours) text('FIRST TO FINISH', x0 + w + 22, y - 32, { size: 24, color: '#ffd36b', spacing: 6, stretch: 'normal', alpha: la });
+      }
+    });
+    footnote(t, a, `${METHOD} · medians of 3 rounds; Knapcio single round`);
+  }
+  function sEight(t) {
+    stage(t, { x: 960, y: 190, r: 120, spots: .8 });
+    const k = eBack(seg(t, 20.3, 20.9)); const a = vis(t, 20.3, 25.2, .2, .45);
+    ctx.save(); ctx.translate(960, 640); ctx.scale(k, k);
+    text(`${HL.fastest}/${HL.n}`, 0, 0, { size: 330, align: 'center', holo: HOLO, shift: t * .12, alpha: a, glow: 'rgba(255,95,176,.6)', glowSize: 50 });
+    ctx.restore();
+    text('matched settings: fastest median round', 960, 760, { size: 56, align: 'center', stretch: 'normal', alpha: vis(t, 20.8, 25.2) });
+    text(`In all ${HL.clean}, our slowest round beat every other recipe's fastest.`, 960, 840, { size: 40, weight: 600, align: 'center', color: '#ffd36b', stretch: 'normal', alpha: vis(t, 21.6, 25.2) });
+    footnote(t, vis(t, 21, 25.2), `Settings where RiNGSiDE and at least one other recipe ran · ${METHOD}`);
+  }
+  function sScatter(t) {
+    stage(t, null);
+    const a = vis(t, 25.2, 30.2, .35, .45);
+    text('Same scores. ', 110, 170, { size: 78, alpha: a });
+    font(78, 800, 'condensed'); const sw = ctx.measureText('Same scores. ').width;
+    text('Shorter rounds.', 110 + sw, 170, { size: 78, holo: ['#9cc2ff', '#ffd36b', '#ffb3d6'], alpha: a });
+    text('TP4 · 4 in parallel · every recipe · up is a higher score, left is a faster round', 110, 225, { size: 30, weight: 500, stretch: 'normal', color: '#d9d2f5', alpha: a });
+    const L = 190, Rr = 1780, T = 290, B = 890; const xMax = 36; const y0s = 84, y1s = 96;
+    const px = (s) => L + (s / 60 / xMax) * (Rr - L); const py = (v) => B - ((v - y0s) / (y1s - y0s)) * (B - T);
+    ctx.save(); ctx.globalAlpha = a; ctx.strokeStyle = 'rgba(255,255,255,.08)'; ctx.lineWidth = 1.5;
+    for (let v = y0s; v <= y1s; v += 2) { ctx.beginPath(); ctx.moveTo(L, py(v)); ctx.lineTo(Rr, py(v)); ctx.stroke(); text(String(v), L - 18, py(v) + 9, { size: 26, weight: 600, stretch: 'normal', align: 'right', color: '#a79fc9', alpha: a }); }
+    for (let m = 0; m <= xMax; m += 6) text(`${m} min`, px(m * 60), B + 42, { size: 26, weight: 600, stretch: 'normal', align: 'center', color: '#a79fc9', alpha: a });
+    ctx.restore();
+    const groups = RS.cohortsOf(D.rounds.filter((r) => r.tp === 4 && r.parallel === 4));
+    groups.forEach((g, i) => {
+      const st = RS.cohortStats(g.rounds); const t0 = 25.6 + i * .18; const k = eBack(seg(t, t0, t0 + .4)); const ga = a * seg(t, t0, t0 + .15);
+      const x = px(st.atSecs), y = py(st.atScore) - (1 - k) * 60; const shape = RS.EFFORT_SHAPE[g.mode];
+      if (R[g.recipe].ours) {
+        oursMark(x, y, 20, shape, '#4a8cff', ga);
+        text(`${RS.EFFORT_LABEL[g.mode]} ${st.atScore} · ${RS.mmss(st.atSecs)}`, x - 34, y - 22, { size: 30, weight: 800, stretch: 'normal', align: 'right', alpha: ga, glow: 'rgba(9,7,26,.9)', glowSize: 12 });
+      } else token(x, y, 19, g.recipe, shape, ga);
+    });
+    text('● High   ■ Low   ◆ Max effort · RiNGSiDE glowing · M Mia · T Tony2wild · K Knapcio', 110, Hh - 100, { size: 26, weight: 600, stretch: 'normal', color: '#d9d2f5', alpha: a });
+    footnote(t, a, `${METHOD} · medians of 3 rounds; Max and Knapcio single rounds`);
+  }
+  function sSpeed(t) {
+    stage(t, { x: 1600, y: 260, r: 130, spots: .7 });
+    const a = vis(t, 30.2, 34.3, .3, .4);
+    const rows = [
+      [`${f2(HL.tp4[0])}–${f2(HL.tp4[1])}×`, `faster rounds than the next-fastest recipe · TP4, ${HL.rows.filter((r) => r.st.tp === 4).length} matched settings`],
+      [`${RS.fmt(sp4.agg['16'], 0)} tok/s`, 'RigMark aggregate throughput at 16 concurrent requests · TP4'],
+      [`${RS.fmt(sp4.staggered['16'][0], 1)} s`, 'newcomer time-to-first-token while a 32K-token prefill runs · 16 requests'],
+    ];
+    rows.forEach(([n, l], i) => {
+      const t0 = 30.4 + i * .8; const k = eOut(seg(t, t0, t0 + .45)); const ra = a * seg(t, t0, t0 + .3);
+      const y = 330 + i * 230;
+      text(n, 110 - (1 - k) * 80, y, { size: 150, holo: HOLO, shift: t * .1 + i * .2, alpha: ra, glow: 'rgba(169,121,255,.5)', glowSize: 26 });
+      text(l, 116, y + 62, { size: 34, weight: 600, stretch: 'normal', color: '#d9d2f5', alpha: ra });
+    });
+    footnote(t, a, 'Speed: RigMark protocol 6e0e24a6 · historical speed windows, separate from the quality rounds · RiNGSiDE median of 2 runs · complete-recipe comparison');
+  }
+  function sEnd(t) {
+    stage(t, { x: 480, y: 470, r: 250 });
+    const a = vis(t, 34.3, 41, .4, .1);
+    const k = eBack(seg(t, 34.3, 35));
+    ctx.save(); ctx.translate(1340, 380); ctx.scale(.7 + .3 * k, .7 + .3 * k); wordmark(0, 0, 200, t, a, 'center'); ctx.restore();
+    text(`Fastest round in ${HL.fastest} of ${HL.n} matched settings`, 1340, 490, { size: 52, align: 'center', alpha: vis(t, 34.8, 41, .4, .1) });
+    text('— at the same scores.', 1340, 555, { size: 52, align: 'center', holo: ['#9cc2ff', '#ffd36b', '#ffb3d6'], alpha: vis(t, 35.1, 41, .4, .1) });
+    text(REPO, 1340, 650, { size: 28, weight: 600, align: 'center', stretch: 'normal', color: '#ffd36b', alpha: vis(t, 35.6, 41, .4, .1) });
+    text('Sparring partners, with respect: MiaAI-Lab · tonyd2wild · knapcio', 1340, 740, { size: 28, weight: 600, align: 'center', stretch: 'normal', color: '#efeaff', alpha: vis(t, 36, 41, .4, .1) });
+    text('Weights: zai-org · RedHatAI · NVIDIA · brandonmusic · drafter: incoai (DFlash2)', 1340, 790, { size: 26, weight: 500, align: 'center', stretch: 'normal', color: '#d9d2f5', alpha: vis(t, 36.3, 41, .4, .1) });
+    text('Benchmarks: SeraphimSerapis/tool-eval-bench · alexellis/rigmark', 1340, 835, { size: 26, weight: 500, align: 'center', stretch: 'normal', color: '#d9d2f5', alpha: vis(t, 36.5, 41, .4, .1) });
+    footnote(t, vis(t, 36.5, 41, .4, .1), METHOD);
+  }
+
+  window.TRAILER = { fps: 30, duration: DUR, width: W, height: Hh };
+  window.renderAt = function (t) {
+    ctx.save(); ctx.clearRect(0, 0, W, Hh);
+    if (t < 4.05) sIntro(t); else if (t < 8.2) sWordmark(t); else if (t < 12.2) sStats(t); else if (t < 20.2) sRace(t);
+    else if (t < 25.2) sEight(t); else if (t < 30.2) sScatter(t); else if (t < 34.3) sSpeed(t); else sEnd(t);
+    drawBursts(t);
+    // film fade in/out
+    const fade = Math.max(1 - seg(t, 0, .6), seg(t, DUR - .8, DUR));
+    if (fade > 0) { ctx.fillStyle = `rgba(0,0,0,${fade})`; ctx.fillRect(0, 0, W, Hh); }
+    ctx.restore();
+  };
+  Promise.all([document.fonts.load('800 100px Bricolage'), document.fonts.load('700 100px "JetBrains Mono"'), document.fonts.ready]).then(() => {
+    window.TRAILER_READY = true;
+    const q = new URLSearchParams(location.search);
+    if (q.has('t')) window.renderAt(+q.get('t'));
+    else if (q.has('play')) { const t0 = performance.now(); const loop = (n) => { window.renderAt(((n - t0) / 1000) % DUR); requestAnimationFrame(loop); }; requestAnimationFrame(loop); }
+    else window.renderAt(22);
+  });
+})();
+</script>
+</body>
+</html>

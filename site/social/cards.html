@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>RiNGSiDE X cards</title>
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+  /* Social cards: rendered by site/scripts/social.mjs at exact pixel sizes. Numbers come from the snapshot. */
+  html, body { margin: 0; background: #09071a; overflow: hidden; }
+  body { background: none; }
+  .card-x { position: relative; overflow: hidden; color: #fbf7ff; isolation: isolate;
+    background: radial-gradient(90% 80% at 75% 20%, #2b1d5c 0%, #140f33 45%, #09071a 100%); font-family: var(--sans); }
+  .card-x canvas.fx { position: absolute; inset: 0; z-index: -1; }
+  .beamx { position: absolute; top: -10%; height: 140%; width: 42%; z-index: -1; mix-blend-mode: screen; opacity: .8; filter: blur(5px); clip-path: polygon(47% 0, 53% 0, 100% 100%, 0 100%); transform-origin: 50% 0; }
+  .wm { font: 800 150px/.9 var(--display); font-stretch: 76%; letter-spacing: -.03em; white-space: nowrap; display: inline-block; padding-top: .16em;
+    background: linear-gradient(100deg, #fff 0%, #ffe9a8 12%, #fff 24%, #d8c8ff 40%, #fff 52%, #ffc6e2 66%, #fff 80%, #bfe6ff 92%, #fff 100%); background-size: 180% 100%; background-position: 30% 0;
+    -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 26px rgba(169, 121, 255, .5)); margin: 0; }
+  .wm .dl { position: relative; background: linear-gradient(180deg, #fff, #e6dcff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .wm .dl::after { content: ""; position: absolute; left: 50%; top: .19em; width: .17em; height: .17em; border-radius: 50%; transform: translateX(-50%); background: var(--dot); box-shadow: 0 0 .25em var(--dot), 0 0 .7em var(--dot); }
+  .wm .d4 { --dot: #4a8cff; } .wm .d2 { --dot: #f04d93; }
+  .tag-x { font: 800 20px var(--sans); letter-spacing: .3em; text-transform: uppercase; color: #ffd36b; }
+  .claim { font: 800 64px/1.02 var(--display); font-stretch: 84%; letter-spacing: -.015em; margin: 0; }
+  .claim .hl { background: linear-gradient(100deg, #9cc2ff, #ffd36b, #ffb3d6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sub { font: 500 26px/1.35 var(--sans); color: #d9d2f5; margin: 0; }
+  .sub b { color: #fff; }
+  .stats-x { display: flex; gap: 18px; }
+  .st { flex: 1; border-radius: 22px; padding: 18px 22px; background: linear-gradient(160deg, rgba(255,255,255,.1), rgba(255,255,255,.02)); border: 1px solid rgba(255,255,255,.16); }
+  .st .n { font: 800 68px/1 var(--display); font-stretch: 78%; letter-spacing: -.03em; }
+  .st .n.holo { background: linear-gradient(100deg, #ff5fb0, #a979ff, #4fd2ff, #ffd24f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .st .l { font: 700 19px/1.3 var(--sans); color: #efeaff; margin-top: 8px; }
+  .foot { position: absolute; left: 60px; right: 60px; bottom: 26px; font: 500 15.5px/1.4 var(--sans); color: #a79fc9; display: flex; justify-content: space-between; gap: 30px; }
+  .foot b { color: #d9d2f5; }
+  .brand-x { display: inline-flex; align-items: center; gap: 12px; font: 800 30px var(--display); color: #fff; }
+  .panel-x { background: rgba(26, 22, 52, .78); border: 1px solid rgba(255,255,255,.12); border-radius: 26px; padding: 22px 26px; backdrop-filter: blur(12px); }
+  .panel-x h3 { margin: 0 0 4px; font: 800 30px var(--display); font-stretch: 86%; }
+  .panel-x .unit { margin: 0 0 8px; font-size: 16px; color: #a79fc9; }
+  .chart .pop, .chart .fade { animation: none !important; } .chart .draw { animation: none !important; stroke-dasharray: none !important; stroke-dashoffset: 0 !important; } .chart .sparkle { animation: none !important; opacity: .9; }
+  .chart .tick { font-size: 14px; } .chart .axis-title { font-size: 14px; } .chart .direct { font-size: 15px; }
+</style>
+</head>
+<body>
+<div id="card"></div>
+<script src="../generated/snapshot.js"></script>
+<script src="../assets/js/core.js"></script>
+<script src="../assets/js/charts.js"></script>
+<script src="../assets/js/sections.js"></script>
+<script src="../assets/js/discoball.js"></script>
+<script>
+(function () {
+  const RS = window.RS; const { h } = RS; const D = RS.data;
+  const params = new URLSearchParams(location.search);
+  const name = params.get('card') || 'hero';
+  const SIZES = { hero: [1600, 900], race: [1600, 900], scatter: [1600, 900], speed: [1600, 900], square: [1080, 1080], header: [1500, 500] };
+  const [W, H] = SIZES[name];
+  const root = h('div', { class: 'card-x', style: `width:${W}px;height:${H}px` });
+  document.getElementById('card').append(root);
+  const HL = RS.headline();
+  const f2 = (x) => x.toFixed(2);
+  const REPO = 'github.com/othexmr/GLM-5.3-Flash-NVFP4-2x-4x-DGX-Sparks-RiNGSiDE';
+  // seeded PRNG so every render is identical
+  let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+
+  // background: beams, glitter, specks, optional mirror ball
+  function backdrop({ ball = null, specks = true, density = 1 } = {}) {
+    [['8%', 'rgba(110,165,255,.5)', -14], ['58%', 'rgba(255,96,176,.45)', 12], ['78%', 'rgba(180,140,255,.4)', -8]].forEach(([l, c, r]) => {
+      root.append(h('div', { class: 'beamx', style: `left:${l};transform:rotate(${r}deg);background:linear-gradient(180deg,${c},transparent 78%)` }));
+    });
+    const cv = h('canvas', { class: 'fx', width: W * 2, height: H * 2, style: `width:${W}px;height:${H}px` });
+    root.prepend(cv);
+    const ctx = cv.getContext('2d'); ctx.scale(2, 2);
+    if (ball && specks) RS.Disco.drawSpots(ctx, ball.x, ball.y, ball.r, 5.3, { reach: Math.max(W, H) / ball.r * .6, every: 2, w: W, h: H, size: 10, alpha: .8 });
+    const cols = ['#ffffff', '#ffe28a', '#ffb3d6', '#9cc2ff', '#d6c2ff'];
+    ctx.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < 260 * density; i++) {
+      const x = rnd() * W, y = rnd() * H, big = rnd() < .2;
+      ctx.globalAlpha = big ? .5 + rnd() * .5 : .25 + rnd() * .5;
+      if (big) RS.drawBurst(ctx, x, y, 14 + rnd() * 34, cols[(rnd() * cols.length) | 0], .45 + rnd() * .5);
+      else { ctx.fillStyle = cols[(rnd() * cols.length) | 0]; ctx.beginPath(); ctx.arc(x, y, .6 + rnd() * 1.6, 0, 7); ctx.fill(); }
+    }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+    if (ball) RS.Disco.drawBall(ctx, ball.x, ball.y, ball.r, 5.3, { string: ball.string ?? 3, maxGlints: 7 });
+  }
+  const wordmark = (size) => { const e = h('h1', { class: 'wm', style: size ? `font-size:${size}px` : null }); e.innerHTML = 'R<span class="dl d4">ı</span>NGS<span class="dl d2">ı</span>DE'; return e; };
+  const foot = (left) => h('div', { class: 'foot' }, h('span', null, left), h('span', null, h('b', { text: 'Recipe: ' }), REPO));
+  const method = 'tool-eval-bench 2.7.1 · 92 cases · temperature 0 · complete-recipe comparison at matched settings · round time = one completed round, excluding boot and queue · medians of 3 rounds where repeated';
+  const pos = (el, css) => { el.style.cssText += `;position:absolute;${css}`; return el; };
+
+  function heroCard() {
+    backdrop({ ball: { x: 1230, y: 330, r: 185, string: 2 } });
+    root.append(pos(h('div', { class: 'tag-x', text: 'Fight night · GLM-5.3 Flash · DGX Spark' }), 'left:60px;top:54px'));
+    root.append(pos(wordmark(150), 'left:56px;top:84px'));
+    const claim = h('p', { class: 'claim' }); claim.append('Fastest round in ', h('span', { class: 'hl', text: `${HL.fastest} of ${HL.n}` }), ' matched settings — at the same scores.');
+    root.append(pos(claim, 'left:60px;top:280px;width:800px'));
+    root.append(pos(h('p', { class: 'sub' }, 'Our recipe on ', h('b', { text: 'four DGX Sparks in a switchless ring' }), ' and on two Sparks, against the MiaAI-Lab, tonyd2wild and knapcio recipes.'), 'left:60px;top:430px;width:780px'));
+    const st = h('div', { class: 'stats-x' });
+    st.append(h('div', { class: 'st' }, h('div', { class: 'n holo', text: `${HL.clean}/${HL.n}` }), h('div', { class: 'l', text: 'settings where our slowest round beat every other recipe\'s fastest' })));
+    st.append(h('div', { class: 'st' }, h('div', { class: 'n', text: `${f2(HL.tp4[0])}–${f2(HL.tp4[1])}×` }), h('div', { class: 'l', text: 'TP4 lead over the next-fastest recipe' })));
+    st.append(h('div', { class: 'st' }, h('div', { class: 'n', text: `${HL.top}/${HL.n}` }), h('div', { class: 'l', text: `top or tied-top score; at most ${HL.maxBehind} point behind otherwise` })));
+    root.append(pos(st, 'left:60px;right:60px;top:600px'));
+    root.append(foot(method));
+  }
+
+  function raceCard() {
+    backdrop({ density: .6 });
+    root.append(pos(h('div', { class: 'tag-x', text: 'The round-time race · TP4 · four DGX Sparks' }), 'left:60px;top:44px'));
+    root.append(pos(h('p', { class: 'claim', style: 'font-size:58px' }, 'Same scores. ', h('span', { class: 'hl', text: 'Shorter rounds.' })), 'left:60px;top:76px'));
+    const grid = h('div', { style: 'display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start' });
+    const mk = (title, sets) => {
+      const p = h('div', { class: 'panel-x' }, h('h3', { text: title }), h('p', { class: 'unit', text: 'median round time per recipe · dots = individual rounds' }));
+      const c = h('div', { class: 'chart' }); p.append(c); grid.append(p);
+      return () => RS.raceChart(c, { settings: sets, ariaLabel: title });
+    };
+    const tp4 = HL.matched.filter((s) => s.tp === 4);
+    const a = mk('4 scenarios in parallel · High, Low, Max effort', tp4.filter((s) => s.parallel === 4));
+    const b = mk('High effort · 8 and 16 in parallel', tp4.filter((s) => s.parallel !== 4));
+    root.append(pos(grid, 'left:60px;right:60px;top:166px'));
+    a(); b();
+    root.append(foot(method));
+  }
+
+  function scatterCard() {
+    backdrop({ density: .6 });
+    root.append(pos(h('div', { class: 'tag-x', text: 'Everyone in the ring · TP4 · 4 in parallel' }), 'left:60px;top:44px'));
+    root.append(pos(h('p', { class: 'claim', style: 'font-size:54px' }, 'Up is a higher score. ', h('span', { class: 'hl', text: 'Left is a faster round.' })), 'left:60px;top:76px'));
+    const panel = h('div', { class: 'panel-x' }, h('h3', { text: 'Tool-calling score against completed-round time' }), h('p', { class: 'unit', text: 'RiNGSiDE glowing (shape = effort: ● High ■ Low ◆ Max) · M Mia · T Tony2wild · K Knapcio · outlined = median of 3, whiskers = observed range · ★ reported truncation' }));
+    const el = h('div', { class: 'chart' }); panel.append(el);
+    root.append(pos(panel, 'left:60px;right:60px;top:166px'));
+    const groups = RS.cohortsOf(D.rounds.filter((r) => r.tp === 4 && r.parallel === 4)).map((g) => ({ ...g, label: (st) => `${RS.RECIPES[g.recipe].ours ? 'RiNGSiDE' : RS.RECIPES[g.recipe].name} ${RS.EFFORT_LABEL[g.mode]} · ${st.atScore} · ${RS.mmss(st.atSecs)}` }));
+    RS.qualityChart(el, { groups, height: 560, railFilter: (g) => RS.RECIPES[g.recipe].ours, ariaLabel: 'TP4 score against round time' });
+    root.append(foot(method));
+  }
+
+  function speedCard() {
+    backdrop({ density: .6 });
+    const row = D.speed.rows.filter((r) => r.tp_size === 4);
+    const ours = row.find((r) => r.recipe_key === 'ringside');
+    root.append(pos(h('div', { class: 'tag-x', text: 'Speed round · TP4 · RigMark' }), 'left:60px;top:44px'));
+    root.append(pos(h('p', { class: 'claim', style: 'font-size:54px' }, `${RS.fmt(ours.agg['16'], 0)} tok/s at 16 streams. `, h('span', { class: 'hl', text: `${RS.fmt(ours.staggered['16'][0], 1)} s newcomer TTFT.` })), 'left:60px;top:76px'));
+    const grid = h('div', { style: 'display:grid;grid-template-columns:1fr 1fr;gap:22px' });
+    const mk = (title, unit) => { const p = h('div', { class: 'panel-x' }, h('h3', { text: title }), h('p', { class: 'unit', text: unit })); const c = h('div', { class: 'chart' }); p.append(c); grid.append(p); return c; };
+    const c1 = mk('Aggregate end-to-end throughput · code', 'tok/s across all concurrent requests · RiNGSiDE glowing · M Mia · T Tony2wild · K Knapcio');
+    const c2 = mk('Staggered arrival · prefill first', 'newcomer median TTFT while a 32K-token prefill runs · seconds · lower is better');
+    root.append(pos(grid, 'left:60px;right:60px;top:166px'));
+    const series = (metric) => row.map((r) => ({ recipe: r.recipe_key, tp: 4, values: metric === 'agg' ? { ...r.agg } : Object.fromEntries(Object.entries(r.staggered || {}).map(([k, v]) => [k, v[0]])), has: true }));
+    const keys = (se) => Array.from(new Set(se.flatMap((s) => Object.keys(s.values)))).sort((a, b) => a - b).map((k) => ({ key: k, label: k }));
+    const s1 = series('agg'); RS.lineChart(c1, { xs: keys(s1), series: s1, yUnit: 'tok/s', higherBetter: true, xTitle: 'concurrent requests', fmt: (v) => RS.fmt(v, 1), ariaLabel: 'Aggregate throughput', height: 470 });
+    const s2 = series('stag'); RS.lineChart(c2, { xs: keys(s2), series: s2, yUnit: 's', higherBetter: false, xTitle: 'requests', fmt: (v) => RS.fmt(v, 2), ariaLabel: 'Staggered prefill first', height: 470 });
+    root.append(foot(`RigMark protocol 6e0e24a6 · historical speed windows, separate from the quality runs · RiNGSiDE median of 2 runs, others one run · complete-recipe comparison`));
+  }
+
+  function squareCard() {
+    backdrop({ ball: { x: 540, y: 330, r: 190, string: 2 } });
+    const wm = wordmark(128); root.append(pos(wm, 'left:0;right:0;top:560px;text-align:center'));
+    const claim = h('p', { class: 'claim', style: 'font-size:58px;text-align:center' }); claim.append('Fastest round in ', h('span', { class: 'hl', text: `${HL.fastest} of ${HL.n}` }), h('br'), 'matched settings.');
+    root.append(pos(claim, 'left:40px;right:40px;top:760px'));
+    root.append(pos(h('p', { class: 'sub', style: 'text-align:center;font-size:24px', text: `Same scores · ${f2(HL.tp4[0])}–${f2(HL.tp4[1])}× faster than the next-fastest recipe on TP4` }), 'left:60px;right:60px;top:910px'));
+    root.append(pos(h('div', { class: 'foot', style: 'justify-content:center;text-align:center;font-size:14px' }, h('span', { text: 'GLM-5.3 Flash · DGX Spark · tool-eval-bench, 92 cases, T=0 · complete-recipe comparison vs MiaAI-Lab, tonyd2wild, knapcio' })), ''));
+  }
+
+  function headerCard() {
+    // X crops the header's top and bottom on mobile and covers the lower left with the avatar: keep text high and right of it
+    backdrop({ ball: { x: 1250, y: 235, r: 150, string: 2 }, density: .9 });
+    root.append(pos(wordmark(140), 'left:70px;top:36px'));
+    root.append(pos(h('p', { class: 'sub', style: 'font-size:28px' }, h('b', { text: 'GLM-5.3 Flash on DGX Sparks' }), ' · switchless ring TP4 · TP2'), 'left:74px;top:238px'));
+    root.append(pos(h('p', { class: 'sub', style: 'font-size:21px;color:#ffd36b', text: `Fastest round in ${HL.fastest} of ${HL.n} matched tool-eval settings, at the same scores` }), 'left:74px;top:284px'));
+  }
+
+  ({ hero: heroCard, race: raceCard, scatter: scatterCard, speed: speedCard, square: squareCard, header: headerCard })[name]();
+  document.fonts.ready.then(() => setTimeout(() => { window.CARD_READY = true; }, 300));
+})();
+</script>
+</body>
+</html>
